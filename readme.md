@@ -10,7 +10,7 @@ This is an open source project, if you'd like to participate and/or use it, enjo
 2. run <code>composer install</code>
 3. at the root, create <code>.env.local.php</code> file and insert the following lines
 
-<code>
+```php
 <?php
 
 return [
@@ -19,4 +19,4 @@ return [
     'DB_PASSWORD' => 'your_database_password',
 ];
 
-</code>
+```
