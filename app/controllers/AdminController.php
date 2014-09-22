@@ -1,6 +1,6 @@
 <?php
 
-class PagesController extends \BaseController {
+class AdminController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,16 +9,7 @@ class PagesController extends \BaseController {
 	 */
 	public function index()
 	{
-		// will check if first visit, in order to install the user admin
-
-		$users = User::all();
-		if ($users->count() == 0) {
-			return View::make('admin.user.create');
-		}
-
-		return View::make('page.home');
-
-
+		//
 	}
 
 
@@ -33,14 +24,28 @@ class PagesController extends \BaseController {
 	}
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+	public function createAdminUser()
 	{
-		//
+		$rules = array(
+			'email'    => 'required|unique:users',
+			'password' => 'required|confirmed'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::back()
+				->withErrors($validator)
+				->withInput(Input::all());
+		} else {
+			$user = new User;
+			$user->email = Input::get('email');
+			$user->password = Input::get('password');
+			$user->superuser = true;
+			$user->save();
+
+			return 'Admin Pannel';
+		}
 	}
 
 

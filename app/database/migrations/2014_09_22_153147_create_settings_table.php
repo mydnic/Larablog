@@ -17,8 +17,6 @@ class CreateSettingsTable extends Migration {
 			$table->increments('id');
 			$table->string('app_name');
 			$table->text('app_baseline');
-			$table->string('admin_email');
-			$table->string('admin_full_name');
 			$table->string('theme');
 			$table->timestamps();
 		});
