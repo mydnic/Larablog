@@ -1,4 +1,4 @@
 @extends('layout.bootstrap3.main')
 @section('content')
-qsd
+    So what's on the home page
 @stop

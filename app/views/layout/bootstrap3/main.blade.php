@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>@yield('meta-title', 'MyC2V')</title>
+        <title>@yield('meta-title', Setting::first()->app_name)</title>
 
         <!-- Bootstrap -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,12 @@
     <body>
         @include('layout.bootstrap3.menu')
         <div class="container">
-            @yield('content')
+            <div class="col-md-9">
+                @yield('content')
+            </div>
+            <div class="col-md-3"> <!-- Right Sidebar -->
+                @include('layout.bootstrap3.sidebar')
+            </div>
         </div>        
 
 

@@ -24,7 +24,7 @@ class AdminController extends \BaseController {
 	}
 
 
-	public function createAdminUser()
+	public function storeAdminUser()
 	{
 		$rules = array(
 			'email'    => 'required|unique:users',
@@ -44,7 +44,7 @@ class AdminController extends \BaseController {
 			$user->superuser = true;
 			$user->save();
 
-			return 'Admin Pannel';
+			return View::make('admin.index');
 		}
 	}
 
