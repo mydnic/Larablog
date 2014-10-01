@@ -3,12 +3,6 @@
 # All fixed pages from the website
 Route::get('/', 'PagesController@index');
 
-Route::get('uri', function(){
-    return 'qsdfqs';
-});
-
-
-
 
 # Admin area
 Route::post('admin/useradmin/store', 'AdminController@storeAdminUser');
