@@ -4,9 +4,9 @@
 Route::get('/', 'PagesController@index');
 
 # Admin area
+Route::post('admin/useradmin/store', 'AdminController@storeAdminUser');
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function()
 {
-    Route::post('useradmin/store', 'AdminController@storeAdminUser');
 });
 
 Route::filter('admin', function()
