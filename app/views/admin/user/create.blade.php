@@ -21,7 +21,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            {{ Form::open(['url'=>'user/admin/store']) }}
+            {{ Form::open(['url'=>'admin/useradmin/store']) }}
                 <h2>Hey ! <small>It seems you are trying Larablog :) Let's create your admin account</small></h2>
                 <hr class="colorgraph">
                 <div class="form-group">
