@@ -4,7 +4,7 @@
         Hello, {{ link_to('profile', Auth::user()->profile->username) }}
     @else
         <h4>Login</h4>
-        {{ Form::open() }}
+        {{ Form::open(['route'=>'session.store']) }}
             <div class="form-group">
                 {{ Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Email']) }}
             </div>

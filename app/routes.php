@@ -3,11 +3,19 @@
 # All fixed pages from the website
 Route::get('/', 'PagesController@index');
 
+# Sessions
+Route::resource('session', 'SessionsController');
+
+
+
+
+
 
 # Admin area
 Route::post('admin/useradmin/store', 'AdminController@storeAdminUser');
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function()
 {
+
 });
 
 Route::filter('admin', function()

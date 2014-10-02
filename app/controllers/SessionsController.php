@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends \BaseController {
+class SessionsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -20,38 +20,27 @@ class AdminController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		if (Auth::guest() AND !Session::has('user')) {
+			return View::make('sessions.create');
+		}
+		else{
+			return Redirect::home()->withFlashMessage('Already connected :)');
+		}
 	}
 
 
-	public function storeAdminUser()
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
 	{
-		$rules = array(
-			'email'    => 'required|unique:users',
-			'password' => 'required|confirmed'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-
-		// process the login
-		if ($validator->fails()) {
-			return Redirect::back()
-				->withErrors($validator)
-				->withInput(Input::all());
-		} else {
-			$user = new User;
-			$user->email = Input::get('email');
-			$user->password = Input::get('password');
-			$user->superuser = true;
-			$user->save();
-
-			$profile = new UserProfile;
-			$profile->user_id = $user->id;
-			$profile->username = "Admin";
-			$profile->save();
-
-			Auth::login($user);
-
-			return View::make('admin.index');
+		if (Auth::attempt(Input::only('email', 'password'))) {
+			return Redirect::intended('/');
+		}
+		else {
+			return Redirect::back()->withErrors(['Wrong Credentials.']);
 		}
 	}
 
@@ -100,7 +89,10 @@ class AdminController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Auth::logout();
+		Session::flush();
+
+		return Redirect::to('/');
 	}
 
 
