@@ -88,3 +88,12 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Route::filter('admin', function()
+{
+    if (!Auth::user()->superuser)
+    {
+        return Redirect::back()->withFlashMessage('I don\'t think you mean what you think it means');
+    }
+});

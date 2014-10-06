@@ -264,10 +264,18 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a class="active" href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a class="active" href="{{ URL::to('admin/index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{ URL::to('admin/post') }}"><i class="fa fa-pencil fa-fw"></i> Posts</a>
+                                <a href="#"><i class="fa fa-pencil fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ URL::to('admin/post') }}">All Posts</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::to('admin/post/create') }}">Add new post</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

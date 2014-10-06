@@ -32,7 +32,6 @@ class AdminController extends \BaseController {
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
-		// process the login
 		if ($validator->fails()) {
 			return Redirect::back()
 				->withErrors($validator)

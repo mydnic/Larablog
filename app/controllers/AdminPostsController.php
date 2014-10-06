@@ -10,7 +10,9 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('admin.post.index');
+		$posts = Post::all();
+		return View::make('admin.post.index')
+			->with('posts', $posts);
 	}
 
 	/**
@@ -21,7 +23,7 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.post.create');
 	}
 
 	/**
@@ -32,7 +34,27 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = array(
+			'title'   => 'required',
+			'content' => 'required',
+			'status'  => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::back()
+				->withErrors($validator)
+				->withInput(Input::all());
+		} else {
+			$post = new Post;
+			$post->user_id = Auth::id();
+			$post->title = Input::get('title');
+			$post->content = Input::get('content');
+			$post->status = Input::get('status');
+			$post->allow_comments = Input::get('allow_comments');
+			$post->save();
+			return Redirect::to('admin/post');
+		}
 	}
 
 	/**
