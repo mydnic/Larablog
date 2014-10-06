@@ -4,6 +4,8 @@
 Route::get('/', 'PagesController@index');
 
 # Sessions
+Route::get('/login', 'SessionsController@create');
+Route::get('/logout', 'SessionsController@destroy');
 Route::resource('session', 'SessionsController');
 
 
@@ -15,7 +17,9 @@ Route::resource('session', 'SessionsController');
 Route::post('admin/useradmin/store', 'AdminController@storeAdminUser');
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function()
 {
-
+    Route::get('/', 'AdminController@index');
+    Route::get('index', 'AdminController@index');
+    Route::resource('post', 'AdminPostsController');
 });
 
 Route::filter('admin', function()

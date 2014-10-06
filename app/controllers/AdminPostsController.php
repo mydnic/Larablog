@@ -1,20 +1,21 @@
 <?php
 
-class AdminController extends \BaseController {
+class AdminPostsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
+	 * GET /adminposts
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return View::make('admin.index');
+		return View::make('admin.post.index');
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
+	 * GET /adminposts/create
 	 *
 	 * @return Response
 	 */
@@ -23,41 +24,20 @@ class AdminController extends \BaseController {
 		//
 	}
 
-
-	public function storeAdminUser()
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /adminposts
+	 *
+	 * @return Response
+	 */
+	public function store()
 	{
-		$rules = array(
-			'email'    => 'required|unique:users',
-			'password' => 'required|confirmed'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-
-		// process the login
-		if ($validator->fails()) {
-			return Redirect::back()
-				->withErrors($validator)
-				->withInput(Input::all());
-		} else {
-			$user = new User;
-			$user->email = Input::get('email');
-			$user->password = Input::get('password');
-			$user->superuser = true;
-			$user->save();
-
-			$profile = new UserProfile;
-			$profile->user_id = $user->id;
-			$profile->username = "Admin";
-			$profile->save();
-
-			Auth::login($user);
-
-			return Redirect::to('admin');
-		}
+		//
 	}
-
 
 	/**
 	 * Display the specified resource.
+	 * GET /adminposts/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -67,9 +47,9 @@ class AdminController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Show the form for editing the specified resource.
+	 * GET /adminposts/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -79,9 +59,9 @@ class AdminController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Update the specified resource in storage.
+	 * PUT /adminposts/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -91,9 +71,9 @@ class AdminController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
+	 * DELETE /adminposts/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -102,6 +82,5 @@ class AdminController extends \BaseController {
 	{
 		//
 	}
-
 
 }
