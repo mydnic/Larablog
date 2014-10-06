@@ -20,3 +20,6 @@ return [
 ];
 
 ```
+
+4. run <code>php artisan migrate</code>
+5. run <code>php artisan db:seed</code>
