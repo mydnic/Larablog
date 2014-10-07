@@ -8,10 +8,8 @@ Route::get('/login', 'SessionsController@create');
 Route::get('/logout', 'SessionsController@destroy');
 Route::resource('session', 'SessionsController');
 
-
-
-
-
+# Categories
+Route::resource('category', 'CategoriesController');
 
 # Admin area
 Route::post('admin/useradmin/store', 'AdminController@storeAdminUser');
