@@ -1,7 +1,7 @@
 <?php
 
 class Category extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = ['name'];
 
     public function post()
     {

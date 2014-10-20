@@ -32,7 +32,7 @@ class CategoriesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		Category::create(Input::all());
 	}
 
 	/**
