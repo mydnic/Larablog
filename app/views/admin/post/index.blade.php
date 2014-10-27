@@ -77,6 +77,7 @@
                 };
                 $http.post('/category', category);
                 $scope.categories.push(category);
+                $scope.newCategoryText = null;
             };
         });
 

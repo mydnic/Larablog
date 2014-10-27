@@ -14,6 +14,9 @@
 @stop
 
 @section('content')
+
+@include('layout.bootstrap3.forms.errors')
+
 {{ Form::open(['route'=>'admin.post.store']) }}
     <div class="row">
         <div class="col-lg-12">
@@ -28,6 +31,15 @@
         </div>
         <div class="col-lg-3">
             <div class="well">
+                <div class="form-group">
+                    @foreach ($categories as $category)
+                        <div class="checkbox">
+                            <label>
+                                {{ Form::checkbox('category_id[]', $category->id) }} {{ $category->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
                 <div class="form-group">
                     {{ Form::label('status', 'Status') }}
                     {{ Form::select('status', ['0'=>'Draft', '1'=>'Published'], '0', ['class'=>'form-control']) }}

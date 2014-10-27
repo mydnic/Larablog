@@ -1,21 +1,21 @@
 <?php
 
-class CategoriesController extends \BaseController {
+class PostsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /categories
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return Category::with('posts')->get();
+		$posts = Post::all();
+		return View::make('blog.index');
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /categories/create
 	 *
 	 * @return Response
 	 */
@@ -24,24 +24,28 @@ class CategoriesController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /categories
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		$category = new Category;
-		$category->name = Input::get('name');
-		$category->slug = Str::slug(Input::get('name'));
-		$category->save();
-		return $category;
+		$validator = Validator::make($data = Input::all(), Post::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+
+        return Redirect::route('admin.post.index');
 	}
+
 
 	/**
 	 * Display the specified resource.
-	 * GET /categories/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,9 +55,9 @@ class CategoriesController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /categories/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -63,9 +67,9 @@ class CategoriesController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /categories/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -75,9 +79,9 @@ class CategoriesController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /categories/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -86,5 +90,6 @@ class CategoriesController extends \BaseController {
 	{
 		//
 	}
+
 
 }

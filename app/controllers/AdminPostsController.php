@@ -23,7 +23,9 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.post.create');
+		$categories = Category::all();
+		return View::make('admin.post.create')
+			->with('categories', $categories);
 	}
 
 	/**
@@ -34,27 +36,30 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$rules = array(
-			'title'   => 'required',
-			'content' => 'required',
-			'status'  => 'required'
-		);
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make($data = Input::all(), Post::$rules);
 
-		if ($validator->fails()) {
-			return Redirect::back()
-				->withErrors($validator)
-				->withInput(Input::all());
-		} else {
-			$post = new Post;
-			$post->user_id = Auth::id();
-			$post->title = Input::get('title');
-			$post->content = Input::get('content');
-			$post->status = Input::get('status');
-			$post->allow_comments = Input::get('allow_comments');
-			$post->save();
-			return Redirect::to('admin/post');
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+		$post = new Post;
+		$post->user_id = Auth::id();
+		$post->title = Input::get('title');
+		$post->content = Input::get('content');
+		$post->status = Input::get('status');
+		$post->slug = Str::slug(Input::get('title'));
+		$post->allow_comments = Input::get('allow_comments');
+		$post->save();
+
+		$post_id = $post->id;
+
+		$post = Post::find($post_id);
+		foreach (Input::get('category_id') as $category_id) {
+			$post->categories()->attach($category_id);
 		}
+
+		return Redirect::to('admin/post');
 	}
 
 	/**

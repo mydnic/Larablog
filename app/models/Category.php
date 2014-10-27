@@ -3,8 +3,12 @@
 class Category extends \Eloquent {
 	protected $fillable = ['name'];
 
-    public function post()
+    public static $rules = [
+        'name' =>'required|min:3'
+    ];
+
+    public function posts()
     {
-        return $this->hasMany('Post');
+        return $this->belongsToMany('Post');
     }
 }
