@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends \BaseController {
+class AdminPagesController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,9 @@ class AdminController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('admin.index');
+		$pages = Page::all();
+		return View::make('admin.page.index')
+			->with('pages', $pages);
 	}
 
 
@@ -20,38 +22,18 @@ class AdminController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.page.create');
 	}
 
 
-	public function storeAdminUser()
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
 	{
-		$rules = array(
-			'email'    => 'required|unique:users',
-			'password' => 'required|confirmed'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-
-		if ($validator->fails()) {
-			return Redirect::back()
-				->withErrors($validator)
-				->withInput(Input::all());
-		} else {
-			$user = new User;
-			$user->email = Input::get('email');
-			$user->password = Input::get('password');
-			$user->superuser = true;
-			$user->save();
-
-			$profile = new UserProfile;
-			$profile->user_id = $user->id;
-			$profile->username = "Admin";
-			$profile->save();
-
-			Auth::login($user);
-
-			return Redirect::to('admin/index');
-		}
+		//
 	}
 
 

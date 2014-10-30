@@ -19,7 +19,8 @@ class CreatePagesTable extends Migration {
 			$table->string('title');
 			$table->text('content');
 			$table->integer('status'); // 0 = draft // 1 = published
-			$table->string('url');
+			$table->string('slug');
+			$table->string('image');
 			$table->boolean('allow_comments');
 			$table->softDeletes();
 			$table->timestamps();

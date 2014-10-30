@@ -264,10 +264,14 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a class="active" href="{{ URL::to('admin/index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a class="{{ Request::is('admin/index') ? 'active' : '' }}" href="{{ URL::to('admin/index') }}">
+                                    <i class="fa fa-dashboard fa-fw"></i> Dashboard
+                                </a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-pencil fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                                <a class="{{ Request::is('admin/post*') ? 'active' : '' }}" href="#">
+                                    <i class="fa fa-comment fa-fw"></i> Posts<span class="fa arrow"></span>
+                                </a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="{{ URL::to('admin/post') }}">All Posts</a>
@@ -278,16 +282,17 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                                <a class="{{ Request::is('admin/page*') ? 'active' : '' }}" href="#">
+                                    <i class="fa fa-pencil fa-fw"></i> Pages<span class="fa arrow"></span>
+                                </a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="flot.html">Flot Charts</a>
+                                        <a href="{{ URL::to('admin/page') }}">All Pages</a>
                                     </li>
                                     <li>
-                                        <a href="morris.html">Morris.js Charts</a>
+                                        <a href="{{ URL::to('admin/page/create') }}">Add new page</a>
                                     </li>
                                 </ul>
-                                <!-- /.nav-second-level -->
                             </li>
                             <li>
                                 <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>

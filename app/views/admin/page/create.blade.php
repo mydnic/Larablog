@@ -14,11 +14,11 @@
 @stop
 
 @section('content')
-{{ Form::open(['route'=>'admin.post.store']) }}
+{{ Form::open(['route'=>'admin.page.store']) }}
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                {{ Form::text('title', null, ['placeholder'=>'Title of the post']) }}
+                {{ Form::text('title', null, ['placeholder'=>'Title of the page']) }}
             </h1>
         </div>
     </div>

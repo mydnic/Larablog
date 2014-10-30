@@ -13,9 +13,12 @@ Route::resource('category', 'CategoriesController');
 
 # Admin area
 Route::post('admin/useradmin/store', 'AdminController@storeAdminUser');
+Route::get('/admin', function(){
+    return Redirect::to('admin/index');
+});
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function()
 {
-    Route::get('/', 'AdminController@index');
     Route::get('index', 'AdminController@index');
     Route::resource('post', 'AdminPostsController');
+    Route::resource('page', 'AdminPagesController');
 });

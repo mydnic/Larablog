@@ -8,5 +8,10 @@
             Draft
         @endif
     </td>
+    <td>
+        @foreach ($post->categories as $category)
+            {{ $category->name }}<span class="coma">,</span>
+        @endforeach
+    </td>
     <td>{{ date('d/m/Y \a\t H:i:s' , strtotime($post->created_at)) }}</td>
 </tr>

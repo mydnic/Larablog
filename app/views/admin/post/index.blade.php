@@ -1,8 +1,22 @@
 @extends('layout.admin.main')
+
+
+@section('styles')
+    <style>
+    #TablePost span.coma:last-child {
+        display: none;
+    }
+    </style>
+@stop
+
+
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Posts</h1>
+        <h1 class="page-header">
+            Posts
+            <small><a href="{{ URL::to('admin/post/create') }}">Add new</a></small>
+        </h1>
     </div>
 </div>
 <div class="row">
@@ -14,6 +28,7 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Status</th>
+                        <th>Categories</th>
                         <th>Created at</th>
                     </tr>
                 </thead>
@@ -33,8 +48,9 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="category in categories">
                         @{{ category.name }}
-                        <span class="pull-right text-muted small"><em>5 posts</em>
-                        </span>
+                        <!-- <span class="pull-right text-muted small">
+                            <em>5 posts</em>
+                        </span> -->
                     </li>
                 </ul>
                 <!-- /.list-group -->
