@@ -37,7 +37,14 @@
                     </button>
                     <a class="navbar-brand" href="{{ URL::to('admin/index') }}">{{ Setting::first()->app_name }} Admin</a>
                 </div>
-                <!-- /.navbar-header -->
+                
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{{ URL::to('/') }}">
+                            View Site
+                        </a>
+                    </li>
+                </ul>
 
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
@@ -298,7 +305,9 @@
                                 <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                                <a href="{{ URL::to('admin/settings') }}">
+                                    <i class="fa fa-cogs fa-fw"></i> Settings
+                                </a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

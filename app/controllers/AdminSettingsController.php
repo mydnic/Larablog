@@ -1,6 +1,6 @@
 <?php
 
-class AdminPagesController extends \BaseController {
+class AdminSettingsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,9 +9,9 @@ class AdminPagesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$pages = Page::all();
-		return View::make('admin.page.index')
-			->with('pages', $pages);
+		$settings = Setting::first();
+		return View::make('admin.settings.index')
+			->with('settings', $settings);
 	}
 
 
@@ -22,7 +22,7 @@ class AdminPagesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.page.create');
+		//
 	}
 
 
@@ -33,23 +33,7 @@ class AdminPagesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Page::$rules);
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-		$page = new Page;
-		$page->user_id = Auth::id();
-		$page->title = Input::get('title');
-		$page->content = Input::get('content');
-		$page->status = Input::get('status');
-		$page->slug = Str::slug(Input::get('title'));
-		$page->allow_comments = Input::get('allow_comments');
-		$page->save();
-
-		return Redirect::to('admin/page');
+		//
 	}
 
 

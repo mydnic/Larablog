@@ -21,4 +21,5 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function()
     Route::get('index', 'AdminController@index');
     Route::resource('post', 'AdminPostsController');
     Route::resource('page', 'AdminPagesController');
+    Route::resource('settings', 'AdminSettingsController');
 });
