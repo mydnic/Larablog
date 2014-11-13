@@ -56,8 +56,10 @@
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        @if (Auth::check() && Auth::user()->superuser)
+                            <li class="divider"></li>
+                            <li><a href="{{ URL::to('admin/index') }}">Admin Area</a></li>
+                        @endif
                     </ul>
                 </li>
             </ul>

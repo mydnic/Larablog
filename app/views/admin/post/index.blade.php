@@ -48,9 +48,9 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="category in categories">
                         @{{ category.name }}
-                        <!-- <span class="pull-right text-muted small">
-                            <em>5 posts</em>
-                        </span> -->
+                        <span class="pull-right text-muted small">
+                            <span ng-click="delete(category)"><i class="fa fa-trash"></i></span>
+                        </span>
                     </li>
                 </ul>
                 <!-- /.list-group -->
@@ -95,6 +95,12 @@
                 $scope.categories.push(category);
                 $scope.newCategoryText = null;
             };
+
+            $scope.delete = function(category) {
+                var index = $scope.categories.indexOf(category);
+                $scope.categories.splice(index, 1);
+                $http.post('/category/delete', category);
+            }
         });
 
     </script>

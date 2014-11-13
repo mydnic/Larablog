@@ -82,9 +82,10 @@ class CategoriesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function delete()
 	{
-		//
+		$category = Category::find(Input::get('id'));
+		$category->delete();
 	}
 
 }
