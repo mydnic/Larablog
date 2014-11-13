@@ -51,13 +51,8 @@ class AdminPostsController extends \BaseController {
 		$post->slug = Str::slug(Input::get('title'));
 		$post->allow_comments = Input::get('allow_comments');
 		$post->save();
-
-		$post_id = $post->id;
-
-		$post = Post::find($post_id);
-		foreach (Input::get('category_id') as $category_id) {
-			$post->categories()->attach($category_id);
-		}
+		
+		$post->categories()->sync(Input::get('category_id'));
 
 		return Redirect::to('admin/post');
 	}
@@ -83,7 +78,11 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$post = Post::find($id);
+		$categories = Category::all();
+		return View::make('admin.post.edit')
+			->with('post', $post)
+			->with('categories', $categories);
 	}
 
 	/**
@@ -95,7 +94,24 @@ class AdminPostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validator = Validator::make($data = Input::all(), Post::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+		$post = Post::find($id);
+		$post->title = Input::get('title');
+		$post->content = Input::get('content');
+		$post->status = Input::get('status');
+		$post->slug = Str::slug(Input::get('title'));
+		$post->allow_comments = Input::get('allow_comments');
+		$post->save();
+
+		$post->categories()->sync(Input::get('category_id'));
+
+		return Redirect::to('admin/post');
 	}
 
 	/**

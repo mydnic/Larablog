@@ -18,7 +18,7 @@
 
 @include('layout.bootstrap3.forms.errors')
 
-{{ Form::open(['route'=>'admin.post.store']) }}
+{{ Form::model($post, ['route'=>['admin.post.update', $post->id] ,'method' => 'put']) }}
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -36,7 +36,7 @@
                     @foreach ($categories as $category)
                         <div class="checkbox">
                             <label>
-                                {{ Form::checkbox('category_id[]', $category->id) }} {{ $category->name }}
+                                {{ Form::checkbox('category_id[]', $category->id, $post->categories->contains($category->id)) }} {{ $category->name }}
                             </label>
                         </div>
                     @endforeach
@@ -47,7 +47,7 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        {{ Form::checkbox('allow_comments', true, true) }} Allow Comments
+                        {{ Form::checkbox('allow_comments') }} Allow Comments
                     </label>
                 </div>
                 <div class="form-group">

@@ -1,5 +1,7 @@
 <tr>
-    <td>{{ $post->title }}</td>
+    <td>
+        {{ link_to('admin/post/'.$post->id.'/edit', $post->title) }}
+    </td>
     <td>{{ $post->user->profile->username }}</td>
     <td>
         @if ($post->status)
