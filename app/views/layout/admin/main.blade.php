@@ -302,7 +302,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a class="{{ Request::is('admin/menu') ? 'active' : '' }}" href="{{ URL::to('admin/menu') }}">
+                                    <i class="fa fa-th-list fa-fw"></i> Menu
+                                </a>
                             </li>
                             <li>
                                 <a href="{{ URL::to('admin/settings') }}">

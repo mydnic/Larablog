@@ -31,7 +31,7 @@
                         <button type="submit" class="btn btn-default">Sign in</button>
                     </div>
                 </div>
-            </form>
+            {{ Form::close() }}
         </div>
     </div>
 

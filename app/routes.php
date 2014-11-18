@@ -21,4 +21,19 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function()
     Route::resource('post', 'AdminPostsController');
     Route::resource('page', 'AdminPagesController');
     Route::resource('settings', 'AdminSettingsController');
+    Route::resource('menu', 'AdminMenuController');
+});
+
+#API routes
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::get('category', function(){
+        return Category::with('posts')->get();
+    });
+    Route::get('menu', function(){
+        return Menu::orderBy('weight')->get();
+    });
+    Route::post('menu', function(){
+        return Menu::orderBy('weight')->get();
+    });
 });

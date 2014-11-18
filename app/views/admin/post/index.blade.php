@@ -83,7 +83,7 @@
         var app = angular.module("Categories", [])
 
         app.controller("CategoriesController", function($scope, $http) {
-            $http.get('/category').success(function(categories) {
+            $http.get('/api/v1/category').success(function(categories) {
                 $scope.categories = categories;
             });
 
