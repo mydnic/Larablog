@@ -73,8 +73,8 @@
 
 
 @section('scripts')
-    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function() {
             $('#TablePost').dataTable();
