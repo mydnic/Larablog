@@ -9,7 +9,7 @@ class SessionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		if (Auth::guest() AND !Session::has('user')) {
+		if (Auth::guest()) {
 			return View::make('sessions.create');
 		}
 		else{
