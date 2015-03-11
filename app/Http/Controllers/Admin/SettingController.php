@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Setting;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 
 class SettingController extends Controller {
 
@@ -12,7 +15,7 @@ class SettingController extends Controller {
 	public function index()
 	{
 		$settings = Setting::first();
-		return View::make('admin.settings.index')
+		return view('admin.settings.index')
 			->with('settings', $settings);
 	}
 
@@ -35,7 +38,50 @@ class SettingController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$settings = Setting::first();
+		$settings->app_name = Request::get('app_name');
+		$settings->app_baseline = Request::get('app_baseline');
+
+
+		// IMAGE BANNER
+		if (Request::hasFile('banner')) {
+			$file            = Request::file('banner');
+			$destinationPath = public_path().'/uploads/';
+			$banner_filename        = str_random(6) . '_banner_' . $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $banner_filename);
+		}
+		else {
+			$banner_filename = $settings->banner;
+		}
+		// IMAGE LOGO
+		if (Request::hasFile('logo')) {
+			$file            = Request::file('logo');
+			$destinationPath = public_path().'/uploads/';
+			$logo_filename        = str_random(6) . '_logo_' . $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $logo_filename);
+		}
+		else {
+			$logo_filename = $settings->logo;
+		}
+		// IMAGE LOGO
+		if (Request::hasFile('favicon')) {
+			$file            = Request::file('favicon');
+			$destinationPath = public_path().'/uploads/';
+			$favicon_filename        = str_random(6) . '_favicon_' . $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $favicon_filename);
+		}
+		else {
+			$favicon_filename = $settings->favicon;
+		}
+
+
+
+		$settings->banner = $banner_filename;
+		$settings->logo = $logo_filename;
+		$settings->favicon = $favicon_filename;
+		$settings->save();
+
+		return Redirect::back();
 	}
 
 

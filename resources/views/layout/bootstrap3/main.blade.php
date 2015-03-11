@@ -10,6 +10,7 @@
         <!-- Bootstrap -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/blog.css" rel="stylesheet">
         @yield('styles')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,6 +23,9 @@
     
     <body>
         @include('layout.bootstrap3.menu')
+
+        @yield('header')
+
         <div class="container">
             <div class="row">
                 <div class="col-md-9">

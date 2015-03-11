@@ -101,6 +101,19 @@ class PostController extends Controller {
 		$post->content = Request::get('content');
 		$post->status = Request::get('status');
 		$post->allow_comments = Request::get('allow_comments');
+
+		// IMAGE BANNER
+		if (Request::hasFile('image')) {
+			$file            = Request::file('image');
+			$destinationPath = public_path().'/uploads/';
+			$filename 		 = str_random(6) . '_image_' . $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $filename);
+		}
+		else {
+			$filename = $post->image;
+		}
+
+		$post->image = $filename;
 		$post->save();
 
 		$post->categories()->sync(Request::get('category_id'));

@@ -6,10 +6,16 @@ Route::get('/', array('as' => 'home', 'uses' => 'PageController@index'));
 # Categories
 Route::resource('category', 'CategoryController');
 
+# Articles
+Route::resource('post', 'PostController');
+
+# Users
+Route::resource('user', 'UserController');
+
 # Admin area
 Route::post('admin/useradmin/store', 'Admin\AdminController@storeAdminUser');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function() {
-    Route::get('index', 'Admin\AdminController@index');
+    Route::get('index', ['as'=>'admin.home', 'uses'=>'Admin\AdminController@index']);
     Route::resource('post', 'Admin\PostController');
     Route::resource('page', 'Admin\PageController');
     Route::resource('task', 'Admin\TaskController');

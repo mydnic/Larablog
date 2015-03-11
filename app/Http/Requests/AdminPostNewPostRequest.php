@@ -23,11 +23,11 @@ class AdminPostNewPostRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title'       => 'required|min:2',
-	        'content'     => 'required',
-	        'status'      => 'required',
-	        'image'       => 'image',
-	        'category_id' => 'required|array',
+            'title'       => 'required|min:2',
+            'content'     => 'required',
+            'status'      => 'required',
+            'image'       => 'image',
+            'category_id' => 'required|array',
 		];
 	}
 

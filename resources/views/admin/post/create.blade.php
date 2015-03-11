@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('status', 'Status') !!}
-                    {!! Form::select('status', ['0'=>'Draft', '1'=>'Published'], '0', ['class'=>'form-control']) !!}
+                    {!! Form::select('status', ['draft'=>'Draft', 'published'=>'Published'], '0', ['class'=>'form-control']) !!}
                 </div>
                 <div class="checkbox">
                     <label>

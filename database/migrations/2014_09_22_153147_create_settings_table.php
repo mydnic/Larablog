@@ -17,6 +17,9 @@ class CreateSettingsTable extends Migration {
 			$table->increments('id');
 			$table->string('app_name');
 			$table->text('app_baseline');
+			$table->string('banner');
+			$table->string('logo');
+			$table->string('favicon');
 			$table->string('theme');
 			$table->timestamps();
 		});

@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use App\User;
+use App\Post;
 use App\Setting;
+use App\User;
 
 class PageController extends Controller {
 
@@ -13,14 +14,18 @@ class PageController extends Controller {
 	public function index()
 	{
 		// will check if first visit, in order to install the user admin
+		$setting = Setting::first();
 
 		$users = User::all();
 		if ($users->count() == 0) {
-			return view('admin.user.create');
+			return view('admin.user.create')
+				->with('setting', $setting);
 		}
 
-		return view('page.home');
-
+		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->get();
+		return view('page.home')
+			->with('setting', $setting)
+			->with('posts', $posts);
 
 	}
 

@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use App\Post;
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\User;
+use Illuminate\Http\Request;
 
-class PostController extends Controller {
+class UserController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -11,10 +14,8 @@ class PostController extends Controller {
 	 */
 	public function index()
 	{
-		$posts = Post::all();
-		return view('blog.index');
+		//
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -26,7 +27,6 @@ class PostController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -34,17 +34,8 @@ class PostController extends Controller {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Post::$rules);
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-
-        return Redirect::route('admin.post.index');
+		//
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -52,13 +43,12 @@ class PostController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($slug)
+	public function show($username)
 	{
-		$post = Post::whereSlug($slug)->first();
-		return view('post.show')
-			->with('post', $post);
+		$user = User::whereUsername($username)->first();
+		return view('user.show')
+			->with('user', $user);
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -71,7 +61,6 @@ class PostController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -83,7 +72,6 @@ class PostController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -94,6 +82,5 @@ class PostController extends Controller {
 	{
 		//
 	}
-
 
 }

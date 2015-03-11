@@ -40,11 +40,7 @@
                             </td>
                             <td>{{ $post->user->username }}</td>
                             <td>
-                                @if ($post->status)
-                                    Published
-                                @else
-                                    Draft
-                                @endif
+                                {{ $post->status }}
                             </td>
                             <td>
                                 @foreach ($post->categories as $category)
