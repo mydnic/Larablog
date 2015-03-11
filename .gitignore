@@ -1,9 +1,5 @@
-/bootstrap/compiled.php
 /vendor
-/public/uploads/*
-composer.phar
+/node_modules
+/public/uploads/
 composer.lock
-.env.*.php
-.env.php
-.DS_Store
-Thumbs.db
+.env

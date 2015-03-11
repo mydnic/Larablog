@@ -1,25 +1,28 @@
 ## Larablog
 
 This project aims to achieve a full-featured personnal website / blog.
-The technology used are Laravel Framework 4.2.* and AngularJS.
+The technology used are Laravel 5 and AngularJS.
 
 This is an open source project, if you'd like to participate and/or use it, enjoy :)
 
 # Installation
 1. Git clone this repo
 2. run <code>composer install</code>
-3. at the root, create <code>.env.local.php</code> file and insert the following lines
+3. at the root, create <code>.env</code> file and insert the following lines
 
-```php
-<?php
+```
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=RandomString
 
-return [
-    'DB_NAME' => 'your_database_name',
-    'DB_USERNAME' => 'your_database_user_name',
-    'DB_PASSWORD' => 'your_database_password',
-];
+DB_HOST=localhost
+DB_DATABASE=larablog
+DB_USERNAME=root
+DB_PASSWORD=
 
 ```
 
-4. run <code>php artisan migrate</code>
-5. run <code>php artisan db:seed</code>
+4. run <code>php artisan key:generate</code>
+5. Edit infos in .env file
+6. Create a database and run <code>php artisan migrate</code>
+7. run <code>php artisan db:seed</code>
