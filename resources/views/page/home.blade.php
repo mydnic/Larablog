@@ -9,7 +9,7 @@
                     {{ $post->title }}
                 </h2>
                 <h3 class="post-subtitle">
-                    {{ strip_tags($post->content) }}
+                    {{ str_limit(strip_tags($post->content), 250) }}
                 </h3>
             </a>
             <p class="post-meta">Posted by {!! link_to_route('user.show', $post->user->username, $post->user->username) !!} on {{ date('M d Y', strtotime($post->created_at)) }}</p>
