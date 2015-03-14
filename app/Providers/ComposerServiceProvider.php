@@ -13,6 +13,7 @@ class ComposerServiceProvider extends ServiceProvider {
     public function boot()
     {
         View::composer('layout.bootstrap3.main', 'App\Http\ViewComposers\HeaderComposer');
+        View::composer('post.show', 'App\Http\ViewComposers\PostComposer');
     }
 
     /**

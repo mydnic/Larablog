@@ -27,6 +27,13 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('disqus_shortname', 'Disqus Shortname', ['class'=>'col-sm-2 control-label']) !!}
+                    <div class="col-sm-10">
+                        {!! Form::text('disqus_shortname', null, ['class'=>'form-control', 'placeholder'=>'xxxxxxxxxx']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('banner', 'Website Banner', ['class'=>'col-sm-2 control-label']) !!}
                     <div class="col-sm-10 fileUpload">
                         {!! Form::file('banner', ['class'=>'upload', 'id'=>'banner_file_upload']) !!}
