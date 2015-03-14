@@ -7,6 +7,7 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Laracasts\Flash\Flash;
 
 class PostController extends Controller {
 
@@ -118,7 +119,9 @@ class PostController extends Controller {
 
 		$post->categories()->sync(Request::get('category_id'));
 
-		return Redirect::route('admin.post.index');
+		Flash::success('Post edited !')
+
+		return Redirect::back();
 	}
 
 	/**
