@@ -20,6 +20,11 @@
                 file:   "File",
                 uploadError: "Error"
             },
+            sk: {
+                upload: "Nahrať",
+                file:   "Súbor",
+                uploadError: "Chyba"
+            },
             fr: {
                 upload: "Envoi",
                 file:   "Fichier",
@@ -110,9 +115,16 @@
                         );
 
                         $('input[type=file]').on('change', function(e){
-                            file = e.target.files[0];
+                            try {
+                                // If multiple files allowed, we just get the first.
+                                file = e.target.files[0];
+                            } catch (err) {
+                                // In IE8, multiple files not allowed
+                                file = e.target.value;
+                            }
                         });
-                    }
+                    },
+                    ico: 'insertImage'
                 }
             }
         }

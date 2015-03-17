@@ -1,5 +1,5 @@
 /**
- * Trumbowyg v1.1.4 - A lightweight WYSIWYG editor
+ * Trumbowyg v2.0.0-beta.0 - A lightweight WYSIWYG editor
  * Default stylesheet for Trumbowyg editor
  * ------------------------
  * @link http://alex-d.github.io/Trumbowyg
@@ -47,6 +47,20 @@
   overflow: auto;
   border: none;
   white-space: normal; }
+
+.trumbowyg-box.trumbowyg-editor-visible .trumbowyg-textarea {
+  position: absolute;
+  top: 37px;
+  height: 1px !important;
+  width: 25%;
+  min-height: 0 !important;
+  padding: 0;
+  background: none; }
+
+.trumbowyg-box.trumbowyg-editor-hidden .trumbowyg-textarea {
+  display: block; }
+.trumbowyg-box.trumbowyg-editor-hidden .trumbowyg-editor {
+  display: none; }
 
 .trumbowyg-editor[contenteditable=true]:empty:before {
   content: attr(placeholder);
@@ -119,7 +133,6 @@
     text-align: left;
     font-size: 15px;
     -webkit-transition: all 0.15s;
-         -o-transition: all 0.15s;
             transition: all 0.15s; }
     .trumbowyg-dropdown button:hover, .trumbowyg-dropdown button:focus {
       background: #ecf0f1; }
@@ -167,7 +180,6 @@
       background: #2BC06A;
       height: 100%;
       -webkit-transition: width 0.15s linear;
-           -o-transition: width 0.15s linear;
               transition: width 0.15s linear; }
   .trumbowyg-modal-box label {
     display: block;
@@ -182,7 +194,6 @@
       height: 25px;
       line-height: 25px;
       -webkit-transition: all 0.15;
-           -o-transition: all 0.15;
               transition: all 0.15; }
       .trumbowyg-modal-box label .trumbowyg-input-infos span {
         display: block;
@@ -209,7 +220,6 @@
       padding: 0 2%;
       margin: 0 0 0 23%;
       -webkit-transition: all 0.15s;
-           -o-transition: all 0.15s;
               transition: all 0.15s; }
       .trumbowyg-modal-box label input:hover, .trumbowyg-modal-box label input:focus {
         outline: none;
@@ -238,7 +248,6 @@
     font-family: "Trebuchet MS", Helvetica, Verdana, sans-serif;
     font-size: 16px;
     -webkit-transition: all 0.15s;
-         -o-transition: all 0.15s;
             transition: all 0.15s; }
     .trumbowyg-modal-box .trumbowyg-modal-button.trumbowyg-modal-submit {
       right: 110px;
@@ -267,6 +276,9 @@
 /**
  * Fullscreen
  */
+body.trumbowyg-body-fullscreen {
+  overflow: hidden; }
+
 .trumbowyg-fullscreen {
   position: fixed;
   top: 0;
@@ -353,6 +365,60 @@
     margin-bottom: 7px !important; }
 
 /*
+ * Black theme
+ */
+.trumbowyg-black .trumbowyg-button-pane {
+  background-color: #222;
+  border-bottom-color: #343434; }
+  .trumbowyg-black .trumbowyg-button-pane li.trumbowyg-separator {
+    background-color: #343434; }
+  .trumbowyg-black .trumbowyg-button-pane.trumbowyg-disable li.trumbowyg-separator {
+    background-color: #2a2a2a; }
+  .trumbowyg-black .trumbowyg-button-pane:not(.trumbowyg-disable) li button:hover, .trumbowyg-black .trumbowyg-button-pane:not(.trumbowyg-disable) li button:focus, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-active, .trumbowyg-black .trumbowyg-button-pane li.trumbowyg-not-disable button:hover, .trumbowyg-black .trumbowyg-button-pane li.trumbowyg-not-disable button:focus {
+    background-color: #555; }
+  .trumbowyg-black .trumbowyg-button-pane li .trumbowyg-open-dropdown:after {
+    border-top-color: #fff; }
+.trumbowyg-black .trumbowyg-dropdown {
+  border-color: #222;
+  background: #222; }
+  .trumbowyg-black .trumbowyg-dropdown button {
+    background: #222;
+    color: #fff; }
+    .trumbowyg-black .trumbowyg-dropdown button:hover, .trumbowyg-black .trumbowyg-dropdown button:focus {
+      background: #555; }
+.trumbowyg-black .trumbowyg-modal-box {
+  background-color: #222; }
+  .trumbowyg-black .trumbowyg-modal-box .trumbowyg-modal-title {
+    border-bottom: 1px solid #555;
+    color: #fff;
+    background: #3c3c3c; }
+  .trumbowyg-black .trumbowyg-modal-box label {
+    display: block;
+    position: relative;
+    margin: 15px 12px;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden; }
+    .trumbowyg-black .trumbowyg-modal-box label .trumbowyg-input-infos span {
+      color: #eee;
+      background-color: #2f2f2f;
+      border-color: #222; }
+    .trumbowyg-black .trumbowyg-modal-box label .trumbowyg-input-infos span.trumbowyg-msg-error {
+      color: #e74c3c; }
+    .trumbowyg-black .trumbowyg-modal-box label.trumbowyg-input-error input, .trumbowyg-black .trumbowyg-modal-box label.trumbowyg-input-error textarea {
+      border-color: #e74c3c; }
+    .trumbowyg-black .trumbowyg-modal-box label input {
+      border-color: #222;
+      color: #eee;
+      background: #333; }
+      .trumbowyg-black .trumbowyg-modal-box label input:hover, .trumbowyg-black .trumbowyg-modal-box label input:focus {
+        border-color: #95a5a6; }
+      .trumbowyg-black .trumbowyg-modal-box label input:focus {
+        background-color: rgba(230, 230, 255, 0.1); }
+.trumbowyg-black .trumbowyg-overlay {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+/*
  * Buttons icons
  */
 .trumbowyg-button-pane li button {
@@ -362,25 +428,24 @@
   width: 35px;
   height: 35px;
   overflow: hidden;
-  background: transparent url("./images/icons.png") no-repeat;
+  background: transparent url("./images/icons-black.png") no-repeat;
   border: none;
   cursor: pointer;
   -webkit-transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
-       -o-transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
           transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
   /* English and others */ }
   .trumbowyg-button-pane li button.trumbowyg-viewHTML-button {
-    background-position: 5px -545px; }
+    background-position: 5px -570px; }
   .trumbowyg-button-pane li button.trumbowyg-formatting-button {
     background-position: 5px -120px; }
   .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-button-pane li button.trumbowyg-strong-button {
     background-position: 5px -45px; }
   .trumbowyg-button-pane li button.trumbowyg-italic-button, .trumbowyg-button-pane li button.trumbowyg-em-button {
-    background-position: 5px 5px; }
+    background-position: 5px -270px; }
   .trumbowyg-button-pane li button.trumbowyg-underline-button {
-    background-position: 5px -470px; }
+    background-position: 5px -495px; }
   .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-button-pane li button.trumbowyg-del-button {
-    background-position: 5px -445px; }
+    background-position: 5px -470px; }
   .trumbowyg-button-pane li button.trumbowyg-link-button {
     background-position: 5px -345px; }
   .trumbowyg-button-pane li button.trumbowyg-insertImage-button {
@@ -390,15 +455,17 @@
   .trumbowyg-button-pane li button.trumbowyg-justifyCenter-button {
     background-position: 5px -70px; }
   .trumbowyg-button-pane li button.trumbowyg-justifyRight-button {
-    background-position: 5px -395px; }
+    background-position: 5px -420px; }
   .trumbowyg-button-pane li button.trumbowyg-justifyFull-button {
-    background-position: 5px -295px; }
+    background-position: 5px 5px; }
   .trumbowyg-button-pane li button.trumbowyg-unorderedList-button {
-    background-position: 5px -495px; }
+    background-position: 5px -520px; }
   .trumbowyg-button-pane li button.trumbowyg-orderedList-button {
     background-position: 5px -370px; }
   .trumbowyg-button-pane li button.trumbowyg-horizontalRule-button {
     background-position: 5px -220px; }
+  .trumbowyg-button-pane li button.trumbowyg-removeformat-button {
+    background-position: 5px -395px; }
   .trumbowyg-button-pane li button.trumbowyg-fullscreen-button {
     background-position: 5px -170px; }
   .trumbowyg-button-pane li button.trumbowyg-close-button {
@@ -416,29 +483,84 @@
 .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strong-button {
   background-position: 5px -195px; }
 .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-underline-button {
-  background-position: 5px -420px; }
+  background-position: 5px -445px; }
 .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-del-button {
-  background-position: 5px -270px; }
+  background-position: 5px -295px; }
+
+.trumbowyg-black {
+  /* French */ }
+  .trumbowyg-black .trumbowyg-button-pane li button {
+    background-image: url("./images/icons-white.png");
+    /* English and others */ }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-viewHTML-button {
+      background-position: 5px -570px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-formatting-button {
+      background-position: 5px -120px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-strong-button {
+      background-position: 5px -45px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-italic-button, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-em-button {
+      background-position: 5px -270px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-underline-button {
+      background-position: 5px -495px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-del-button {
+      background-position: 5px -470px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-link-button {
+      background-position: 5px -345px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-insertImage-button {
+      background-position: 5px -245px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyLeft-button {
+      background-position: 5px -320px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyCenter-button {
+      background-position: 5px -70px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyRight-button {
+      background-position: 5px -420px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyFull-button {
+      background-position: 5px 5px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-unorderedList-button {
+      background-position: 5px -520px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-orderedList-button {
+      background-position: 5px -370px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-horizontalRule-button {
+      background-position: 5px -220px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-removeformat-button {
+      background-position: 5px -395px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-fullscreen-button {
+      background-position: 5px -170px; }
+    .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-close-button {
+      background-position: 5px -95px; }
+  .trumbowyg-black .trumbowyg-fullscreen .trumbowyg-button-pane li button.trumbowyg-fullscreen-button {
+    background-position: 5px -145px; }
+  .trumbowyg-black .trumbowyg-button-pane li:first-child button {
+    margin-left: 6px; }
+  .trumbowyg-black .trumbowyg-button-pane li:last-child button {
+    margin-right: 6px; }
+  .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strong-button {
+    background-position: 5px -195px; }
+  .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-underline-button {
+    background-position: 5px -445px; }
+  .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-del-button {
+    background-position: 5px -295px; }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 4/3), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* French */
+  /* Black theme */
   .trumbowyg-button-pane li button {
-    -webkit-background-size: 25px 575px !important;
-            background-size: 25px 575px !important;
-    background-image: url("./images/icons-2x.png") !important;
+    -webkit-background-size: 25px 600px !important;
+            background-size: 25px 600px !important;
+    background-image: url("./images/icons-black-2x.png") !important;
     /* English and others */ }
     .trumbowyg-button-pane li button.trumbowyg-viewHTML-button {
-      background-position: 5px -545px; }
+      background-position: 5px -570px; }
     .trumbowyg-button-pane li button.trumbowyg-formatting-button {
       background-position: 5px -120px; }
     .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-button-pane li button.trumbowyg-strong-button {
       background-position: 5px -45px; }
     .trumbowyg-button-pane li button.trumbowyg-italic-button, .trumbowyg-button-pane li button.trumbowyg-em-button {
-      background-position: 5px 5px; }
+      background-position: 5px -270px; }
     .trumbowyg-button-pane li button.trumbowyg-underline-button {
-      background-position: 5px -470px; }
+      background-position: 5px -495px; }
     .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-button-pane li button.trumbowyg-del-button {
-      background-position: 5px -445px; }
+      background-position: 5px -470px; }
     .trumbowyg-button-pane li button.trumbowyg-link-button {
       background-position: 5px -345px; }
     .trumbowyg-button-pane li button.trumbowyg-insertImage-button {
@@ -448,15 +570,17 @@
     .trumbowyg-button-pane li button.trumbowyg-justifyCenter-button {
       background-position: 5px -70px; }
     .trumbowyg-button-pane li button.trumbowyg-justifyRight-button {
-      background-position: 5px -395px; }
+      background-position: 5px -420px; }
     .trumbowyg-button-pane li button.trumbowyg-justifyFull-button {
-      background-position: 5px -295px; }
+      background-position: 5px 5px; }
     .trumbowyg-button-pane li button.trumbowyg-unorderedList-button {
-      background-position: 5px -495px; }
+      background-position: 5px -520px; }
     .trumbowyg-button-pane li button.trumbowyg-orderedList-button {
       background-position: 5px -370px; }
     .trumbowyg-button-pane li button.trumbowyg-horizontalRule-button {
       background-position: 5px -220px; }
+    .trumbowyg-button-pane li button.trumbowyg-removeformat-button {
+      background-position: 5px -395px; }
     .trumbowyg-button-pane li button.trumbowyg-fullscreen-button {
       background-position: 5px -170px; }
     .trumbowyg-button-pane li button.trumbowyg-close-button {
@@ -466,6 +590,57 @@
   .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strong-button {
     background-position: 5px -195px; }
   .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-underline-button {
-    background-position: 5px -420px; }
+    background-position: 5px -445px; }
   .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-del-button {
-    background-position: 5px -270px; } }
+    background-position: 5px -295px; }
+  .trumbowyg-black {
+    /* French */ }
+    .trumbowyg-black .trumbowyg-button-pane li button {
+      -webkit-background-size: 25px 600px !important;
+              background-size: 25px 600px !important;
+      background-image: url("./images/icons-white-2x.png") !important;
+      /* English and others */ }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-viewHTML-button {
+        background-position: 5px -570px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-formatting-button {
+        background-position: 5px -120px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-strong-button {
+        background-position: 5px -45px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-italic-button, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-em-button {
+        background-position: 5px -270px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-underline-button {
+        background-position: 5px -495px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-del-button {
+        background-position: 5px -470px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-link-button {
+        background-position: 5px -345px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-insertImage-button {
+        background-position: 5px -245px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyLeft-button {
+        background-position: 5px -320px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyCenter-button {
+        background-position: 5px -70px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyRight-button {
+        background-position: 5px -420px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-justifyFull-button {
+        background-position: 5px 5px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-unorderedList-button {
+        background-position: 5px -520px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-orderedList-button {
+        background-position: 5px -370px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-horizontalRule-button {
+        background-position: 5px -220px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-removeformat-button {
+        background-position: 5px -395px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-fullscreen-button {
+        background-position: 5px -170px; }
+      .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-close-button {
+        background-position: 5px -95px; }
+    .trumbowyg-black .trumbowyg-fullscreen .trumbowyg-button-pane li a.trumbowyg-fullscreen-button {
+      background-position: 5px -145px; }
+    .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-bold-button, .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strong-button {
+      background-position: 5px -195px; }
+    .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-underline-button {
+      background-position: 5px -445px; }
+    .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strikethrough-button, .trumbowyg-black .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-del-button {
+      background-position: 5px -295px; } }
