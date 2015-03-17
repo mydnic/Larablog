@@ -10,14 +10,14 @@ a img:focus {
     cursor: zoom-in;
 }
 blockquote {
-  color: #808080;
-  font-style: italic;
+    color: #808080;
+    font-style: italic;
 }
 hr.small {
-  max-width: 100px;
-  margin: 15px auto;
-  border-width: 4px;
-  border-color: white;
+    max-width: 100px;
+    margin: 15px auto;
+    border-width: 4px;
+    border-color: white;
 }
 .navbar-custom {
     position: absolute;
@@ -27,36 +27,36 @@ hr.small {
     z-index: 3;
 }
 .navbar-custom .navbar-brand {
-  font-weight: 800;
+    font-weight: 800;
 }
 .navbar-custom .nav li a {
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 @media only screen and (min-width: 768px) {
-  .navbar-custom {
-    background: transparent;
-    border-bottom: 0px solid transparent;
-    box-shadow: 0 0px 0px rgba(0,0,0,0);
-}
-.navbar-custom .navbar-brand {
-    color: white;
-    padding: 20px;
-}
-.navbar-custom .navbar-brand:hover,
-.navbar-custom .navbar-brand:focus {
-    color: rgba(255, 255, 255, 0.8);
-}
-.navbar-custom .nav>li>a {
-    color: white;
-    padding: 20px;
-}
-.navbar-custom .nav>li>a:hover,
-.navbar-custom .nav>li>a:focus {
-    color: rgba(255, 255, 255, 0.8);
-}
+    .navbar-custom {
+        background: transparent;
+        border-bottom: 0px solid transparent;
+        box-shadow: 0 0px 0px rgba(0,0,0,0);
+    }
+    .navbar-custom .navbar-brand {
+        color: white;
+        padding: 20px;
+    }
+    .navbar-custom .navbar-brand:hover,
+    .navbar-custom .navbar-brand:focus {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .navbar-custom .nav>li>a {
+        color: white;
+        padding: 20px;
+    }
+    .navbar-custom .nav>li>a:hover,
+    .navbar-custom .nav>li>a:focus {
+        color: rgba(255, 255, 255, 0.8);
+    }
 }
 @media only screen and (min-width: 1170px) {
   .navbar-custom {
@@ -155,12 +155,12 @@ hr.small {
 }
 }
 .intro-header .post-heading h1 {
-  font-size: 35px;
+    font-size: 35px;
 }
 .intro-header .post-heading .subheading,
 .intro-header .post-heading .meta {
-  line-height: 1.1;
-  display: block;
+    line-height: 1.1;
+    display: block;
 }
 .intro-header .post-heading .subheading {
   font-size: 24px;
@@ -199,9 +199,10 @@ hr.small {
   margin-bottom: 10px;
 }
 .post-preview > a > .post-subtitle {
-  margin: 0;
-  font-weight: 300;
-  margin-bottom: 10px;
+    margin: 0;
+    font-weight: 300;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 .post-preview > .post-meta {
   color: #808080;
