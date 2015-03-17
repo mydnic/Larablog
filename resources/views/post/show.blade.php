@@ -4,7 +4,7 @@
 @section('meta-subtitle', 'Posted by '.link_to_route('user.show', $post->user->username, $post->user->username).' on '.date('M d Y', strtotime($post->created_at)))
 
 @section('styles')
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+    <link rel="stylesheet" href="https://highlightjs.org/static/styles/monokai_sublime.css">
 @stop
 
 @section('content')
