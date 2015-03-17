@@ -119,7 +119,7 @@ class PostController extends Controller {
 
 		$post->categories()->sync(Request::get('category_id'));
 
-		Flash::success('Post edited !')
+		Flash::success('Post edited !');
 
 		return Redirect::back();
 	}
