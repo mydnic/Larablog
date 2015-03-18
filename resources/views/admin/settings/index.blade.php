@@ -34,6 +34,13 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('google_analytics_code', 'Google Analytics Code', ['class'=>'col-sm-2 control-label']) !!}
+                    <div class="col-sm-10">
+                        {!! Form::text('google_analytics_code', null, ['class'=>'form-control', 'placeholder'=>'UA-XXXXXX-X']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('banner', 'Website Banner', ['class'=>'col-sm-2 control-label']) !!}
                     <div class="col-sm-10 fileUpload">
                         {!! Form::file('banner', ['class'=>'upload', 'id'=>'banner_file_upload']) !!}
@@ -59,7 +66,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Sign in</button>
+                        <button type="submit" class="btn btn-default">Save</button>
                     </div>
                 </div>
             {!! Form::close() !!}

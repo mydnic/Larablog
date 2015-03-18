@@ -23,6 +23,7 @@
     </head>
     
     <body>
+        @include('widgets.google_analytics')
         @include('layout.bootstrap3.menu')
 
         <header class="intro-header" style="background-image: url(/uploads/{{ $setting->banner }})">

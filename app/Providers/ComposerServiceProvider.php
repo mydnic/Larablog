@@ -14,6 +14,7 @@ class ComposerServiceProvider extends ServiceProvider {
     {
         View::composer('layout.bootstrap3.main', 'App\Http\ViewComposers\HeaderComposer');
         View::composer('post.show', 'App\Http\ViewComposers\PostComposer');
+        View::composer('widgets.google_analytics', 'App\Http\ViewComposers\GoogleAnalyticsComposer');
     }
 
     /**

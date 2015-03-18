@@ -42,6 +42,7 @@ class SettingController extends Controller {
 		$settings->app_name = Request::get('app_name');
 		$settings->app_baseline = Request::get('app_baseline');
 		$settings->disqus_shortname = Request::get('disqus_shortname');
+		$settings->google_analytics_code = Request::get('google_analytics_code');
 
 		// IMAGE BANNER
 		if (Request::hasFile('banner')) {
