@@ -9,6 +9,9 @@ Route::resource('category', 'CategoryController');
 # Articles
 Route::resource('post', 'PostController');
 
+# Tags
+Route::get('tag/{slug}', ['as'=>'tag.show', 'uses'=>'TagController@show']);
+
 # Users
 Route::resource('user', 'UserController');
 

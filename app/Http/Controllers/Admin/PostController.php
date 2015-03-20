@@ -4,6 +4,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminPostNewPostRequest;
 use App\Post;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -82,8 +83,10 @@ class PostController extends Controller {
 	{
 		$post = Post::find($id);
 		$categories = Category::all();
+		$tags = Tag::groupBy('name')->lists('name');
 		return view('admin.post.edit')
 			->with('post', $post)
+			->with('tags', json_encode($tags))
 			->with('categories', $categories);
 	}
 
@@ -116,6 +119,15 @@ class PostController extends Controller {
 
 		$post->image = $filename;
 		$post->save();
+
+		// Clear previous tags
+		$current_tags = $post->tags()->delete();
+		$tags = Request::get('tags');
+		foreach ($tags as $tag) {
+			$new_tag = new Tag;
+			$new_tag->name = $tag;
+			$post->tags()->save($new_tag);
+		}
 
 		$post->categories()->sync(Request::get('category_id'));
 

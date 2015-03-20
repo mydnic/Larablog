@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">
+    <link rel="stylesheet" href="/admin/css/tags.css">
     <style>
         input[name=title]{
             border: 0px;
@@ -28,7 +29,13 @@
     </div>
     <div class="row">
         <div class="col-lg-9">
-            {!! Form::textarea('content', null) !!}
+            <div class="form-group">
+                {!! Form::textarea('content', null) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('tags', 'Tags') !!}
+                {!! Form::text('tags', json_encode($post->tags->lists('name')), ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
+            </div>
         </div>
         <div class="col-lg-3">
             <div class="well">
@@ -67,6 +74,7 @@
 
 @section('scripts')
     <script src="/admin/wysiwyg/dist/trumbowyg.min.js"></script>
+    <script src="/admin/js/jquery.tags.js"></script>
     <script>
         $('textarea').trumbowyg({
             autogrow: true
@@ -100,6 +108,11 @@
                         break;
                 }
                 
+            });
+
+            $('#tags').magicSuggest({
+                cls: 'form-control',
+                data: {!!$tags!!},
             });
         });
     </script>

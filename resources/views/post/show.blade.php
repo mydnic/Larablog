@@ -15,6 +15,13 @@
                 {!! $post->content !!}
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @foreach ($post->tags as $tag)
+                    {!! link_to_route('tag.show', '#'.$tag->name, $tag->slug) !!}
+                @endforeach
+            </div>
+        </div>
     </article>
 
     @if ($post->allow_comments)
