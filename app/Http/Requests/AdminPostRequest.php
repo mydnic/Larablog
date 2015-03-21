@@ -3,7 +3,7 @@
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminPostNewPostRequest extends Request {
+class AdminPostRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.

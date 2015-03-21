@@ -40,6 +40,7 @@
         <div class="col-lg-3">
             <div class="well">
                 <div class="form-group">
+                    {!! Form::label('category_id', 'Categories') !!}
                     @foreach ($categories as $category)
                         <div class="checkbox">
                             <label>

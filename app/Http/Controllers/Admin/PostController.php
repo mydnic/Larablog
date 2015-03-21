@@ -2,7 +2,7 @@
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminPostNewPostRequest;
+use App\Http\Requests\AdminPostRequest;
 use App\Post;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +34,9 @@ class PostController extends Controller {
 	public function create()
 	{
 		$categories = Category::all();
+		$tags = Tag::groupBy('name')->lists('name');
 		return view('admin.post.create')
+			->with('tags', json_encode($tags))
 			->with('categories', $categories);
 	}
 
@@ -44,7 +46,7 @@ class PostController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(AdminPostNewPostRequest $request)
+	public function store(AdminPostRequest $request)
 	{
 
 		$post = new Post;
@@ -53,6 +55,14 @@ class PostController extends Controller {
 		$post->content = Request::get('content');
 		$post->status = Request::get('status');
 		$post->allow_comments = Request::get('allow_comments');
+		// IMAGE BANNER
+		if (Request::hasFile('image')) {
+			$file            = Request::file('image');
+			$destinationPath = public_path().'/uploads/';
+			$filename 		 = str_random(6) . '_image_' . $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $filename);
+			$post->image = $filename;
+		}
 		$post->save();
 		
 		$post->categories()->sync(Request::get('category_id'));
@@ -97,7 +107,7 @@ class PostController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(AdminPostNewPostRequest $request, $id)
+	public function update(AdminPostRequest $request, $id)
 	{
 
 		$post = Post::find($id);
