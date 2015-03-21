@@ -9,7 +9,7 @@ class Post extends Model {
     use SoftDeletes, Sluggable;
     const DISPLAY_NAME = 'title';
 
-	protected $fillable = ['title', 'content', 'status', 'image', 'allow_comments'];
+	protected $fillable = ['title', 'content', 'status', 'image', 'allow_comments', 'created_at'];
 
     public function user()
     {

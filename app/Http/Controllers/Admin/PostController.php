@@ -55,6 +55,8 @@ class PostController extends Controller {
 		$post->content = Request::get('content');
 		$post->status = Request::get('status');
 		$post->allow_comments = Request::get('allow_comments');
+		$post->created_at = Request::get('created_at');
+
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
 			$file            = Request::file('image');
@@ -64,6 +66,15 @@ class PostController extends Controller {
 			$post->image = $filename;
 		}
 		$post->save();
+
+		// Clear previous tags
+		$current_tags = $post->tags()->delete();
+		$tags = Request::get('tags');
+		foreach ($tags as $tag) {
+			$new_tag = new Tag;
+			$new_tag->name = $tag;
+			$post->tags()->save($new_tag);
+		}
 		
 		$post->categories()->sync(Request::get('category_id'));
 
@@ -115,6 +126,7 @@ class PostController extends Controller {
 		$post->content = Request::get('content');
 		$post->status = Request::get('status');
 		$post->allow_comments = Request::get('allow_comments');
+		$post->created_at = Request::get('created_at');
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {

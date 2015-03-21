@@ -59,10 +59,15 @@
                     </label>
                 </div>
                 <div class="form-group">
+                    {!! Form::label('image', 'Select an Image') !!}
                     <div class="fileUpload">
                         {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
                         <img src="{{$post->picture}}" alt="">
                     </div>
+                </div>
+                <div class="form-group">
+                    {!! Form::label('created_at', 'Date of Creation') !!}
+                    {!! Form::input('datetime', 'created_at', null, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
