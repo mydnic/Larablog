@@ -25,3 +25,13 @@ DB_PASSWORD=
 5. Edit infos in .env file
 6. Create a database and run <code>php artisan migrate</code>
 7. run <code>php artisan db:seed</code>
+
+
+# TODO
+
+* Add Portfolio Management
+* Make the menu editable from BackOffice
+* Review registration process
+* Profile Page and Profile Edit
+* Add Footer
+* Add Widgets emplacements
