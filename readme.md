@@ -29,9 +29,13 @@ DB_PASSWORD=
 
 # TODO
 
+* Can mannualy change the created_at date
 * Add Portfolio Management
 * Make the menu editable from BackOffice
 * Review registration process
 * Profile Page and Profile Edit
 * Add Footer
 * Add Widgets emplacements
+* Category List
+* Search Form
+* RSS Feed
