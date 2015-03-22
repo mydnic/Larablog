@@ -12,8 +12,8 @@ class ComposerServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        View::composer('layout.bootstrap3.main', 'App\Http\ViewComposers\HeaderComposer');
-        View::composer('post.show', 'App\Http\ViewComposers\PostComposer');
+        View::composer('layout.blog.main', 'App\Http\ViewComposers\HeaderComposer');
+        View::composer('widgets.disqus', 'App\Http\ViewComposers\DisqusComposer');
         View::composer('widgets.google_analytics', 'App\Http\ViewComposers\GoogleAnalyticsComposer');
     }
 

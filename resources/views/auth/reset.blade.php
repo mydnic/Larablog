@@ -1,4 +1,4 @@
-@extends('layout.bootstrap3.main')
+@extends('layout.blog.main')
 
 @section('content')
 <div class="container-fluid">

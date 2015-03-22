@@ -3,7 +3,7 @@
 use App\Setting;
 use Illuminate\Contracts\View\View;
 
-class PostComposer {
+class DisqusComposer {
 
     /**
      * The user repository implementation.

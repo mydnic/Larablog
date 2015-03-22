@@ -1,4 +1,4 @@
-@extends('layout.bootstrap3.main')
+@extends('layout.blog.main')
 
 <!-- Code from http://bootsnipp.com/snippets/featured/mix-amp-match-register -->
 
