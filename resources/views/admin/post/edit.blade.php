@@ -17,7 +17,7 @@
 
 @section('content')
 
-@include('layout.bootstrap3.forms.errors')
+@include('layout.errors')
 
 {!! Form::model($post, ['route'=>['admin.post.update', $post->id] ,'method' => 'put', 'files'=>true]) !!}
     <div class="row">
@@ -71,6 +71,11 @@
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {!! link_to_route('admin.post.delete', 'Delete this post', $post->id, ['class'=>'btn btn-danger confirm-delete btn-sm pull-right']) !!}
                 </div>
             </div>
         </div>

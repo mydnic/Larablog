@@ -26,7 +26,6 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Author</th>
                         <th>Status</th>
                         <th>Categories</th>
                         <th>Created at</th>
@@ -36,9 +35,8 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>
-                                {!! link_to_route('admin.post.edit', $post->title, $post->id) !!}
+                                {!! link_to_route('admin.post.edit', str_limit($post->title,40), $post->id) !!}
                             </td>
-                            <td>{{ $post->user->username }}</td>
                             <td>
                                 {{ $post->status }}
                             </td>
@@ -47,7 +45,7 @@
                                     {{ $category->name }}<span class="coma">,</span>
                                 @endforeach
                             </td>
-                            <td>{{ date('d/m/Y \a\t H:i:s' , strtotime($post->created_at)) }}</td>
+                            <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($post->created_at)) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

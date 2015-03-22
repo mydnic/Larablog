@@ -17,7 +17,7 @@
 
 @section('content')
 
-@include('layout.bootstrap3.forms.errors')
+@include('layout.errors')
 
 {!! Form::open(['route'=>'admin.post.store']) !!}
     <div class="row">
