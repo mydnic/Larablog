@@ -70,10 +70,12 @@ class PostController extends Controller {
 		// Clear previous tags
 		$current_tags = $post->tags()->delete();
 		$tags = Request::get('tags');
-		foreach ($tags as $tag) {
-			$new_tag = new Tag;
-			$new_tag->name = $tag;
-			$post->tags()->save($new_tag);
+		if (count($tags)) {
+			foreach ($tags as $tag) {
+				$new_tag = new Tag;
+				$new_tag->name = $tag;
+				$post->tags()->save($new_tag);
+			}
 		}
 		
 		$post->categories()->sync(Request::get('category_id'));
@@ -145,10 +147,12 @@ class PostController extends Controller {
 		// Clear previous tags
 		$current_tags = $post->tags()->delete();
 		$tags = Request::get('tags');
-		foreach ($tags as $tag) {
-			$new_tag = new Tag;
-			$new_tag->name = $tag;
-			$post->tags()->save($new_tag);
+		if (count($tags)) {
+			foreach ($tags as $tag) {
+				$new_tag = new Tag;
+				$new_tag->name = $tag;
+				$post->tags()->save($new_tag);
+			}
 		}
 
 		$post->categories()->sync(Request::get('category_id'));
