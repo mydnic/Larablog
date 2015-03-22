@@ -48,7 +48,7 @@
 								<a href="/password/email">Forgot Your Password?</a>
 							</div>
 						</div>
-					</form>
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>
