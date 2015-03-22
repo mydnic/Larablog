@@ -11,12 +11,12 @@
 
     <article>
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 {!! $post->content !!}
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 @foreach ($post->tags as $tag)
                     {!! link_to_route('tag.show', '#'.$tag->name, $tag->slug) !!}
                 @endforeach
