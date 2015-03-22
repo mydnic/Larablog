@@ -50,7 +50,8 @@
     <script src="/admin/wysiwyg/dist/trumbowyg.min.js"></script>
     <script>
         $('textarea').trumbowyg({
-            autogrow: true
+            autogrow: true,
+            btnsAdd: ['base64']
         });
     </script>
 @stop

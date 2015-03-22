@@ -83,7 +83,8 @@
     <script src="/admin/js/jquery.tags.js"></script>
     <script>
         $('textarea').trumbowyg({
-            autogrow: true
+            autogrow: true,
+            btnsAdd: ['base64']
         });
         jQuery(document).ready(function($) {
             // Avatar Upload and preview

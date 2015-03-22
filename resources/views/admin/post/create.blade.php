@@ -76,10 +76,12 @@
 
 @section('scripts')
     <script src="/admin/wysiwyg/dist/trumbowyg.min.js"></script>
+    <script src="/admin/wysiwyg/dist/plugins/base64/trumbowyg.base64.js"></script>
     <script src="/admin/js/jquery.tags.js"></script>
     <script>
         $('textarea').trumbowyg({
-            autogrow: true
+            autogrow: true,
+            btnsAdd: ['base64']
         });
         jQuery(document).ready(function($) {
             // Avatar Upload and preview
