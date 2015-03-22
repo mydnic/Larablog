@@ -185,34 +185,37 @@ hr.small {
     font-size: 30px;
 }
 }
+.post-preview {
+    margin-bottom: 56px;
+}
 .post-preview > a {
-  color: #404040;
+    color: #404040;
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
-  text-decoration: none;
-  color: #0085a1;
+    text-decoration: none;
+    color: #0085a1;
 }
 .post-preview > a > .post-title {
-  font-size: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 .post-preview > a > .post-subtitle {
     margin: 0;
     font-weight: 300;
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 17px;
 }
 .post-preview > .post-meta {
-  color: #808080;
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0;
+    color: #808080;
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 0;
 }
 .post-preview > .post-meta > a {
-  text-decoration: none;
-  color: #404040;
+    text-decoration: none;
+    color: #404040;
 }
 .post-preview > .post-meta > a:hover,
 .post-preview > .post-meta > a:focus {
