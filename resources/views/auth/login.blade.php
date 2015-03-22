@@ -3,13 +3,17 @@
 @section('content')
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Login or <a href="/auth/register">Register</a></div>
+				<div class="panel-heading">
+					Login or
+					<a href="/auth/register">
+						Register
+					</a>
+				</div>
 				<div class="panel-body">
 
-					<form class="form-horizontal" role="form" method="POST" action="/auth/login">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					{!! Form::open(['url'=>'auth/login', 'role'=>'form', 'class'=>'form-horizontal']) !!}
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">E-Mail Address</label>
