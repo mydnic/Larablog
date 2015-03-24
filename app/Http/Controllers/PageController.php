@@ -19,7 +19,7 @@ class PageController extends Controller {
 			return view('admin.user.create');
 		}
 
-		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->get();
+		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->paginate(15);
 		return view('post.index')
 			->with('posts', $posts);
 	}
