@@ -61,23 +61,23 @@ hr.small {
   .navbar-custom {
     background: transparent;
     border-bottom: 1px solid transparent;
-  }
-  .navbar-custom .navbar-brand {
+}
+.navbar-custom .navbar-brand {
     color: white;
     padding: 20px;
-  }
-  .navbar-custom .navbar-brand:hover,
-  .navbar-custom .navbar-brand:focus {
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus {
     color: rgba(255, 255, 255, 0.8);
-  }
-  .navbar-custom .nav>li>a {
+}
+.navbar-custom .nav>li>a {
     color: white;
     padding: 20px;
-  }
-  .navbar-custom .nav>li>a:hover,
-  .navbar-custom .nav>li>a:focus {
+}
+.navbar-custom .nav>li>a:hover,
+.navbar-custom .nav>li>a:focus {
     color: rgba(255, 255, 255, 0.8);
-  }
+}
 }
 @media only screen and (min-width: 1170px) {
   .navbar-custom {
@@ -92,8 +92,8 @@ hr.small {
     transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-  }
-  .navbar-custom.is-fixed {
+}
+.navbar-custom.is-fixed {
     /* when the user scrolls down, we hide the header right above the viewport */
     position: fixed;
     top: -61px;
@@ -102,39 +102,47 @@ hr.small {
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;
-  }
-  .navbar-custom.is-fixed .navbar-brand {
+}
+.navbar-custom.is-fixed .navbar-brand {
     color: #404040;
-  }
-  .navbar-custom.is-fixed .navbar-brand:hover,
-  .navbar-custom.is-fixed .navbar-brand:focus {
+}
+.navbar-custom.is-fixed .navbar-brand:hover,
+.navbar-custom.is-fixed .navbar-brand:focus {
     color: #0085a1;
-  }
-  .navbar-custom.is-fixed .nav li a {
+}
+.navbar-custom.is-fixed .nav li a {
     color: #404040;
-  }
-  .navbar-custom.is-fixed .nav li a:hover,
-  .navbar-custom.is-fixed .nav li a:focus {
+}
+.navbar-custom.is-fixed .nav li a:hover,
+.navbar-custom.is-fixed .nav li a:focus {
     color: #0085a1;
-  }
-  .navbar-custom.is-visible {
+}
+.navbar-custom.is-visible {
     /* if the user changes the scrolling direction, we show the header */
     -webkit-transform: translate3d(0, 100%, 0);
     -moz-transform: translate3d(0, 100%, 0);
     -ms-transform: translate3d(0, 100%, 0);
     -o-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
-  }
+}
 }
 .intro-header {
-  background-color: #808080;
-  background: no-repeat center center;
-  background-attachment: scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  margin-bottom: 50px;
+    background-color: #808080;
+    background: no-repeat center center;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    margin-bottom: 50px;
+    .container{
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        a{
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
 }
 
 .intro-header .site-heading,
@@ -148,7 +156,7 @@ hr.small {
   .intro-header .post-heading,
   .intro-header .page-heading {
     padding: 150px 0;
-  }
+}
 }
 .intro-header .site-heading,
 .intro-header .page-heading {
@@ -172,7 +180,7 @@ hr.small {
   .intro-header .site-heading h1,
   .intro-header .page-heading h1 {
     font-size: 80px;
-  }
+}
 }
 .intro-header .post-heading h1 {
   font-size: 35px;
@@ -200,10 +208,10 @@ hr.small {
 @media only screen and (min-width: 768px) {
   .intro-header .post-heading h1 {
     font-size: 55px;
-  }
-  .intro-header .post-heading .subheading {
+}
+.intro-header .post-heading .subheading {
     font-size: 30px;
-  }
+}
 }
 .post-preview > a {
   color: #404040;
@@ -241,7 +249,7 @@ hr.small {
 @media only screen and (min-width: 768px) {
   .post-preview > a > .post-title {
     font-size: 36px;
-  }
+}
 }
 .section-heading {
   font-size: 36px;

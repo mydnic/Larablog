@@ -27,7 +27,7 @@
         @include('widgets.google_analytics')
         @include('layout.blog.menu')
 
-        <header class="intro-header" style="background-image: url(/uploads/{{ $setting->banner }})">
+        <header class="intro-header" style="background-image: url(@yield('meta-image', '/uploads/'.$setting->banner))">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL::route('home')}}">Larablog</a>
+            <a class="navbar-brand" href="{{URL::route('home')}}">{{$setting->app_name}}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

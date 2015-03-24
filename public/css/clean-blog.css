@@ -124,6 +124,12 @@ hr.small {
   background-size: cover;
   -o-background-size: cover;
   margin-bottom: 50px; }
+  .intro-header .container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); }
+    .intro-header .container a {
+      color: #fff;
+      text-decoration: underline; }
 
 .intro-header .site-heading,
 .intro-header .post-heading,
