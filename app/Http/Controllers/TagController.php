@@ -48,9 +48,9 @@ class TagController extends Controller {
 	{
 		$posts = Post::whereHas('tags', function($q) use ($slug) {
 			$q->where('slug', '=', $slug);
-		})->get();
+		})->paginate(15);
 
-		return view('page.home')
+		return view('post.index')
 			->with('posts', $posts);
 	}
 
