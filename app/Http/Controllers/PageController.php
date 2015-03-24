@@ -3,6 +3,7 @@
 use App\Post;
 use App\Setting;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 
 class PageController extends Controller {
 
@@ -19,9 +20,8 @@ class PageController extends Controller {
 		}
 
 		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->get();
-		return view('page.home')
+		return view('post.index')
 			->with('posts', $posts);
-
 	}
 
 
