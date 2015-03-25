@@ -37,8 +37,11 @@ a img:focus {
   cursor: zoom-in;
 }
 blockquote {
-  color: #808080;
-  font-style: italic;
+    color: #808080;
+    font-style: italic;
+    p {
+        margin: 0 0 10px;
+    }
 }
 hr.small {
   max-width: 100px;
