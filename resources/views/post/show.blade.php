@@ -2,7 +2,9 @@
 
 @section('meta-title', $post->title)
 @section('meta-subtitle', 'Posted by '.link_to_route('user.show', $post->user->username, $post->user->username).' on '.date('M d Y', strtotime($post->created_at)))
-@section('meta-image', $post->picture)
+@section('meta-image', url($post->picture))
+@section('meta-description', str_limit(strip_tags($post->content), 140))
+@section('meta-url', URL::route("post.show", $post->slug))
 
 @section('styles')
     <link rel="stylesheet" href="https://highlightjs.org/static/styles/monokai_sublime.css">
