@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::get('post/{id}/delete', ['as'=>'admin.post.delete', 'uses'=>'Admin\PostController@destroy']);
     Route::resource('page', 'Admin\PageController');
     Route::resource('task', 'Admin\TaskController');
+    Route::resource('settings/social', 'Admin\SocialLinkController');
     Route::resource('settings', 'Admin\SettingController');
     Route::resource('menu', 'Admin\MenuController');
 });
@@ -34,15 +35,7 @@ Route::controllers([
 
 #API routes
 Route::group(['prefix' => 'api/v1'], function() {
-    Route::get('category', 'API\CategoryController@index');
-    Route::post('category', 'API\CategoryController@store');
-    Route::get('task', function() {
-        return Task::where('completed', false)->get();
-    });
-    Route::get('menu', function() {
-        return Menu::orderBy('weight')->get();
-    });
-    Route::post('menu', function() {
-        return Menu::orderBy('weight')->get();
-    });
+    Route::resource('category', 'API\CategoryController');
+    Route::resource('task', 'API\TaskController');
+    Route::resource('menu', 'API\MenuController');
 });

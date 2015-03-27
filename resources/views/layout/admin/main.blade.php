@@ -294,10 +294,10 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="{{ URL::to('admin/page') }}">All Pages</a>
+                                        <a href="{{ URL::route('admin.page.index') }}">All Pages</a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::to('admin/page/create') }}">Add new page</a>
+                                        <a href="{{ URL::route('admin.page.create') }}">Add new page</a>
                                     </li>
                                 </ul>
                             </li>
@@ -307,13 +307,18 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('admin/task') ? 'active' : '' }}" href="{{ URL::to('admin/task') }}">
+                                <a class="{{ Request::is('admin/task') ? 'active' : '' }}" href="{{ URL::route('admin.task.index') }}">
                                     <i class="fa fa-tasks fa-fw"></i> Tasks
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('admin/settings') ? 'active' : '' }}" href="{{ URL::to('admin/settings') }}">
+                                <a class="{{ Request::is('admin/settings') ? 'active' : '' }}" href="{{ URL::route('admin.settings.index') }}">
                                     <i class="fa fa-cogs fa-fw"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ Request::is('admin/settings/social') ? 'active' : '' }}" href="{{ URL::route('admin.settings.social.index') }}">
+                                    <i class="fa fa-cogs fa-fw"></i> Social Links
                                 </a>
                             </li>
                         </ul>

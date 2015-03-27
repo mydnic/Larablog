@@ -1,6 +1,7 @@
 <?php namespace App\Http\ViewComposers;
 
 use App\Setting;
+use App\SocialLink;
 use Illuminate\Contracts\View\View;
 
 class HeaderComposer {
@@ -11,6 +12,7 @@ class HeaderComposer {
      * @var UserRepository
      */
     protected $settings;
+    protected $links;
 
     /**
      * Create a new profile composer.
@@ -22,6 +24,7 @@ class HeaderComposer {
     {
         // Dependencies automatically resolved by service container...
         $this->settings = Setting::first();
+        $this->links = SocialLink::all();
     }
 
     /**
@@ -32,7 +35,7 @@ class HeaderComposer {
      */
     public function compose(View $view)
     {
-        $view->with('setting', $this->settings);
+        $view->with('setting', $this->settings)->with('links', $this->links);
     }
 
 }

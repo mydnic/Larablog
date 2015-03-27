@@ -38,3 +38,4 @@ DB_PASSWORD=
 * Category List
 * Search Form
 * RSS Feed
+* Finish Tasks Management
