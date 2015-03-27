@@ -16,6 +16,16 @@ class PostController extends Controller {
 			->with('posts', $posts);
 	}
 
+	public function getPostsByCategory($category)
+	{
+		$posts = Post::whereHas('categories', function($q) use ($category) {
+ 			$q->where('slug', '=', $category);
+		})->paginate(15);
+
+		return view('post.index')
+			->with('posts', $posts);
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.

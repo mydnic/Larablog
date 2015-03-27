@@ -91,7 +91,7 @@ hr.small {
 
   .navbar-custom .navbar-brand {
     color: white;
-    padding: 20px; }
+    padding: 18px; }
 
   .navbar-custom .navbar-brand:hover,
   .navbar-custom .navbar-brand:focus {
@@ -147,6 +147,7 @@ hr.small {
   background-color: #808080;
   background: no-repeat center center;
   background-attachment: scroll;
+  -webkit-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
   margin-bottom: 50px; }
@@ -299,6 +300,7 @@ footer.footer .copyright {
   border-radius: 0;
   font-size: 1.5em;
   background: none;
+  -webkit-box-shadow: none !important;
   box-shadow: none !important;
   resize: none; }
 
