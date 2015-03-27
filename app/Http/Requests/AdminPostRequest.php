@@ -29,7 +29,7 @@ class AdminPostRequest extends Request {
             'image'       => 'image',
             'category_id' => 'required|array',
             'tags'        => 'array',
-            'created_at'  => 'required|date',
+            'created_at'  => 'date',
 		];
 	}
 
