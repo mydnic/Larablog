@@ -15,7 +15,7 @@
         <meta property="og:image" content="@yield('meta-image', url('/uploads/'.$setting->banner))"/>
         <meta property="og:site_name" content="{{ $setting->app_name }}"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:description" content="@yield('meta-description', addslashes($setting->app_baseline))">
+        <meta property="og:description" content="@yield('meta-description', $setting->app_baseline)">
 
         <!-- Bootstrap -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">

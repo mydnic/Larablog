@@ -25,6 +25,8 @@ class HeaderComposer {
         // Dependencies automatically resolved by service container...
         $this->settings = Setting::first();
         $this->links = SocialLink::all();
+
+        $this->settings->app_baseline = str_replace('"', "", $this->settings->app_baseline);
     }
 
     /**
