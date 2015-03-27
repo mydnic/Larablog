@@ -61,7 +61,7 @@ class PostController extends Controller {
 		if (Request::hasFile('image')) {
 			$file            = Request::file('image');
 			$destinationPath = public_path().'/uploads/';
-			$filename 		 = str_random(6) . '_image_' . $file->getClientOriginalName();
+			$filename 		 = urlencode(str_random(6) . '_image_' . $file->getClientOriginalName());
 			$uploadSuccess   = $file->move($destinationPath, $filename);
 			$post->image = $filename;
 		}
@@ -134,7 +134,7 @@ class PostController extends Controller {
 		if (Request::hasFile('image')) {
 			$file            = Request::file('image');
 			$destinationPath = public_path().'/uploads/';
-			$filename 		 = str_random(6) . '_image_' . $file->getClientOriginalName();
+			$filename 		 = urlencode(str_random(6) . '_image_' . $file->getClientOriginalName());
 			$uploadSuccess   = $file->move($destinationPath, $filename);
 		}
 		else {
