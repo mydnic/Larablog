@@ -26,7 +26,7 @@ class HeaderComposer {
         $this->settings = Setting::first();
         $this->links = SocialLink::all();
 
-        $this->settings->app_baseline = str_replace('"', "", $this->settings->app_baseline);
+        $this->settings->description_baseline = str_replace('"', "", $this->settings->app_baseline);
     }
 
     /**

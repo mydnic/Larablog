@@ -7,7 +7,7 @@
 
         <title>@yield('meta-title', $setting->app_name)</title>
 
-        <meta name="description" content="@yield('meta-description', $setting->app_baseline)">
+        <meta name="description" content="@yield('meta-description', $setting->description_baseline)">
         <meta name="keywords" content="@yield('meta-keywords', 'blog, portfolio')">
         <meta name="author" content="{{ $setting->app_name }}">
         <meta property="og:title" content="@yield('meta-title', $setting->app_name)"/>
@@ -15,7 +15,7 @@
         <meta property="og:image" content="@yield('meta-image', url('/uploads/'.$setting->banner))"/>
         <meta property="og:site_name" content="{{ $setting->app_name }}"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:description" content="@yield('meta-description', $setting->app_baseline)">
+        <meta property="og:description" content="@yield('meta-description', $setting->description_baseline)">
 
         <!-- Bootstrap -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
