@@ -11,6 +11,7 @@
         }
         .trumbowyg-box{
             width: 100%;
+            margin: 36px auto;
         }
     </style>
 @stop
@@ -38,6 +39,11 @@
             </div>
         </div>
         <div class="col-lg-3">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    {!! link_to_route('post.show', 'View Post', $post->slug, ['class'=>'btn btn-link']) !!}
+                </div>
+            </div>
             <div class="well">
                 <div class="form-group">
                     {!! Form::label('category_id', 'Categories') !!}
