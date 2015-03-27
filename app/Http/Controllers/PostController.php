@@ -18,7 +18,9 @@ class PostController extends Controller {
 
 	public function getPostsByCategory($category)
 	{
-		$posts = Post::whereHas('categories', function($q) use ($category) {
+		$posts = Post::whereStatus('published')
+		->orderBy('created_at', 'desc')
+		->whereHas('categories', function($q) use ($category) {
  			$q->where('slug', '=', $category);
 		})->paginate(15);
 
