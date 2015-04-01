@@ -59,7 +59,7 @@
         var app = angular.module("Menus", [])
 
         app.controller("MenuController", function($scope, $http) {
-            $http.get('/api/v1/menu').success(function(menus) {
+            $http.get('/api/v1/admin/menu').success(function(menus) {
                 $scope.menus = menus;
             });
 
@@ -68,7 +68,7 @@
                     name: $scope.newMenuName,
                     uri: $scope.newMenuUri,
                 };
-                $http.post('/api/v1/menu', menu);
+                $http.post('/api/v1/admin/menu', menu);
                 $scope.menus.push(menu);
                 $scope.newMenuName = null;
                 $scope.newMenuUri = null;

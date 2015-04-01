@@ -141,7 +141,7 @@
         var app = angular.module("Tasks", [])
 
         app.controller("TasksController", function($scope, $http) {
-            $http.get('/api/v1/task').success(function(categories) {
+            $http.get('/api/v1/admin/task').success(function(categories) {
                 $scope.categories = categories;
             });
 

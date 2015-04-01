@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers\API;
 
-use App\Category;
+use App\ProjectCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Request;
 
-class CategoryController extends Controller {
+class ProjectCategoryController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CategoryController extends Controller {
 	 */
 	public function index()
 	{
-		return Category::with('posts')->get();
+		return ProjectCategory::with('projects')->get();
 	}
 
 	/**
@@ -34,7 +34,7 @@ class CategoryController extends Controller {
 	 */
 	public function store()
 	{
-		$category = new Category;
+		$category = new ProjectCategory;
 		$category->name = Request::get('name');
 		$category->save();
 		return $category;
@@ -81,7 +81,7 @@ class CategoryController extends Controller {
 	 */
 	public function destroy($id = null)
 	{
-		$category = Category::find(Request::get('id'));
+		$category = ProjectCategory::find(Request::get('id'));
 		$category->delete();
 	}
 

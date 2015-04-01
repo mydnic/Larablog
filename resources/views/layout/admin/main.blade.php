@@ -272,53 +272,50 @@
                             </li>
                             <li>
                                 <a class="{{ Request::is('admin/index') ? 'active' : '' }}" href="{{ URL::to('admin/index') }}">
-                                    <i class="fa fa-dashboard fa-fw"></i> Dashboard
+                                    <i class="fa fa-dashboard fa-fw"></i>
+                                    Dashboard
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('admin/post*') ? 'active' : '' }}" href="#">
-                                    <i class="fa fa-comment fa-fw"></i> Posts<span class="fa arrow"></span>
+                                <a class="{{ Request::is('admin/post*') ? 'active' : '' }}" href="{{ URL::route('admin.post.index') }}">
+                                    <i class="fa fa-comment fa-fw"></i>
+                                    Posts
                                 </a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="{{ URL::to('admin/post') }}">All Posts</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ URL::to('admin/post/create') }}">Add new post</a>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
-                                <a class="{{ Request::is('admin/page*') ? 'active' : '' }}" href="#">
-                                    <i class="fa fa-pencil fa-fw"></i> Pages<span class="fa arrow"></span>
+                                <a class="{{ Request::is('admin/page*') ? 'active' : '' }}" href="{{ URL::route('admin.page.index') }}">
+                                    <i class="fa fa-pencil fa-fw"></i>
+                                    Pages
                                 </a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="{{ URL::route('admin.page.index') }}">All Pages</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ URL::route('admin.page.create') }}">Add new page</a>
-                                    </li>
-                                </ul>
+                            </li>
+                            <li>
+                                <a class="{{ Request::is('admin/project*') ? 'active' : '' }}" href="{{ URL::route('admin.project.index') }}">
+                                    <i class="fa fa-briefcase fa-fw"></i>
+                                    Portfolio
+                                </a>
                             </li>
                             <li>
                                 <a class="{{ Request::is('admin/menu') ? 'active' : '' }}" href="{{ URL::to('admin/menu') }}">
-                                    <i class="fa fa-th-list fa-fw"></i> Menu
+                                    <i class="fa fa-th-list fa-fw"></i>
+                                    Menu
                                 </a>
                             </li>
                             <li>
                                 <a class="{{ Request::is('admin/task') ? 'active' : '' }}" href="{{ URL::route('admin.task.index') }}">
-                                    <i class="fa fa-tasks fa-fw"></i> Tasks
+                                    <i class="fa fa-tasks fa-fw"></i>
+                                    Tasks
                                 </a>
                             </li>
                             <li>
                                 <a class="{{ Request::is('admin/settings') ? 'active' : '' }}" href="{{ URL::route('admin.settings.index') }}">
-                                    <i class="fa fa-cogs fa-fw"></i> Settings
+                                    <i class="fa fa-cogs fa-fw"></i>
+                                    Settings
                                 </a>
                             </li>
                             <li>
                                 <a class="{{ Request::is('admin/settings/social') ? 'active' : '' }}" href="{{ URL::route('admin.settings.social.index') }}">
-                                    <i class="fa fa-cogs fa-fw"></i> Social Links
+                                    <i class="fa fa-cogs fa-fw"></i>
+                                    Social Links
                                 </a>
                             </li>
                         </ul>

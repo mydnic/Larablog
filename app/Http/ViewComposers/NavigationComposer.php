@@ -1,6 +1,7 @@
 <?php namespace App\Http\ViewComposers;
 
 use App\Category;
+use App\Project;
 use Illuminate\Contracts\View\View;
 
 class NavigationComposer {
@@ -11,6 +12,7 @@ class NavigationComposer {
      * @var UserRepository
      */
     protected $categories;
+    protected $projects;
 
     /**
      * Create a new profile composer.
@@ -22,6 +24,7 @@ class NavigationComposer {
     {
         // Dependencies automatically resolved by service container...
         $this->categories = Category::all();
+        $this->projects = Project::all();
     }
 
     /**
@@ -32,7 +35,7 @@ class NavigationComposer {
      */
     public function compose(View $view)
     {
-        $view->with('categories', $this->categories);
+        $view->with('categories', $this->categories)->with('projects', $this->projects);
     }
 
 }

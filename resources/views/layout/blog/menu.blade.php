@@ -18,19 +18,26 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Categories
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        @foreach ($categories as $category)
-                            <li>
-                                {!! link_to_route('post.category', $category->name, $category->slug) !!}
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
+                @if (count($categories))
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Categories
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach ($categories as $category)
+                                <li>
+                                    {!! link_to_route('post.category', $category->name, $category->slug) !!}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+                @if (count($projects))
+                    <li>
+                        {!! link_to_route('portfolio', 'Portfolio') !!}
+                    </li>
+                @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())

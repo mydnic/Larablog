@@ -2,7 +2,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">
-    <link rel="stylesheet" href="/admin/css/tags.css">
     <style>
         input[name=title]{
             border: 0px;
@@ -19,22 +18,22 @@
 
 @include('layout.errors')
 
-{!! Form::open(['route'=>'admin.post.store', 'files'=>true]) !!}
+{!! Form::open(['route'=>'admin.project.store', 'files'=>true]) !!}
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                {!! Form::text('title', null, ['placeholder'=>'Title of the post']) !!}
+                {!! Form::text('title', null, ['placeholder'=>'Project Name']) !!}
             </h1>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-9">
             <div class="form-group">
-                {!! Form::textarea('content', null) !!}
+                {!! Form::label('sub_title', 'Sub Title') !!}
+                {!! Form::text('sub_title', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('tags', 'Tags') !!}
-                {!! Form::text('tags', null, ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
+                {!! Form::textarea('description', null) !!}
             </div>
         </div>
         <div class="col-lg-3">
@@ -50,19 +49,29 @@
                     @endforeach
                 </div>
                 <div class="form-group">
-                    {!! Form::label('status', 'Status') !!}
-                    {!! Form::select('status', Config::get('post_status'), null, ['class'=>'form-control']) !!}
-                </div>
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('allow_comments', true, true) !!} Allow Comments
-                    </label>
+                    {!! Form::label('client', 'Client') !!}
+                    {!! Form::text('client', null, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('iamge', 'Select an Image') !!}
+                    {!! Form::label('link', 'URL') !!}
+                    {!! Form::input('url', 'link', null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('date', 'Date') !!}
+                    {!! Form::input('date', 'date', null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('image', 'Select a Featured Image') !!}
                     <div class="fileUpload">
                         {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
                         <img src="" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    {!! Form::label('project_images', 'Select More Images') !!}
+                    <div class="fileUpload">
+                        {!! Form::file('project_images[]', ['class'=>'upload multiple', 'id'=>'multiple_image_file_upload', 'multiple']) !!}
+                        <div class="multiple-container"></div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -77,7 +86,6 @@
 @section('scripts')
     <script src="/admin/wysiwyg/dist/trumbowyg.min.js"></script>
     <script src="/admin/wysiwyg/dist/plugins/base64/trumbowyg.base64.js"></script>
-    <script src="/admin/js/jquery.tags.js"></script>
     <script>
         $('textarea').trumbowyg({
             autogrow: true,
@@ -86,14 +94,30 @@
         jQuery(document).ready(function($) {
             // Avatar Upload and preview
             function readURL(input, id) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    
-                    reader.onload = function (e) {
-                        $('#'+id).next('img').attr('src', e.target.result);
+                if ($(input).hasClass('multiple')) {
+                    if (input.files) {
+                        $('.multiple-container').empty();
+                        $.each(input.files, function(index, val) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                $('#'+id).next('.multiple-container').append('<img src="'+e.target.result+'" alt="">');
+                            }
+                            
+                            reader.readAsDataURL(input.files[index]);
+                        });
                     }
-                    
-                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function (e) {
+                            $('#'+id).next('img').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
                 }
             }
             
@@ -111,12 +135,6 @@
                         alert("not an image");
                         break;
                 }
-                
-            });
-
-            $('#tags').magicSuggest({
-                cls: 'form-control',
-                data: {!!$tags!!},
             });
         });
     </script>

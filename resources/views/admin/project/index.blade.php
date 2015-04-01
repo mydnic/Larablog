@@ -3,7 +3,7 @@
 
 @section('styles')
     <style>
-    #TablePost span.coma:last-child {
+    #TableProject span.coma:last-child {
         display: none;
     }
     </style>
@@ -14,38 +14,36 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Posts
-            <small><a href="{{ URL::to('admin/post/create') }}">Add new</a></small>
+            Projects
+            <small>
+                {!! link_to_route('admin.project.create', 'Add New') !!}
+            </small>
         </h1>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-9">
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover" id="TablePost">
+            <table class="table table-striped table-bordered table-hover" id="TableProject">
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Status</th>
                         <th>Categories</th>
                         <th>Created at</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($projects as $project)
                         <tr>
                             <td>
-                                {!! link_to_route('admin.post.edit', str_limit($post->title,40), $post->id) !!}
+                                {!! link_to_route('admin.project.edit', $project->title, $project->id) !!}
                             </td>
                             <td>
-                                {{ $post->status }}
-                            </td>
-                            <td>
-                                @foreach ($post->categories as $category)
+                                @foreach ($project->categories as $category)
                                     {{ $category->name }}<span class="coma">,</span>
                                 @endforeach
                             </td>
-                            <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($post->created_at)) }}</td>
+                            <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($project->created_at)) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -91,13 +89,13 @@
     <script src="/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function() {
-            $('#TablePost').dataTable();
+            $('#TableProject').dataTable();
         });
 
         var app = angular.module("Categories", [])
 
         app.controller("CategoriesController", function($scope, $http) {
-            $http.get('/api/v1/admin/category').success(function(categories) {
+            $http.get('/api/v1/admin/projectcategory').success(function(categories) {
                 $scope.categories = categories;
             });
 
@@ -105,7 +103,7 @@
                 var category = {
                     name: $scope.newCategoryText,
                 };
-                $http.post('/api/v1/admin/category', category);
+                $http.post('/api/v1/admin/projectcategory', category);
                 $scope.categories.push(category);
                 $scope.newCategoryText = null;
             };
@@ -113,7 +111,7 @@
             $scope.delete = function(category) {
                 var index = $scope.categories.indexOf(category);
                 $scope.categories.splice(index, 1);
-                $http.post('/api/v1/admin/category/delete', category);
+                $http.post('/api/v1/admin/projectcategory/delete', category);
             }
         });
 
