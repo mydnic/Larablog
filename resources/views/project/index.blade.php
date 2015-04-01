@@ -64,12 +64,12 @@
                                                 {{ $project->sub_title }}
                                             </p>
 
-                                            <div id="Portfolio_Slider" class="carousel slide" data-ride="carousel">
+                                            <div id="Portfolio_Slider{{$project->id}}" class="carousel slide" data-ride="carousel">
                                                 <!-- Indicators -->
                                                 <ol class="carousel-indicators">
                                                     <?php $i=0; ?>
                                                     @foreach ($project->images as $key => $image)
-                                                        <li data-target="#Portfolio_Slider" data-slide-to="{{$key}}" class="@if ($i==0) active @endif"></li>
+                                                        <li data-target="#Portfolio_Slider{{$project->id}}" data-slide-to="{{$key}}" class="@if ($i==0) active @endif"></li>
                                                         <?php $i++ ?>
                                                     @endforeach
                                                 </ol>
@@ -86,11 +86,11 @@
                                                 </div>
 
                                                 <!-- Controls -->
-                                                <a class="left carousel-control" href="#Portfolio_Slider" role="button" data-slide="prev">
+                                                <a class="left carousel-control" href="#Portfolio_Slider{{$project->id}}" role="button" data-slide="prev">
                                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
-                                                <a class="right carousel-control" href="#Portfolio_Slider" role="button" data-slide="next">
+                                                <a class="right carousel-control" href="#Portfolio_Slider{{$project->id}}" role="button" data-slide="next">
                                                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>

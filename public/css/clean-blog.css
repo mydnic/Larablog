@@ -463,6 +463,10 @@ article a {
   .portfolio-modal .modal-content ul.list-inline {
     margin-bottom: 30px;
     margin-top: 0; }
+  .portfolio-modal .modal-content .carousel-control.left,
+  .portfolio-modal .modal-content .carousel-control.right {
+    background-image: -webkit-linear-gradient(left, transparent 0, transparent 100%);
+    background-image: linear-gradient(to right, transparent 0, transparent 100%); }
   .portfolio-modal .modal-content .carousel-inner {
     margin-bottom: 30px; }
 .portfolio-modal .close-modal {

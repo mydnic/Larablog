@@ -517,6 +517,10 @@ article{
             margin-bottom: 30px;
             margin-top: 0;
         }
+        .carousel-control.left,
+        .carousel-control.right{
+              background-image: linear-gradient(to right,rgba(0,0,0,.0) 0,rgba(0,0,0,.0) 100%);
+        }
         .carousel-inner {
             margin-bottom: 30px;
         }
