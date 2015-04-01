@@ -29,11 +29,9 @@ DB_PASSWORD=
 
 # TODO
 
-* Add Portfolio Management
 * Make the menu editable from BackOffice
 * Review registration process
 * Profile Page and Profile Edit
-* Add Footer
 * Add Widgets emplacements
 * Search Form
 * RSS Feed
