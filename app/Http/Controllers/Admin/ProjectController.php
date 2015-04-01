@@ -135,9 +135,9 @@ class ProjectController extends Controller {
 		}
 		$project->save();
 
-		$project->images()->delete();
 
 		if (Request::hasFile('project_images')) {
+			$project->images()->delete();
 			$files = Request::file('project_images');
 			foreach ($files as $file) {
 				$destinationPath = public_path().'/uploads/';
