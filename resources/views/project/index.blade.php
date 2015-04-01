@@ -62,6 +62,10 @@
                                             </h2>
                                             <p class="item-intro text-muted">
                                                 {{ $project->sub_title }}
+                                                <small>
+                                                    <i class="fa fa-external-link"></i>
+                                                    {!! link_to($project->link, $project->link, ['target'=>'_blank']) !!}
+                                                </small>
                                             </p>
 
                                             <div id="Portfolio_Slider{{$project->id}}" class="carousel slide" data-ride="carousel">

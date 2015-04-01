@@ -456,6 +456,10 @@ article a {
     font-size: 3em; }
   .portfolio-modal .modal-content p {
     margin-bottom: 30px; }
+    .portfolio-modal .modal-content p small {
+      display: block; }
+      .portfolio-modal .modal-content p small a {
+        text-decoration: none; }
   .portfolio-modal .modal-content p.item-intro {
     margin: 20px 0 30px;
     font-style: italic;

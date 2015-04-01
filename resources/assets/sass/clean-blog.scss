@@ -507,6 +507,12 @@ article{
         }
         p {
             margin-bottom: 30px;
+            small{
+                display: block;
+                a {
+                    text-decoration: none;
+                }
+            }
         }
         p.item-intro {
             margin: 20px 0 30px;
