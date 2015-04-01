@@ -66,7 +66,7 @@ class ProjectController extends Controller {
 			$files = Request::file('project_images');
 			foreach ($files as $file) {
 				$destinationPath = public_path().'/uploads/';
-				$filename        = str_random(6) . '_project_images_' . Auth::id() . $file->getClientOriginalName();
+				$filename        = urlencode(str_random(6) . '_project_images_' . Auth::id() . $file->getClientOriginalName());
 				$extension       = $file->getClientOriginalExtension();
 				$uploadSuccess   = $file->move($destinationPath, $filename);
 
