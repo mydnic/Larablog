@@ -33,7 +33,7 @@ class PostController extends Controller {
 	public function search()
 	{
 		$query = Request::get('q');
-		$posts = Post::search($query)->orderBy('created_at', 'desc')->get();
+		$posts = Post::search($query)->get();
 		return view('post.search')
 			->with('posts', $posts);
 	}
