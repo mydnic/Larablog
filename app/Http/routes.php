@@ -7,6 +7,7 @@ Route::get('/', array('as' => 'home', 'uses' => 'PageController@index'));
 Route::resource('category', 'CategoryController');
 
 # Articles
+Route::get('post', ['as'=>'post.search', 'uses'=>'PostController@search']);
 Route::get('post/category/{category}', ['as'=>'post.category', 'uses'=>'PostController@getPostsByCategory']);
 Route::resource('post', 'PostController');
 

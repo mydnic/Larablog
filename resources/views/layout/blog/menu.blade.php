@@ -38,6 +38,16 @@
                         {!! link_to_route('portfolio', 'Portfolio') !!}
                     </li>
                 @endif
+                {!! Form::open(['route'=>'post.search', 'class'=>'navbar-form navbar-left', 'method'=>'get']) !!}
+                    <div class="input-group">
+                        {!! Form::text('q', Request::get('q'), ['class'=>'form-control col-lg-8', 'placeholder'=>'Search']) !!}
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                {!! Form::close() !!}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())

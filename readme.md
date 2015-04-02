@@ -33,6 +33,5 @@ DB_PASSWORD=
 * Review registration process
 * Profile Page and Profile Edit
 * Add Widgets emplacements
-* Search Form
 * RSS Feed
 * Finish Tasks Management

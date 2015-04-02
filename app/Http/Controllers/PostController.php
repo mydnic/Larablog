@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Request;
 use App\Post;
 
 class PostController extends Controller {
@@ -11,7 +12,7 @@ class PostController extends Controller {
 	 */
 	public function index()
 	{
-		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->get();
+		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->paginate(15);
 		return view('post.index')
 			->with('posts', $posts);
 	}
@@ -29,33 +30,12 @@ class PostController extends Controller {
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function search()
 	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$validator = Validator::make($data = Input::all(), Post::$rules);
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-
-        return Redirect::route('admin.post.index');
+		$query = Request::get('q');
+		$posts = Post::search($query)->orderBy('created_at', 'desc')->get();
+		return view('post.search')
+			->with('posts', $posts);
 	}
 
 
@@ -71,42 +51,5 @@ class PostController extends Controller {
 		return view('post.show')
 			->with('post', $post);
 	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 
 }

@@ -3,11 +3,24 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use MartinBean\Database\Eloquent\Sluggable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Post extends Model {
 
-    use SoftDeletes, Sluggable;
+    use SoftDeletes, Sluggable, SearchableTrait;
+    
     const DISPLAY_NAME = 'title';
+
+    protected $searchable = [
+        'columns' => [
+            'title' => 10,
+            'content' => 7,
+            'tags.name' => 9,
+        ],
+        'joins' => [
+            'tags' => ['posts.id','tags.post_id'],
+        ],
+    ];
 
 	protected $fillable = ['title', 'content', 'status', 'image', 'allow_comments', 'created_at'];
 
