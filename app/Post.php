@@ -15,10 +15,6 @@ class Post extends Model {
         'columns' => [
             'title' => 10,
             'content' => 7,
-            'tags.name' => 9,
-        ],
-        'joins' => [
-            'tags' => ['posts.id','tags.post_id'],
         ],
     ];
 

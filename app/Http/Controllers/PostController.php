@@ -33,7 +33,7 @@ class PostController extends Controller {
 	public function search()
 	{
 		$query = Request::get('q');
-		$posts = Post::search($query)->get();
+		$posts = Post::whereStatus('published')->search($query)->with('tags')->get();
 		return view('post.search')
 			->with('posts', $posts);
 	}
