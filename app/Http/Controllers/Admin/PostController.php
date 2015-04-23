@@ -12,6 +12,11 @@ use Laracasts\Flash\Flash;
 
 class PostController extends Controller {
 
+	public function __construct(Uploader $uploader)
+	{
+		$this->uploader = $uploader;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 * GET /adminposts
@@ -59,12 +64,9 @@ class PostController extends Controller {
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
-			$file            = Request::file('image');
-			$destinationPath = public_path().'/uploads/';
-			$filename 		 = urlencode(str_random(6) . '_image_' . $file->getClientOriginalName());
-			$uploadSuccess   = $file->move($destinationPath, $filename);
-			$post->image = $filename;
+			$post->image = $this->uploader->upload(Request::file('image'));
 		}
+		
 		$post->save();
 
 		// Clear previous tags
