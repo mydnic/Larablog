@@ -9,7 +9,8 @@
 		"illuminate/html": "~5.0",
 		"laracasts/flash": "~1.3",
 		"nicolaslopezj/searchable": "1.*",
-		"martinbean/laravel-sluggable-trait": "0.2.*"
+		"martinbean/laravel-sluggable-trait": "0.2.*",
+		"mydnic/uploader": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

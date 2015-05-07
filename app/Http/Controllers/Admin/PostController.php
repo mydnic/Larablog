@@ -9,13 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Laracasts\Flash\Flash;
+use Mydnic\Uploader\Uploader;
 
 class PostController extends Controller {
-
-	public function __construct(Uploader $uploader)
-	{
-		$this->uploader = $uploader;
-	}
 
 	/**
 	 * Display a listing of the resource.
@@ -64,7 +60,7 @@ class PostController extends Controller {
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
-			$post->image = $this->uploader->upload(Request::file('image'));
+			$post->image = Uploader::upload(Request::file('image'));
 		}
 		
 		$post->save();
