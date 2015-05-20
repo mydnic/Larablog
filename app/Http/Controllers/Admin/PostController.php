@@ -131,16 +131,9 @@ class PostController extends Controller {
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
-			$file            = Request::file('image');
-			$destinationPath = public_path().'/uploads/';
-			$filename 		 = urlencode(str_random(6) . '_image_' . $file->getClientOriginalName());
-			$uploadSuccess   = $file->move($destinationPath, $filename);
-		}
-		else {
-			$filename = $post->image;
+			$post->image = Uploader::upload(Request::file('image'));
 		}
 
-		$post->image = $filename;
 		$post->save();
 
 		// Clear previous tags
