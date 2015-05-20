@@ -2,7 +2,8 @@
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminPostRequest;
+use App\Http\Requests\AdminStorePostRequest;
+use App\Http\Requests\AdminUpdatePostRequest;
 use App\Post;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ class PostController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(AdminPostRequest $request)
+	public function store(AdminStorePostRequest $request)
 	{
 
 		$post = new Post;
@@ -118,7 +119,7 @@ class PostController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(AdminPostRequest $request, $id)
+	public function update(AdminUpdatePostRequest $request, $id)
 	{
 
 		$post = Post::find($id);
