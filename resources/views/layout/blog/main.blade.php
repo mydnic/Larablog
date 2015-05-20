@@ -55,6 +55,8 @@
             </div>
         </header>
 
+        @include('layout.errors')
+
         @yield('content')
 
         <hr>
