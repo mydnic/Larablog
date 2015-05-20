@@ -9,13 +9,6 @@ class Page extends Model {
     use SoftDeletes, Sluggable;
     const DISPLAY_NAME = 'title';
 
-	protected $fillable = ['title', 'content', 'image'];
-
-    public static $rules = [
-        'title'   => 'required|min:2',
-        'content' => 'required',
-        'image'   => 'image',
-    ];
 
     public function user()
     {

@@ -4,7 +4,9 @@
     <div class="col-lg-12">
         <h1 class="page-header">
             Pages
-            <small><a href="{{ URL::to('admin/page/create') }}">Add new</a></small>
+            <small>
+                {!! link_to_route('admin.page.create', 'Add new') !!}
+            </small>
         </h1>
     </div>
 </div>
@@ -24,7 +26,7 @@
                     @foreach ($pages as $page)
                         <tr>
                             <td>{{ $page->title }}</td>
-                            <td>{{ $page->user->profile->username }}</td>
+                            <td>{{ $page->user->name }}</td>
                             <td>
                                 @if ($page->status)
                                     Published

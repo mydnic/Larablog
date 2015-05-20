@@ -30,7 +30,6 @@ DB_PASSWORD=
 # TODO
 
 * Make the menu editable from BackOffice
-* Review registration process
 * Profile Page and Profile Edit
 * Add Widgets emplacements
 * RSS Feed

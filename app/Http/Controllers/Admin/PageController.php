@@ -1,7 +1,12 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStorePageRequest;
+use Request;
 use App\Page;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Laracasts\Flash\Flash;
 
 class PageController extends Controller {
 
@@ -34,25 +39,19 @@ class PageController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(AdminStorePageRequest $request)
 	{
-		$validator = Validator::make($data = Input::all(), Page::$rules);
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
 		$page = new Page;
 		$page->user_id = Auth::id();
-		$page->title = Input::get('title');
-		$page->content = Input::get('content');
-		$page->status = Input::get('status');
-		$page->slug = Str::slug(Input::get('title'));
-		$page->allow_comments = Input::get('allow_comments');
+		$page->title = Request::input('title');
+		$page->content = Request::input('content');
+		$page->status = Request::input('status');
+		$page->allow_comments = Request::input('allow_comments');
 		$page->save();
 
-		return Redirect::to('admin/page');
+		Flash::success('The page has been added');
+
+		return Redirect::route('admin.page.index');
 	}
 
 
