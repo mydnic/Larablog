@@ -158,6 +158,25 @@ class ProjectController extends Controller {
 		return Redirect::route('admin.project.edit', $project->id);
 	}
 
+	public function setPublished($id)
+	{
+		$project = Project::find($id);
+		$project->published = true;
+		$project->save();
+
+		Flash::success('Project has been published');
+		return Redirect::route('admin.project.index');
+	}
+	public function setUnpublished($id)
+	{
+		$project = Project::find($id);
+		$project->published = false;
+		$project->save();
+
+		Flash::success('Project has been unpublished');
+		return Redirect::route('admin.project.index');
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *

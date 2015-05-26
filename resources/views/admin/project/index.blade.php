@@ -30,6 +30,7 @@
                         <th>Title</th>
                         <th>Categories</th>
                         <th>Created at</th>
+                        <th>Published</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,13 @@
                                 @endforeach
                             </td>
                             <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($project->created_at)) }}</td>
+                            <td>
+                                @if ($project->published)
+                                    {!! link_to_route('admin.project.unpublish', 'Yes', $project->id, ['class'=>'btn btn-success btn-xs']) !!}
+                                @else
+                                    {!! link_to_route('admin.project.publish', 'No', $project->id, ['class'=>'btn btn-danger btn-xs']) !!}
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

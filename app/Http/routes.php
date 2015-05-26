@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::get('post/{id}/delete', ['as'=>'admin.post.delete', 'uses'=>'Admin\PostController@destroy']);
     Route::resource('page', 'Admin\PageController');
     Route::resource('project', 'Admin\ProjectController');
+    Route::get('project/{id}/publish', ['as'=>'admin.project.publish', 'uses'=>'Admin\ProjectController@setPublished']);
+    Route::get('project/{id}/unpublish', ['as'=>'admin.project.unpublish', 'uses'=>'Admin\ProjectController@setUnpublished']);
     Route::resource('task', 'Admin\TaskController');
     Route::resource('settings/social', 'Admin\SocialLinkController');
     Route::resource('settings', 'Admin\SettingController');
