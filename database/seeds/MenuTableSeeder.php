@@ -10,15 +10,17 @@ class MenuTableSeeder extends Seeder {
         Menu::truncate();
 
         Menu::create(array(
-            'name'   => 'Home',
-            'uri'    => '/',
-            'weight' => '1',
+            'name'        => 'Home',
+            'url'         => route('home'),
+            'weight'      => '1',
+            'emplacement' => 'left',
         ));
 
         Menu::create(array(
-            'name'   => 'Blog',
-            'uri'    => '/blog',
-            'weight' => '2',
+            'name'        => 'Blog',
+            'url'         => route('post.index'),
+            'weight'      => '2',
+            'emplacement' => 'left',
         ));
     }
 }

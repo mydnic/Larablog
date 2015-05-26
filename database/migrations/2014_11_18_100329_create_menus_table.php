@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('uri');
-			$table->boolean('is_search_form')->nullable();
+			$table->boolean('is_search_form')->default(false);
 			$table->integer('child_of')->nullable();
 			$table->integer('weight');
 			$table->softDeletes();

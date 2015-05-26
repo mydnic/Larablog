@@ -13,10 +13,7 @@ class MenuController extends Controller {
 	 */
 	public function index()
 	{
-		$pages = Page::all();
-		
-		return view('admin.menu.index')
-			->with('pages', $pages);
+		return view('admin.menu.index');
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php namespace App\Http\ViewComposers;
 
 use App\Category;
-use App\Project;
+use App\Menu;
 use Illuminate\Contracts\View\View;
 
 class NavigationComposer {
@@ -12,7 +12,7 @@ class NavigationComposer {
      * @var UserRepository
      */
     protected $categories;
-    protected $projects;
+    protected $menus;
 
     /**
      * Create a new profile composer.
@@ -24,7 +24,8 @@ class NavigationComposer {
     {
         // Dependencies automatically resolved by service container...
         $this->categories = Category::all();
-        $this->projects = Project::all();
+        $this->menus['left'] = Menu::whereEmplacement('left')->orderBy('weight')->get();
+        $this->menus['right'] = Menu::whereEmplacement('right')->orderBy('weight')->get();
     }
 
     /**
@@ -35,7 +36,7 @@ class NavigationComposer {
      */
     public function compose(View $view)
     {
-        $view->with('categories', $this->categories)->with('projects', $this->projects);
+        $view->with('categories', $this->categories)->with('menus', $this->menus);
     }
 
 }

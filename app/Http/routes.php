@@ -1,7 +1,8 @@
 <?php
 
-# All fixed pages from the website
-Route::get('/', array('as' => 'home', 'uses' => 'PageController@index'));
+# Pages
+Route::get('/', ['as' => 'home', 'uses' => 'PageController@index']);
+Route::get('page/{slug}', ['as'=>'page.show', 'uses'=>'PageController@show']);
 
 # Categories
 Route::resource('category', 'CategoryController');
@@ -46,9 +47,14 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function() {
         Route::resource('category', 'API\CategoryController');
         Route::post('category/delete', ['as'=>'category.delete', 'uses'=>'API\CategoryController@destroy']);
+        
         Route::resource('projectcategory', 'API\ProjectCategoryController');
         Route::post('projectcategory/delete', ['as'=>'category.delete', 'uses'=>'API\ProjectCategoryController@destroy']);
+        
         Route::resource('task', 'API\TaskController');
         Route::resource('menu', 'API\MenuController');
+        Route::post('menu/destroy', 'API\MenuController@destroy');
+        Route::post('menu/order', 'API\MenuController@updateOrder');
+        Route::resource('page', 'API\PageController');
     });
 });

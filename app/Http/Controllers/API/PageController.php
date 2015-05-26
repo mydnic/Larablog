@@ -1,9 +1,9 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
-use App\Post;
-use App\Setting;
-use App\User;
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Page;
+use Illuminate\Http\Request;
 
 class PageController extends Controller {
 
@@ -14,16 +14,8 @@ class PageController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::all();
-		if ($users->count() == 0) {
-			return view('admin.user.create');
-		}
-
-		$posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->paginate(15);
-		return view('post.index')
-			->with('posts', $posts);
+		return Page::all();
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -35,7 +27,6 @@ class PageController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -46,18 +37,16 @@ class PageController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($slug)
+	public function show($id)
 	{
 		//
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -70,7 +59,6 @@ class PageController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -82,7 +70,6 @@ class PageController extends Controller {
 		//
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -93,6 +80,5 @@ class PageController extends Controller {
 	{
 		//
 	}
-
 
 }

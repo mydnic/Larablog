@@ -1,5 +1,16 @@
 @extends('layout.admin.main')
 
+@section('styles')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <style>
+        .connectedSortable{
+            min-height: 50px;
+            padding: 5px;
+            border:1px dotted #dedede;
+        }
+    </style>
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -13,38 +24,104 @@
         <div ng-controller="MenuController">
             <div class="col-md-3">
                 <div class="well">
-                    <h4>Registered Pages :</h4>
-                    @if ($pages->count())
-                        <ul class="list-unstyled">
-                            @foreach ($pages as $key => $page)
-                                <li>
-                                    {{ $page->title }}
-                                    <span class="pull-right"><i class="fa fa-plus-circle"></i></span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @else
-                        No pages yet. {!! link_to_route('admin.page.create', 'Add one') !!}
-                    @endif
+                    <h4>Pages :</h4>
+
+                    <ul class="list-unstyled">
+                        <li ng-repeat="page in pages">
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem(page.title, page.slug, 'page')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            @{{ page.title }}
+                        </li>
+                    </ul>
+
                     <hr>
+
+                    <h4>Default Menu Items :</h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Home', '', 'homepage')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Home Page
+                        </li>
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Categories', '', 'category')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Category List
+                        </li>
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Blog', '', 'blogindex')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Blog Index
+                        </li>
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Portfolio', '', 'portfolio')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Portfolio
+                        </li>
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Login', '', 'login')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Login Page
+                        </li>
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Register', '', 'register')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Register Page
+                        </li>
+                        <li>
+                            <span class="btn btn-xs btn-success" ng-click="addMenuItem('Search', '', 'searchform')">
+                                <i class="fa fa-plus-circle"></i>
+                            </span>
+                            Search Form
+                        </li>
+                    </ul>
+
+                    <hr>
+
                     <h4>Custom Link :</h4>
-                    <form ng-submit="addCategory()" class="link">
-                        <input ng-model="newMenuName" type="text" class="form-control" placeholder="Name">
-                        <input ng-model="newMenuUri" type="text" class="form-control" placeholder="URI" value="/">
+                    <form ng-submit="addMenuItem(item.name, item.url, 'custom')" class="link">
+                        <input ng-model="item.name" type="text" class="form-control" placeholder="Name">
+                        <input ng-model="item.url" type="text" class="form-control" placeholder="URL" value="/">
                         <input type="submit" class="btn btn-primary" value="Add">
                     </form>
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="">
-                    <h3>Your Menu :</h3>
-                    <div class="row" ng-repeat="menu in menus">
-                        <div class="col-md-6">
-                            @{{ menu.name }}
-                        </div>
-                        <div class="col-md-6">
-                            @{{ menu.uri }}
-                        </div>
+                <h3>Your Menu :</h3>
+                <div class="row">
+                    <div class="col-md-5">
+                        <h4>Left Menu</h4>
+
+                        <ul class="connectedSortable list-unstyled" ui-sortable="sortableOptions" ng-model="menus.left">
+                            <li ng-repeat="menu in menus.left" class="ui-state-default">
+                                <strong>@{{ menu.name }}</strong>
+                                <small>@{{ menu.url }}</small>
+                                <span class="btn btn-xs btn-danger pull-right" ng-click="removeMenuItem(menu)">
+                                    <i class="fa fa-trash-o"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h4>Right Menu</h4>
+
+                        <ul class="connectedSortable list-unstyled" ui-sortable="sortableOptions" ng-model="menus.right">
+                            <li ng-repeat="menu in menus.right" class="ui-state-default" ng-click="removeMenuItem(menu)">
+                                <strong>@{{ menu.name }}</strong>
+                                <small>@{{ menu.url }}</small>
+                                <span class="btn btn-xs btn-danger pull-right" ng-click="removeMenuItem(menu)">
+                                    <i class="fa fa-trash-o"></i>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -54,30 +131,53 @@
 
 
 @section('scripts')
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/admin/js/sortable.js"></script>
     <script>
-
-        var app = angular.module("Menus", [])
+        var app = angular.module("Menus", ['ui.sortable'])
 
         app.controller("MenuController", function($scope, $http) {
-            $http.get('/api/v1/admin/menu').success(function(menus) {
-                $scope.menus = menus;
-            });
 
-            $scope.addMenu = function() {
-                var menu = {
-                    name: $scope.newMenuName,
-                    uri: $scope.newMenuUri,
-                };
-                $http.post('/api/v1/admin/menu', menu);
-                $scope.menus.push(menu);
-                $scope.newMenuName = null;
-                $scope.newMenuUri = null;
+            $scope.sortableOptions = {
+                stop: function(e, ui) {
+                    updateMenuOrder();
+                },
+                connectWith: ".connectedSortable",
             };
 
-            $scope.delete = function(category) {
-                var index = $scope.categories.indexOf(category);
-                $scope.categories.splice(index, 1);
-                $http.post('/category/delete', category);
+            getMenu();
+
+            $http.get('/api/v1/admin/page').success(function(pages) {
+                $scope.pages = pages;
+            });
+
+            $scope.addMenuItem = function(name, url, type) {
+                var item = {
+                    name: name,
+                    url: url,
+                    type: type,
+                };
+                $http.post('/api/v1/admin/menu', item).success(function() {
+                    getMenu();
+                });;
+            };
+
+            $scope.removeMenuItem = function(menu) {
+                $http.post('/api/v1/admin/menu/destroy', menu).success(function() {
+                    getMenu();
+                });
+            };
+
+            function getMenu() {
+                $http.get('/api/v1/admin/menu').success(function(menus) {
+                    $scope.menus = menus;
+                });
+            }
+
+            function updateMenuOrder() {
+                $http.post('/api/v1/admin/menu/order', $scope.menus).success(function() {
+                    getMenu();
+                });
             }
         });
 
