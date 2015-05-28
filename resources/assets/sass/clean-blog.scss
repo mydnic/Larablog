@@ -248,18 +248,21 @@ hr.small {
         font-size: 30px;
     }
 }
-.post-preview > a {
-  color: #404040;
+.post-preview {
+    word-wrap: break-word;
+    a {
+        color: #404040;
+        .post-title {
+            font-size: 30px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+    }
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
   text-decoration: none;
   color: #0085a1;
-}
-.post-preview > a > .post-title {
-    font-size: 30px;
-    margin-top: 30px;
-    margin-bottom: 10px;
 }
 .post-preview > a > .post-subtitle {
   margin: 0;
