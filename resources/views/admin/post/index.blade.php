@@ -91,7 +91,9 @@
     <script src="/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function() {
-            $('#TablePost').dataTable();
+            $('#TablePost').dataTable({
+                "order": [[ 3, "desc" ]]
+            });
         });
 
         var app = angular.module("Categories", [])
