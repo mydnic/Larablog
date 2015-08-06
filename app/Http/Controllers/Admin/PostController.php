@@ -57,7 +57,6 @@ class PostController extends Controller {
 		$post->content = Request::get('content');
 		$post->status = Request::get('status');
 		$post->allow_comments = Request::get('allow_comments');
-		$post->created_at = Request::get('created_at');
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
