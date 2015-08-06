@@ -19,7 +19,8 @@ class PasswordController extends Controller {
 	*/
 
 	use ResetsPasswords;
-
+	protected $redirectTo = '/';
+	
 	/**
 	 * Create a new password controller instance.
 	 *
@@ -27,11 +28,8 @@ class PasswordController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
 	 * @return void
 	 */
-	public function __construct(Guard $auth, PasswordBroker $passwords)
+	public function __construct()
 	{
-		$this->auth = $auth;
-		$this->passwords = $passwords;
-
 		$this->middleware('guest');
 	}
 
