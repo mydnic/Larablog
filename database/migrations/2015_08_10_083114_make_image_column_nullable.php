@@ -12,7 +12,7 @@ class MakeImageColumnNullable extends Migration
      */
     public function up()
     {
-        Schema::table('menus', function($table)
+        Schema::table('posts', function($table)
         {
             $table->string('image')->nullable()->change();
         });
