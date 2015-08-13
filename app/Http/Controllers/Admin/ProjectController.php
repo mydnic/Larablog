@@ -8,7 +8,7 @@ use App\ProjectCategory;
 use App\ProjectImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
 use Laracasts\Flash\Flash;
 use Mydnic\Uploader\Uploader;
 use Request;
