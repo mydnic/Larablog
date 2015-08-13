@@ -58,7 +58,7 @@ class ProjectController extends Controller {
 		if (Request::hasFile('image')) {
 			$project->image = Uploader::upload(Request::file('image'));
 			$img = Image::make(public_path().'/uploads/'.$project->image);
-			$img->resize(360, 360);
+			$img->crop(360, 360);
 			$img->save();
 		}
 		$project->save();
@@ -125,11 +125,10 @@ class ProjectController extends Controller {
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
-			$file            = Request::file('image');
-			$destinationPath = public_path().'/uploads/';
-			$filename 		 = urlencode(str_random(8) . '_project_image_' . $file->getClientOriginalName());
-			$uploadSuccess   = $file->move($destinationPath, $filename);
-			$project->image = $filename;
+			$project->image = Uploader::upload(Request::file('image'));
+			$img = Image::make(public_path().'/uploads/'.$project->image);
+			$img->crop(360, 360);
+			$img->save();
 		}
 		$project->save();
 
@@ -138,10 +137,7 @@ class ProjectController extends Controller {
 			$project->images()->delete();
 			$files = Request::file('project_images');
 			foreach ($files as $file) {
-				$destinationPath = public_path().'/uploads/';
-				$filename        = str_random(6) . '_project_images_' . Auth::id() . $file->getClientOriginalName();
-				$extension       = $file->getClientOriginalExtension();
-				$uploadSuccess   = $file->move($destinationPath, $filename);
+				$filename = Uploader::upload($file);
 
 				$file = new ProjectImage;
 				$file->project_id = $project->id;
