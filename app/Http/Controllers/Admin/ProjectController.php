@@ -8,7 +8,9 @@ use App\ProjectCategory;
 use App\ProjectImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Image;
 use Laracasts\Flash\Flash;
+use Mydnic\Uploader\Uploader;
 use Request;
 
 class ProjectController extends Controller {
@@ -45,30 +47,26 @@ class ProjectController extends Controller {
 	public function store(AdminStoreProjectRequest $request)
 	{
 		$project = new Project;
-		$project->title = Request::get('title');
-		$project->sub_title = Request::get('sub_title');
-		$project->description = Request::get('description');
-		$project->client = Request::get('client');
-		$project->link = Request::get('link');
-		$project->date = Request::get('date');
+		$project->title = Request::input('title');
+		$project->sub_title = Request::input('sub_title');
+		$project->description = Request::input('description');
+		$project->client = Request::input('client');
+		$project->link = Request::input('link');
+		$project->date = Request::input('date');
 
 		// IMAGE BANNER
 		if (Request::hasFile('image')) {
-			$file            = Request::file('image');
-			$destinationPath = public_path().'/uploads/';
-			$filename 		 = urlencode(str_random(8) . '_project_image_' . $file->getClientOriginalName());
-			$uploadSuccess   = $file->move($destinationPath, $filename);
-			$project->image = $filename;
+			$project->image = Uploader::upload(Request::file('image'));
+			$img = Image::make(public_path().'/uploads/'.$project->image);
+			$img->resize(360, 360);
+			$img->save();
 		}
 		$project->save();
 
 		if (Request::hasFile('project_images')) {
 			$files = Request::file('project_images');
 			foreach ($files as $file) {
-				$destinationPath = public_path().'/uploads/';
-				$filename        = urlencode(str_random(6) . '_project_images_' . Auth::id() . $file->getClientOriginalName());
-				$extension       = $file->getClientOriginalExtension();
-				$uploadSuccess   = $file->move($destinationPath, $filename);
+				$filename = Uploader::upload($file);
 
 				$file = new ProjectImage;
 				$file->project_id = $project->id;
