@@ -65,6 +65,13 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('post_bottom_scripts', 'Special script to add at the bottom of your posts', ['class'=>'col-sm-2 control-label']) !!}
+                    <div class="col-sm-10">
+                        {!! Form::textarea('post_bottom_scripts', null, ['class'=>'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-default">Save</button>
                     </div>

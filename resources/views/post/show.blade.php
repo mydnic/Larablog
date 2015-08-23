@@ -33,6 +33,9 @@
                     <hr>
                     @include('widgets.disqus')
                 @endif
+
+                <hr>
+                @include('widgets.post_bottom_scripts')
             </div>
         </div>
     </div>
