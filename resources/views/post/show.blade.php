@@ -28,14 +28,14 @@
                         </div>
                     </div>
                 </article>
+                
+                <hr>
+                @include('widgets.post_bottom_scripts')
 
                 @if ($post->allow_comments)
                     <hr>
                     @include('widgets.disqus')
                 @endif
-
-                <hr>
-                @include('widgets.post_bottom_scripts')
             </div>
         </div>
     </div>
