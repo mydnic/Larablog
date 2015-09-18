@@ -23,6 +23,9 @@ Route::group(['prefix' => 'portfolio'], function() {
     Route::resource('project', 'ProjectController');
 });
 
+# RSS Feed
+Route::get('feed', ['as' => 'rss', 'uses' => 'FeedController@getRss']);
+
 # Admin area
 Route::post('admin/useradmin/store', 'Admin\AdminController@storeAdminUser');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function() {

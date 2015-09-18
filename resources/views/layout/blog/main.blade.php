@@ -47,7 +47,7 @@
                             </h1>
                             <hr class="small">
                             <span class="subheading">
-                            @yield('meta-subtitle', $setting->app_baseline)
+                                @yield('meta-subtitle', $setting->app_baseline)
                             </span>
                         </div>
                     </div>

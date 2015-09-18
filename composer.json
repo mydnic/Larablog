@@ -12,7 +12,8 @@
 		"martinbean/laravel-sluggable-trait": "0.2.*",
 		"mydnic/uploader": "0.1.*",
 		"doctrine/dbal": "^2.5",
-		"intervention/image": "~2.2"
+		"intervention/image": "~2.2",
+		"roumen/feed": "^2.9"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
