@@ -140,6 +140,7 @@ return [
 		'Laracasts\Flash\FlashServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Roumen\Feed\FeedServiceProvider',
+		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 
 		/*
 		 * Application Service Providers...
