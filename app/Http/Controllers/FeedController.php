@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use App\Setting;
 use Illuminate\Support\Facades\DB;
 use Roumen\Feed\Facades\Feed;
