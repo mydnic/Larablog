@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Setting;
+use Illuminate\Support\Facades\DB;
 use Roumen\Feed\Facades\Feed;
 
 class FeedController extends Controller
