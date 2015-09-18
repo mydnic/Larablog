@@ -36,7 +36,7 @@ class FeedController extends Controller
 
             foreach ($posts as $post) {
                 // set item's title, author, url, pubdate, description and content
-                $feed->add($post->title, $post->author, route('post.show', $post->slug), $post->created, $post->description, $post->content);
+                $feed->add($post->title, $post->user->username, route('post.show', $post->slug), $post->created_at, str_limit(strip_tags($post->content), 250), $post->content);
             }
 
         }
