@@ -26,6 +26,7 @@ class AdminUpdatePostRequest extends Request {
             'title'       => 'required|min:2|max:255',
             'content'     => 'required',
             'status'      => 'required',
+            'lang'        => 'max:10',
             'image'       => 'image',
             'category_id' => 'required|array',
             'tags'        => 'array',

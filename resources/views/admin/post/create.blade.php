@@ -19,11 +19,11 @@
 
 @include('layout.errors')
 
-{!! Form::open(['route'=>'admin.post.store', 'files'=>true]) !!}
+{!! Form::open(['route' => 'admin.post.store', 'files' => true]) !!}
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                {!! Form::text('title', null, ['placeholder'=>'Title of the post']) !!}
+                {!! Form::text('title', null, ['placeholder' => 'Title of the post']) !!}
             </h1>
         </div>
     </div>
@@ -51,7 +51,11 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('status', 'Status') !!}
-                    {!! Form::select('status', Config::get('post_status'), null, ['class'=>'form-control']) !!}
+                    {!! Form::select('status', Config::get('post_status'), null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('lang', 'Language') !!}
+                    {!! Form::text('lang', null, ['class' => 'form-control', 'placeholder' => 'en']) !!}
                 </div>
                 <div class="checkbox">
                     <label>
@@ -61,12 +65,12 @@
                 <div class="form-group">
                     {!! Form::label('iamge', 'Select an Image') !!}
                     <div class="fileUpload">
-                        {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
+                        {!! Form::file('image', ['class' => 'upload', 'id' => 'image_file_upload']) !!}
                         <img src="" alt="">
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>
         </div>
@@ -88,15 +92,15 @@
             function readURL(input, id) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-                    
+
                     reader.onload = function (e) {
                         $('#'+id).next('img').attr('src', e.target.result);
                     }
-                    
+
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            
+
             $(".fileUpload .upload").change(function() {
                 var val = $(this).val();
 
@@ -111,7 +115,6 @@
                         alert("not an image");
                         break;
                 }
-                
             });
 
             $('#tags').magicSuggest({

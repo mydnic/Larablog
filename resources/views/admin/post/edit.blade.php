@@ -59,6 +59,10 @@
                     {!! Form::label('status', 'Status') !!}
                     {!! Form::select('status', Config::get('post_status'), null, ['class'=>'form-control']) !!}
                 </div>
+                <div class="form-group">
+                    {!! Form::label('lang', 'Language') !!}
+                    {!! Form::text('lang', null, ['class' => 'form-control', 'placeholder' => 'en']) !!}
+                </div>
                 <div class="checkbox">
                     <label>
                         {!! Form::checkbox('allow_comments') !!} Allow Comments

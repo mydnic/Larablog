@@ -5,6 +5,7 @@
 @section('meta-image', url($post->picture))
 @section('meta-description', str_limit(strip_tags($post->content), 140))
 @section('meta-url', URL::route("post.show", $post->slug))
+@section('meta-lang', $post->lang)
 
 @section('styles')
     <link rel="stylesheet" href="https://highlightjs.org/static/styles/monokai_sublime.css">
