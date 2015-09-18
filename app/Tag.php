@@ -1,11 +1,20 @@
-<?php namespace App;
+<?php
 
+namespace App;
+
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use MartinBean\Database\Eloquent\Sluggable;
 
-class Tag extends Model {
+class Tag extends Model implements SluggableInterface
+{
 
-	use Sluggable;
+    use SluggableTrait;
+
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+    ];
 
     public function categories()
     {
