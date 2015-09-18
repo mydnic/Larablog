@@ -18,7 +18,7 @@ class Post extends Model {
         ],
     ];
 
-	protected $fillable = ['title', 'content', 'status', 'image', 'allow_comments', 'created_at'];
+	protected $fillable = ['title', 'content', 'status', 'lang', 'image', 'allow_comments', 'created_at'];
 
     public function user()
     {
