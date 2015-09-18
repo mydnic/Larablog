@@ -1,14 +1,19 @@
 <?php namespace App;
 
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use MartinBean\Database\Eloquent\Sluggable;
 
-class Page extends Model {
+class Page extends Model implements SluggableInterface
+{
 
-    use SoftDeletes, Sluggable;
-    const DISPLAY_NAME = 'title';
+    use SoftDeletes, SluggableTrait;
 
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
 
     public function user()
     {

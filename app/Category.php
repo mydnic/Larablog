@@ -1,13 +1,22 @@
-<?php namespace App;
+<?php
 
+namespace App;
+
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use MartinBean\Database\Eloquent\Sluggable;
 
-class Category extends Model {
+class Category extends Model implements SluggableInterface
+{
 
-    use Sluggable;
+    use SluggableTrait;
 
-	protected $fillable = ['name'];
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+    ];
+
+    protected $fillable = ['name'];
 
     public function posts()
     {

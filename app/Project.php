@@ -1,13 +1,21 @@
-<?php namespace App;
+<?php
 
+namespace App;
+
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use MartinBean\Database\Eloquent\Sluggable;
 
-class Project extends Model {
+class Project extends Model implements SluggableInterface
+{
 
-	use SoftDeletes, Sluggable;
-    const DISPLAY_NAME = 'title';
+    use SoftDeletes, SluggableTrait;
+
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
 
     public function categories()
     {
@@ -21,7 +29,7 @@ class Project extends Model {
 
     public function getImagePathAttribute()
     {
-        return '/uploads/'.$this->image;
+        return '/uploads/' . $this->image;
     }
 
 }

@@ -1,24 +1,31 @@
-<?php namespace App;
+<?php
 
+namespace App;
+
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use MartinBean\Database\Eloquent\Sluggable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
-class Post extends Model {
+class Post extends Model implements SluggableInterface
+{
 
-    use SoftDeletes, Sluggable, SearchableTrait;
-    
-    const DISPLAY_NAME = 'title';
+    use SoftDeletes, SluggableTrait, SearchableTrait;
+
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
 
     protected $searchable = [
         'columns' => [
-            'title' => 10,
+            'title'   => 10,
             'content' => 7,
         ],
     ];
 
-	protected $fillable = ['title', 'content', 'status', 'lang', 'image', 'allow_comments', 'created_at'];
+    protected $fillable = ['title', 'content', 'status', 'lang', 'image', 'allow_comments', 'created_at'];
 
     public function user()
     {
@@ -38,9 +45,9 @@ class Post extends Model {
     public function getPictureAttribute()
     {
         if (empty($this->image)) {
-            return '/uploads/'.Setting::first()->banner;
+            return '/uploads/' . Setting::first()->banner;
         }
-        return '/uploads/'.$this->image;
+        return '/uploads/' . $this->image;
     }
 
 }
