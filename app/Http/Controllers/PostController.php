@@ -35,7 +35,7 @@ class PostController extends Controller {
 		$query = Request::get('q');
 		$posts = Post::whereStatus('published')->search($query)->paginate(15);
 		return view('post.index')
-			->with('posts', $posts->appends(Request::except('page')));
+			->with('posts', $posts);
 	}
 
 
