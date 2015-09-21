@@ -13,34 +13,32 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover" id="TablePost">
-                    <thead>
+            <table class="table table-striped table-bordered table-hover" id="TablePost">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Status</th>
+                        <th>Created at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pages as $page)
                         <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Status</th>
-                            <th>Created at</th>
+                            <td>{{ $page->title }}</td>
+                            <td>{{ $page->user->name }}</td>
+                            <td>
+                                @if ($page->status)
+                                    Published
+                                @else
+                                    Draft
+                                @endif
+                            </td>
+                            <td>{{ date('d/m/Y \a\t H:i:s' , strtotime($page->created_at)) }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($pages as $page)
-                            <tr>
-                                <td>{{ $page->title }}</td>
-                                <td>{{ $page->user->name }}</td>
-                                <td>
-                                    @if ($page->status)
-                                        Published
-                                    @else
-                                        Draft
-                                    @endif
-                                </td>
-                                <td>{{ date('d/m/Y \a\t H:i:s' , strtotime($page->created_at)) }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @stop

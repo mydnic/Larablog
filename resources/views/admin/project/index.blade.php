@@ -21,40 +21,38 @@
 </div>
 <div class="row">
     <div class="col-lg-9">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover" id="TableProject">
-                <thead>
+        <table class="table table-striped table-bordered table-hover" id="TableProject">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Categories</th>
+                    <th>Created at</th>
+                    <th>Published</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($projects as $project)
                     <tr>
-                        <th>Title</th>
-                        <th>Categories</th>
-                        <th>Created at</th>
-                        <th>Published</th>
+                        <td>
+                            {!! link_to_route('admin.project.edit', $project->title, $project->id) !!}
+                        </td>
+                        <td>
+                            @foreach ($project->categories as $category)
+                                {{ $category->name }}<span class="coma">,</span>
+                            @endforeach
+                        </td>
+                        <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($project->created_at)) }}</td>
+                        <td>
+                            @if ($project->published)
+                                {!! link_to_route('admin.project.unpublish', 'Yes', $project->id, ['class'=>'btn btn-success btn-xs']) !!}
+                            @else
+                                {!! link_to_route('admin.project.publish', 'No', $project->id, ['class'=>'btn btn-danger btn-xs']) !!}
+                            @endif
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($projects as $project)
-                        <tr>
-                            <td>
-                                {!! link_to_route('admin.project.edit', $project->title, $project->id) !!}
-                            </td>
-                            <td>
-                                @foreach ($project->categories as $category)
-                                    {{ $category->name }}<span class="coma">,</span>
-                                @endforeach
-                            </td>
-                            <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($project->created_at)) }}</td>
-                            <td>
-                                @if ($project->published)
-                                    {!! link_to_route('admin.project.unpublish', 'Yes', $project->id, ['class'=>'btn btn-success btn-xs']) !!}
-                                @else
-                                    {!! link_to_route('admin.project.publish', 'No', $project->id, ['class'=>'btn btn-danger btn-xs']) !!}
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     <div class="col-lg-3" ng-app="Categories">
         <div class="panel panel-default" ng-controller="CategoriesController" >

@@ -21,36 +21,34 @@
 </div>
 <div class="row">
     <div class="col-lg-9">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover" id="TablePost">
-                <thead>
+        <table class="table table-striped table-bordered table-hover" id="TablePost">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Categories</th>
+                    <th>Created at</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($posts as $post)
                     <tr>
-                        <th>Title</th>
-                        <th>Status</th>
-                        <th>Categories</th>
-                        <th>Created at</th>
+                        <td>
+                            {!! link_to_route('admin.post.edit', str_limit($post->title,40), $post->id) !!}
+                        </td>
+                        <td>
+                            {{ $post->status }}
+                        </td>
+                        <td>
+                            @foreach ($post->categories as $category)
+                                {{ $category->name }}<span class="coma">,</span>
+                            @endforeach
+                        </td>
+                        <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($post->created_at)) }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($posts as $post)
-                        <tr>
-                            <td>
-                                {!! link_to_route('admin.post.edit', str_limit($post->title,40), $post->id) !!}
-                            </td>
-                            <td>
-                                {{ $post->status }}
-                            </td>
-                            <td>
-                                @foreach ($post->categories as $category)
-                                    {{ $category->name }}<span class="coma">,</span>
-                                @endforeach
-                            </td>
-                            <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($post->created_at)) }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     <div class="col-lg-3" ng-app="Categories">
         <div class="panel panel-default" ng-controller="CategoriesController" >
