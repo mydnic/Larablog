@@ -8,8 +8,9 @@
         <title>@yield('meta-title', 'Admin Panel - ')</title>
 
         <!-- Bootstrap -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" rel="stylesheet">
         <link href="/admin/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
         <link href="/admin/css/plugins/timeline.css" rel="stylesheet">
         <link href="/admin/css/sb-admin-2.css" rel="stylesheet">

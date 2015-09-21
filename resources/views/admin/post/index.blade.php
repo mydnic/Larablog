@@ -2,7 +2,6 @@
 
 
 @section('styles')
-    <link href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" rel="stylesheet">
     <style>
     #TablePost span.coma:last-child {
         display: none;
