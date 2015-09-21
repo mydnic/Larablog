@@ -31,5 +31,4 @@ DB_PASSWORD=
 
 * Profile Page and Profile Edit
 * Add Widgets emplacements
-* RSS Feed
 * Finish Tasks Management
