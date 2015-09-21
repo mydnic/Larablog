@@ -12,7 +12,7 @@
 
 
 @section('content')
-    {!! Form::model($link, ['route' => ['admin.settings.social.udpate', $link->id], 'method' => 'put']) !!}
+    {!! Form::model($link, ['route' => ['admin.settings.social.update', $link->id], 'method' => 'put']) !!}
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
