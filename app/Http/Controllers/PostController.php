@@ -48,7 +48,14 @@ class PostController extends Controller {
 	public function show($slug)
 	{
 		$post = Post::whereSlug($slug)->first();
+
+		$keywords = '';
+		foreach ($post->tags as $tag) {
+			$keywords .= $tag->name.', ';
+		}
+
 		return view('post.show')
+			->with('keywords', $keywords)
 			->with('post', $post);
 	}
 
