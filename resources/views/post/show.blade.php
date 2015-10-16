@@ -1,10 +1,10 @@
 @extends('layout.blog.main')
 
 @section('meta-title', $post->title)
-@section('meta-subtitle', 'Posted by '.link_to_route('user.show', $post->user->username, $post->user->username).' on '.date('M d Y', strtotime($post->created_at)))
+@section('meta-subtitle', 'Posted by ' . link_to_route('user.show', $post->user->username, $post->user->username) . ' on ' . date('M d Y', strtotime($post->created_at)))
 @section('meta-image', url($post->picture))
 @section('meta-description', str_limit(strip_tags($post->content), 140))
-@section('meta-url', URL::route("post.show", $post->slug))
+@section('meta-url', route("post.show", $post->slug))
 @section('meta-lang', $post->lang)
 @section('meta-keywords', $keywords)
 
@@ -17,6 +17,13 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <article>
+                    @if ($post->created_at < $post->updated_at)
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <em><small>This article was last updated on : {{ $post->updated_at->format('M d Y') }}</small></em>
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-12">
                             {!! $post->content !!}
@@ -25,7 +32,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             @foreach ($post->tags as $tag)
-                                {!! link_to_route('tag.show', '#'.$tag->name, $tag->slug) !!}
+                                {!! link_to_route('tag.show', '#' . $tag->name, $tag->slug) !!}
                             @endforeach
                         </div>
                     </div>
