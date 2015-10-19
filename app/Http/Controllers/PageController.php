@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Post;
+use App\Project;
+use App\Setting;
 use App\User;
 
 class PageController extends Controller
@@ -21,6 +23,12 @@ class PageController extends Controller
             return view('admin.user.create');
         }
 
+        if (Setting::first()->show_on_front == 'projects') {
+            $projects = Project::wherePublished(true)->orderBy('date', 'DESC')->get();
+            return view('project.index')
+                ->with('projects', $projects);
+        }
+        
         $posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->paginate(15);
         return view('post.index')
             ->with('posts', $posts);

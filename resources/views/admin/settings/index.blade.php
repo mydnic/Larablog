@@ -1,6 +1,7 @@
 @extends('layout.admin.main')
 
 @section('content')
+@include('layout.errors')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -37,6 +38,13 @@
                     {!! Form::label('google_analytics_code', 'Google Analytics Code', ['class'=>'col-sm-2 control-label']) !!}
                     <div class="col-sm-10">
                         {!! Form::text('google_analytics_code', null, ['class'=>'form-control', 'placeholder'=>'UA-XXXXXX-X']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('show_on_front', 'Display on home', ['class'=>'col-sm-2 control-label']) !!}
+                    <div class="col-sm-10">
+                        {!! Form::select('show_on_front', ['posts' => 'Blogs Posts', 'projects' => 'Portfolio'], null, ['class'=>'form-control', 'placeholder'=>'UA-XXXXXX-X']) !!}
                     </div>
                 </div>
 

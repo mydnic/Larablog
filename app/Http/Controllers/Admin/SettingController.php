@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Setting;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Laracasts\Flash\Flash;
 
 class SettingController extends Controller
 {
@@ -21,16 +22,6 @@ class SettingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @return Response
@@ -43,6 +34,7 @@ class SettingController extends Controller
         $settings->disqus_shortname      = Request::input('disqus_shortname');
         $settings->google_analytics_code = Request::input('google_analytics_code');
         $settings->post_bottom_scripts   = Request::input('post_bottom_scripts');
+        $settings->show_on_front         = Request::input('show_on_front');
 
         // IMAGE BANNER
         if (Request::hasFile('banner')) {
@@ -77,51 +69,8 @@ class SettingController extends Controller
         $settings->favicon = $favicon_filename;
         $settings->save();
 
+        Flash::success('Settings updated');
         return Redirect::back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
 }
