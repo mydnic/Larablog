@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/mydnic/Larablog/badge.svg?branch=master&service=github)](https://coveralls.io/github/mydnic/Larablog?branch=master)
+
 ## Larablog
 
 This project aims to achieve a full-featured personnal website / blog.
