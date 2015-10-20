@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model implements SluggableInterface
 {
-
     use SoftDeletes, SluggableTrait;
 
     protected $sluggable = [
@@ -29,7 +28,6 @@ class Project extends Model implements SluggableInterface
 
     public function getImagePathAttribute()
     {
-        return '/uploads/' . $this->image;
+        return '/uploads/'.$this->image;
     }
-
 }

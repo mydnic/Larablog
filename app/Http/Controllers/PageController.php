@@ -10,7 +10,6 @@ use App\User;
 
 class PageController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -25,11 +24,13 @@ class PageController extends Controller
 
         if (Setting::first()->show_on_front == 'projects') {
             $projects = Project::wherePublished(true)->orderBy('date', 'DESC')->get();
+
             return view('project.index')
                 ->with('projects', $projects);
         }
-        
+
         $posts = Post::whereStatus('published')->orderBy('created_at', 'desc')->paginate(15);
+
         return view('post.index')
             ->with('posts', $posts);
     }
@@ -57,12 +58,14 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($slug)
     {
         $page = Page::whereSlug($slug)->first();
+
         return view('page.show')
             ->with('page', $page);
     }
@@ -70,7 +73,8 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -81,7 +85,8 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update($id)
@@ -92,12 +97,12 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
     {
         //
     }
-
 }

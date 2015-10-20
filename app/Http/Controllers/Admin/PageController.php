@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php
+
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStorePageRequest;
@@ -10,7 +12,6 @@ use Request;
 
 class PageController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +20,7 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::all();
+
         return view('admin.page.index')
             ->with('pages', $pages);
     }
@@ -40,11 +42,11 @@ class PageController extends Controller
      */
     public function store(AdminStorePageRequest $request)
     {
-        $page                 = new Page;
-        $page->user_id        = Auth::id();
-        $page->title          = Request::input('title');
-        $page->content        = Request::input('content');
-        $page->status         = Request::input('status');
+        $page = new Page();
+        $page->user_id = Auth::id();
+        $page->title = Request::input('title');
+        $page->content = Request::input('content');
+        $page->status = Request::input('status');
         $page->allow_comments = Request::input('allow_comments');
         $page->save();
 
@@ -56,7 +58,8 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -67,7 +70,8 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -78,7 +82,8 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update($id)
@@ -89,12 +94,12 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
     {
         //
     }
-
 }

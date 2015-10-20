@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddShowOnFrontColumnToSettingsTable extends Migration
@@ -12,8 +11,7 @@ class AddShowOnFrontColumnToSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function($table)
-        {
+        Schema::table('settings', function ($table) {
             $table->string('show_on_front')->default('posts');
         });
     }
@@ -25,8 +23,7 @@ class AddShowOnFrontColumnToSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function($table)
-        {
+        Schema::table('settings', function ($table) {
             $table->dropColumn('show_on_front');
         });
     }

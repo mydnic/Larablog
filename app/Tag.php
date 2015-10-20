@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model implements SluggableInterface
 {
-
     use SluggableTrait;
 
     protected $sluggable = [
@@ -20,5 +19,4 @@ class Tag extends Model implements SluggableInterface
     {
         return $this->belongsTo('App\Post');
     }
-
 }

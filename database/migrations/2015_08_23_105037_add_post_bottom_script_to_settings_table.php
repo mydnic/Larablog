@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddPostBottomScriptToSettingsTable extends Migration
@@ -12,8 +11,7 @@ class AddPostBottomScriptToSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function($table)
-        {
+        Schema::table('settings', function ($table) {
             $table->text('post_bottom_scripts')->nullable();
         });
     }
@@ -25,8 +23,7 @@ class AddPostBottomScriptToSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function($table)
-        {
+        Schema::table('settings', function ($table) {
             $table->dropColumn('post_bottom_scripts');
         });
     }

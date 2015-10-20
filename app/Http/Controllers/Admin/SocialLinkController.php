@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php
+
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\SocialLink;
@@ -8,7 +10,6 @@ use Request;
 
 class SocialLinkController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +18,7 @@ class SocialLinkController extends Controller
     public function index()
     {
         $links = SocialLink::all();
+
         return view('admin.settings.social.index')
             ->with('links', $links);
     }
@@ -38,20 +40,22 @@ class SocialLinkController extends Controller
      */
     public function store()
     {
-        $link        = new SocialLink;
+        $link = new SocialLink();
         $link->title = Request::get('title');
-        $link->url   = Request::get('url');
-        $link->icon  = Request::get('icon');
+        $link->url = Request::get('url');
+        $link->icon = Request::get('icon');
         $link->save();
 
         Flash::success('Link successfully added');
+
         return Redirect::route('admin.settings.social.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -62,12 +66,14 @@ class SocialLinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
     {
         $link = SocialLink::find($id);
+
         return view('admin.settings.social.edit')
             ->with('link', $link);
     }
@@ -75,30 +81,32 @@ class SocialLinkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update($id)
     {
-        $link        = SocialLink::find($id);
+        $link = SocialLink::find($id);
         $link->title = Request::get('title');
-        $link->url   = Request::get('url');
-        $link->icon  = Request::get('icon');
+        $link->url = Request::get('url');
+        $link->icon = Request::get('icon');
         $link->save();
 
         Flash::success('Link successfully updated');
+
         return Redirect::back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
     {
         //
     }
-
 }

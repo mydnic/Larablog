@@ -10,7 +10,6 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Post extends Model implements SluggableInterface
 {
-
     use SoftDeletes, SluggableTrait, SearchableTrait;
 
     protected $sluggable = [
@@ -45,9 +44,9 @@ class Post extends Model implements SluggableInterface
     public function getPictureAttribute()
     {
         if (empty($this->image)) {
-            return '/uploads/' . Setting::first()->banner;
+            return '/uploads/'.Setting::first()->banner;
         }
-        return '/uploads/' . $this->image;
-    }
 
+        return '/uploads/'.$this->image;
+    }
 }

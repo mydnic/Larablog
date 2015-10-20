@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model implements SluggableInterface
 {
-
     use SluggableTrait;
 
     protected $sluggable = [
@@ -22,5 +21,4 @@ class Category extends Model implements SluggableInterface
     {
         return $this->belongsToMany('App\Post');
     }
-
 }

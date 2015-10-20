@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Page extends Model implements SluggableInterface
 {
-
     use SoftDeletes, SluggableTrait;
 
     protected $sluggable = [
@@ -21,5 +20,4 @@ class Page extends Model implements SluggableInterface
     {
         return $this->belongsTo('App\User');
     }
-
 }

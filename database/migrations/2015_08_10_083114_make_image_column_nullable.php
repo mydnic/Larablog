@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class MakeImageColumnNullable extends Migration
@@ -12,8 +11,7 @@ class MakeImageColumnNullable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function($table)
-        {
+        Schema::table('posts', function ($table) {
             $table->string('image')->nullable()->change();
         });
     }

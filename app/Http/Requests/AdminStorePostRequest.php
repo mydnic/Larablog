@@ -1,28 +1,29 @@
-<?php namespace App\Http\Requests;
+<?php
 
-use App\Http\Requests\Request;
+namespace App\Http\Requests;
+
 use Illuminate\Support\Facades\Auth;
 
-class AdminStorePostRequest extends Request {
+class AdminStorePostRequest extends Request
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return Auth::user()->superuser;
+    }
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
-	public function authorize()
-	{
-		return Auth::user()->superuser;
-	}
-
-	/**
-	 * Get the validation rules that apply to the request.
-	 *
-	 * @return array
-	 */
-	public function rules()
-	{
-		return [
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
             'title'       => 'required|min:2|max:255',
             'content'     => 'required',
             'status'      => 'required',
@@ -31,7 +32,6 @@ class AdminStorePostRequest extends Request {
             'category_id' => 'required|array',
             'tags'        => 'array',
             'created_at'  => 'date',
-		];
-	}
-
+        ];
+    }
 }

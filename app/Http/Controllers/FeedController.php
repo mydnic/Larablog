@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Post;
 use App\Setting;
-use Illuminate\Support\Facades\DB;
 use Roumen\Feed\Facades\Feed;
 
 class FeedController extends Controller
@@ -25,13 +23,13 @@ class FeedController extends Controller
             $posts = Post::where('status', 'published')->orderBy('created_at', 'desc')->take(20)->get();
 
             // set your feed's title, description, link, pubdate and language
-            $feed->title       = $setting->app_name;
+            $feed->title = $setting->app_name;
             $feed->description = $setting->app_baseline;
-            $feed->logo        = $setting->logo;
-            $feed->link        = route('rss');
+            $feed->logo = $setting->logo;
+            $feed->link = route('rss');
             $feed->setDateFormat('datetime'); // 'datetime', 'timestamp' or 'carbon'
             $feed->pubdate = $posts[0]->created_at;
-            $feed->lang    = 'en';
+            $feed->lang = 'en';
             $feed->setShortening(true); // true or false
             $feed->setTextLimit(100); // maximum length of description text
 
@@ -39,7 +37,6 @@ class FeedController extends Controller
                 // set item's title, author, url, pubdate, description and content
                 $feed->add($post->title, $post->user->username, route('post.show', $post->slug), $post->created_at, str_limit(strip_tags($post->content), 250), $post->content);
             }
-
         }
 
         // first param is the feed format

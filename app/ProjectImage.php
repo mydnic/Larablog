@@ -1,10 +1,12 @@
-<?php namespace App;
+<?php
+
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectImage extends Model {
-
-	public function project()
+class ProjectImage extends Model
+{
+    public function project()
     {
         return $this->belongsTo('App\Project');
     }
@@ -13,5 +15,4 @@ class ProjectImage extends Model {
     {
         return '/uploads/'.$this->image;
     }
-
 }
