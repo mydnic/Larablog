@@ -1,35 +1,33 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateProjectCategoriesTable extends Migration {
+class CreateProjectCategoriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('project_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('slug');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('project_categories', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('name');
-			$table->string('slug');
-			$table->softDeletes();
-			$table->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('project_categories');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('project_categories');
+    }
 }

@@ -48,7 +48,7 @@ Route::controllers([
 ]);
 
 #API routes
-Route::group(['prefix' => 'api/v1'], function () {
+Route::group(['prefix'     => 'api/v1'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
         Route::resource('category', 'API\CategoryController');
         Route::post('category/delete', ['as' => 'category.delete', 'uses' => 'API\CategoryController@destroy']);

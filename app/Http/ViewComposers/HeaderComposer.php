@@ -1,11 +1,13 @@
-<?php namespace App\Http\ViewComposers;
+<?php
+
+namespace App\Http\ViewComposers;
 
 use App\Setting;
 use App\SocialLink;
 use Illuminate\Contracts\View\View;
 
-class HeaderComposer {
-
+class HeaderComposer
+{
     /**
      * The user repository implementation.
      *
@@ -17,7 +19,8 @@ class HeaderComposer {
     /**
      * Create a new profile composer.
      *
-     * @param  UserRepository  $users
+     * @param UserRepository $users
+     *
      * @return void
      */
     public function __construct()
@@ -26,18 +29,18 @@ class HeaderComposer {
         $this->settings = Setting::first();
         $this->links = SocialLink::all();
 
-        $this->settings->description_baseline = str_replace('"', "", $this->settings->app_baseline);
+        $this->settings->description_baseline = str_replace('"', '', $this->settings->app_baseline);
     }
 
     /**
      * Bind data to the view.
      *
-     * @param  View  $view
+     * @param View $view
+     *
      * @return void
      */
     public function compose(View $view)
     {
         $view->with('setting', $this->settings)->with('links', $this->links);
     }
-
 }

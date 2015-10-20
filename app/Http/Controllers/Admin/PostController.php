@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php
+
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
@@ -14,30 +16,31 @@ use Mydnic\Uploader\Uploader;
 
 class PostController extends Controller
 {
-
     /**
      * Display a listing of the resource.
-     * GET /adminposts
+     * GET /adminposts.
      *
      * @return Response
      */
     public function index()
     {
         $posts = Post::all();
+
         return view('admin.post.index')
             ->with('posts', $posts);
     }
 
     /**
      * Show the form for creating a new resource.
-     * GET /adminposts/create
+     * GET /adminposts/create.
      *
      * @return Response
      */
     public function create()
     {
         $categories = Category::all();
-        $tags       = Tag::groupBy('name')->lists('name');
+        $tags = Tag::groupBy('name')->lists('name');
+
         return view('admin.post.create')
             ->with('tags', json_encode($tags))
             ->with('categories', $categories);
@@ -45,19 +48,18 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * POST /adminposts
+     * POST /adminposts.
      *
      * @return Response
      */
     public function store(AdminStorePostRequest $request)
     {
-
-        $post                 = new Post;
-        $post->user_id        = Auth::id();
-        $post->title          = Request::get('title');
-        $post->content        = Request::get('content');
-        $post->status         = Request::get('status');
-        $post->lang           = Request::get('lang');
+        $post = new Post();
+        $post->user_id = Auth::id();
+        $post->title = Request::get('title');
+        $post->content = Request::get('content');
+        $post->status = Request::get('status');
+        $post->lang = Request::get('lang');
         $post->allow_comments = Request::get('allow_comments');
 
         // IMAGE BANNER
@@ -69,10 +71,10 @@ class PostController extends Controller
 
         // Clear previous tags
         $current_tags = $post->tags()->delete();
-        $tags         = Request::get('tags');
+        $tags = Request::get('tags');
         if (count($tags)) {
             foreach ($tags as $tag) {
-                $new_tag       = new Tag;
+                $new_tag = new Tag();
                 $new_tag->name = $tag;
                 $post->tags()->save($new_tag);
             }
@@ -85,9 +87,10 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
-     * GET /adminposts/{id}
+     * GET /adminposts/{id}.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -97,16 +100,18 @@ class PostController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * GET /adminposts/{id}/edit
+     * GET /adminposts/{id}/edit.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
     {
-        $post       = Post::find($id);
+        $post = Post::find($id);
         $categories = Category::all();
-        $tags       = Tag::groupBy('name')->lists('name');
+        $tags = Tag::groupBy('name')->lists('name');
+
         return view('admin.post.edit')
             ->with('post', $post)
             ->with('tags', json_encode($tags))
@@ -115,21 +120,21 @@ class PostController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * PUT /adminposts/{id}
+     * PUT /adminposts/{id}.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(AdminUpdatePostRequest $request, $id)
     {
-
-        $post                 = Post::find($id);
-        $post->title          = Request::get('title');
-        $post->content        = Request::get('content');
-        $post->status         = Request::get('status');
-        $post->lang           = Request::get('lang');
+        $post = Post::find($id);
+        $post->title = Request::get('title');
+        $post->content = Request::get('content');
+        $post->status = Request::get('status');
+        $post->lang = Request::get('lang');
         $post->allow_comments = Request::get('allow_comments');
-        $post->created_at     = Request::get('created_at');
+        $post->created_at = Request::get('created_at');
 
         // IMAGE BANNER
         if (Request::hasFile('image')) {
@@ -140,10 +145,10 @@ class PostController extends Controller
 
         // Clear previous tags
         $current_tags = $post->tags()->delete();
-        $tags         = Request::get('tags');
+        $tags = Request::get('tags');
         if (count($tags)) {
             foreach ($tags as $tag) {
-                $new_tag       = new Tag;
+                $new_tag = new Tag();
                 $new_tag->name = $tag;
                 $post->tags()->save($new_tag);
             }
@@ -158,16 +163,17 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * DELETE /adminposts/{id}
+     * DELETE /adminposts/{id}.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
     {
         $post = Post::find($id);
         $post->delete();
+
         return Redirect::route('admin.post.index');
     }
-
 }

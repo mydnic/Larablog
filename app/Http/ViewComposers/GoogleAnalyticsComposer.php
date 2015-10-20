@@ -1,10 +1,12 @@
-<?php namespace App\Http\ViewComposers;
+<?php
+
+namespace App\Http\ViewComposers;
 
 use App\Setting;
 use Illuminate\Contracts\View\View;
 
-class GoogleAnalyticsComposer {
-
+class GoogleAnalyticsComposer
+{
     /**
      * The user repository implementation.
      *
@@ -15,7 +17,8 @@ class GoogleAnalyticsComposer {
     /**
      * Create a new profile composer.
      *
-     * @param  UserRepository  $users
+     * @param UserRepository $users
+     *
      * @return void
      */
     public function __construct()
@@ -27,12 +30,12 @@ class GoogleAnalyticsComposer {
     /**
      * Bind data to the view.
      *
-     * @param  View  $view
+     * @param View $view
+     *
      * @return void
      */
     public function compose(View $view)
     {
         $view->with('code', $this->code);
     }
-
 }
