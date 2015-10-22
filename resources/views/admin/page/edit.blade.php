@@ -14,7 +14,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route'=>'admin.page.store']) !!}
+    {!! Form::model($page, ['route' => ['admin.page.update', $page->id], 'method' => 'put']) !!}
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
@@ -29,17 +29,17 @@
             <div class="col-lg-3">
                 <div class="well">
                     <div class="form-group">
-                        {!! Form::label('status', 'Status') !!}
-                        {!! Form::select('status', Config::get('post_status'), null, ['class' => 'form-control']) !!}
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            {!! Form::checkbox('allow_comments', true, true) !!} Allow Comments
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
-                    </div>
+                    {!! Form::label('status', 'Status') !!}
+                    {!! Form::select('status', Config::get('post_status'), null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('allow_comments') !!} Allow Comments
+                    </label>
+                </div>
+                <div class="form-group">
+                    {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                </div>
                 </div>
             </div>
         </div>
