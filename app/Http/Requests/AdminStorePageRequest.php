@@ -24,9 +24,9 @@ class AdminStorePageRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|min:2,max:255',
+            'title'   => 'required|min:2,max:255',
             'content' => 'required',
-            'status' => 'required',
+            'status'  => 'required',
         ];
     }
 }
