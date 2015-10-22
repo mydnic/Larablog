@@ -42,11 +42,11 @@ class PageController extends Controller
      */
     public function store(AdminStorePageRequest $request)
     {
-        $page                 = new Page();
-        $page->user_id        = Auth::id();
-        $page->title          = $request->input('title');
-        $page->content        = $request->input('content');
-        $page->status         = $request->input('status');
+        $page = new Page();
+        $page->user_id = Auth::id();
+        $page->title = $request->input('title');
+        $page->content = $request->input('content');
+        $page->status = $request->input('status');
         $page->allow_comments = $request->input('allow_comments', false);
         $page->save();
 
@@ -89,10 +89,10 @@ class PageController extends Controller
      */
     public function update(AdminUpdatePageRequest $request, $id)
     {
-        $page                 = Page::find($id);
-        $page->title          = $request->input('title');
-        $page->content        = $request->input('content');
-        $page->status         = $request->input('status');
+        $page = Page::find($id);
+        $page->title = $request->input('title');
+        $page->content = $request->input('content');
+        $page->status = $request->input('status');
         $page->allow_comments = $request->input('allow_comments', false);
         $page->save();
 

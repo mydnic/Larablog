@@ -24,14 +24,14 @@ class AdminStoreProjectRequest extends Request
     public function rules()
     {
         return [
-            'title'       => 'required|min:2|max:255',
-            'sub_title'   => 'min:2|max:255',
+            'title' => 'required|min:2|max:255',
+            'sub_title' => 'min:2|max:255',
             'description' => 'required',
-            'client'      => 'max:255',
-            'url'         => 'url',
-            'image'       => 'required|image',
+            'client' => 'max:255',
+            'url' => 'url',
+            'image' => 'required|image',
             'category_id' => 'required|array',
-            'date'        => 'date',
+            'date' => 'date',
         ];
     }
 }

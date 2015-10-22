@@ -22,7 +22,7 @@ class CreateFirstAdminRequest extends Request
     public function rules()
     {
         return [
-            'email'    => 'required|unique:users',
+            'email' => 'required|unique:users',
             'password' => 'required|confirmed',
         ];
     }

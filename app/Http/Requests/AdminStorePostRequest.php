@@ -24,14 +24,14 @@ class AdminStorePostRequest extends Request
     public function rules()
     {
         return [
-            'title'       => 'required|min:2|max:255',
-            'content'     => 'required',
-            'status'      => 'required',
-            'lang'        => 'max:10',
-            'image'       => 'image',
+            'title' => 'required|min:2|max:255',
+            'content' => 'required',
+            'status' => 'required',
+            'lang' => 'max:10',
+            'image' => 'image',
             'category_id' => 'required|array',
-            'tags'        => 'array',
-            'created_at'  => 'date',
+            'tags' => 'array',
+            'created_at' => 'date',
         ];
     }
 }
