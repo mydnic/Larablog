@@ -51,6 +51,7 @@ class PageController extends Controller
         $page->save();
 
         Flash::success('The page has been added');
+
         return Redirect::route('admin.page.index');
     }
 
@@ -76,6 +77,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
+
         return view('admin.page.edit')
             ->with('page', $page);
     }
@@ -97,6 +99,7 @@ class PageController extends Controller
         $page->save();
 
         Flash::success('The page has been updated');
+
         return Redirect::route('admin.page.index');
     }
 
