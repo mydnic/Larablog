@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Menu;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +21,14 @@ class MenuTableSeeder extends Seeder
             'url'         => route('post.index'),
             'weight'      => '2',
             'emplacement' => 'left',
+        ]);
+
+        Menu::create([
+            'name'          => 'Login',
+            'url'           => url('auth/login'),
+            'is_login_link' => true,
+            'weight'        => '0',
+            'emplacement'   => 'right',
         ]);
     }
 }
