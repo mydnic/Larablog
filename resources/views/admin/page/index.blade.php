@@ -17,7 +17,6 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Author</th>
                         <th>Status</th>
                         <th>Created at</th>
                     </tr>
@@ -25,8 +24,9 @@
                 <tbody>
                     @foreach ($pages as $page)
                         <tr>
-                            <td>{{ $page->title }}</td>
-                            <td>{{ $page->user->name }}</td>
+                            <td>
+                                {!! link_to_route('admin.page.edit', $page->title, $page->id) !!}
+                            </td>
                             <td>
                                 @if ($page->status)
                                     Published
@@ -34,7 +34,7 @@
                                     Draft
                                 @endif
                             </td>
-                            <td>{{ date('d/m/Y \a\t H:i:s' , strtotime($page->created_at)) }}</td>
+                            <td>{{ $page->created_at->format('d/m/Y \a\t H:i:s') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -45,7 +45,8 @@
 
 
 @section('scripts')
-    <script src="//cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#TablePost').dataTable();

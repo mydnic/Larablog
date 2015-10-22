@@ -16,66 +16,63 @@
 @stop
 
 @section('content')
-
-@include('layout.errors')
-
-{!! Form::open(['route' => 'admin.post.store', 'files' => true]) !!}
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                {!! Form::text('title', null, ['placeholder' => 'Title of the post']) !!}
-            </h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-9">
-            <div class="form-group">
-                {!! Form::textarea('content', null) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('tags', 'Tags') !!}
-                {!! Form::text('tags', null, ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
+    {!! Form::open(['route' => 'admin.post.store', 'files' => true]) !!}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {!! Form::text('title', null, ['placeholder' => 'Title of the post']) !!}
+                </h1>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="well">
+        <div class="row">
+            <div class="col-lg-9">
                 <div class="form-group">
-                    {!! Form::label('category_id', 'Categories') !!}
-                    @foreach ($categories as $category)
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('category_id[]', $category->id) !!} {{ $category->name }}
-                            </label>
+                    {!! Form::textarea('content', null) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('tags', 'Tags') !!}
+                    {!! Form::text('tags', null, ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="well">
+                    <div class="form-group">
+                        {!! Form::label('category_id', 'Categories') !!}
+                        @foreach ($categories as $category)
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('category_id[]', $category->id) !!} {{ $category->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('status', 'Status') !!}
+                        {!! Form::select('status', Config::get('post_status'), null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('lang', 'Language') !!}
+                        {!! Form::text('lang', null, ['class' => 'form-control', 'placeholder' => 'en']) !!}
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('allow_comments', true, true) !!} Allow Comments
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('iamge', 'Select an Image') !!}
+                        <div class="fileUpload">
+                            {!! Form::file('image', ['class' => 'upload', 'id' => 'image_file_upload']) !!}
+                            <img src="" alt="">
                         </div>
-                    @endforeach
-                </div>
-                <div class="form-group">
-                    {!! Form::label('status', 'Status') !!}
-                    {!! Form::select('status', Config::get('post_status'), null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('lang', 'Language') !!}
-                    {!! Form::text('lang', null, ['class' => 'form-control', 'placeholder' => 'en']) !!}
-                </div>
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('allow_comments', true, true) !!} Allow Comments
-                    </label>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('iamge', 'Select an Image') !!}
-                    <div class="fileUpload">
-                        {!! Form::file('image', ['class' => 'upload', 'id' => 'image_file_upload']) !!}
-                        <img src="" alt="">
+                    </div>
+                    <div class="form-group">
+                        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
-                <div class="form-group">
-                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                </div>
             </div>
         </div>
-    </div>
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @stop
 
 @section('scripts')

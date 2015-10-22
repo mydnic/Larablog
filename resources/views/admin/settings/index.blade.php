@@ -1,7 +1,6 @@
 @extends('layout.admin.main')
 
 @section('content')
-@include('layout.errors')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -87,41 +86,40 @@
             {!! Form::close() !!}
         </div>
     </div>
-
 @stop
 
 @section('scripts')
-<script>
-    jQuery(document).ready(function($) {
-        // Avatar Upload and preview
-        function readURL(input, id) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function (e) {
-                    $('#'+id).next('img').attr('src', e.target.result);
+    <script>
+        jQuery(document).ready(function($) {
+            // Avatar Upload and preview
+            function readURL(input, id) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function (e) {
+                        $('#'+id).next('img').attr('src', e.target.result);
+                    }
+                    
+                    reader.readAsDataURL(input.files[0]);
                 }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        
-        $(".fileUpload .upload").change(function() {
-            var val = $(this).val();
-
-            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
-                case 'gif': case 'jpg': case 'png':
-                    var id = $(this).attr('id');
-                    readURL(this, id);
-                    break;
-                default:
-                    $(this).val('');
-                    // error message here
-                    alert("not an image");
-                    break;
             }
             
+            $(".fileUpload .upload").change(function() {
+                var val = $(this).val();
+
+                switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                    case 'gif': case 'jpg': case 'png':
+                        var id = $(this).attr('id');
+                        readURL(this, id);
+                        break;
+                    default:
+                        $(this).val('');
+                        // error message here
+                        alert("not an image");
+                        break;
+                }
+                
+            });
         });
-    });
-</script>
+    </script>
 @stop

@@ -17,80 +17,77 @@
 @stop
 
 @section('content')
-
-@include('layout.errors')
-
-{!! Form::model($post, ['route'=>['admin.post.update', $post->id] ,'method' => 'put', 'files'=>true]) !!}
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                {!! Form::text('title', null, ['placeholder'=>'Title of the post']) !!}
-            </h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-9">
-            <div class="form-group">
-                {!! Form::textarea('content', null) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('tags', 'Tags') !!}
-                {!! Form::text('tags', json_encode($post->tags->lists('name')), ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
+    {!! Form::model($post, ['route'=>['admin.post.update', $post->id] ,'method' => 'put', 'files'=>true]) !!}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {!! Form::text('title', null, ['placeholder'=>'Title of the post']) !!}
+                </h1>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    {!! link_to_route('post.show', 'View Post', $post->slug, ['class'=>'btn btn-link']) !!}
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="form-group">
+                    {!! Form::textarea('content', null) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('tags', 'Tags') !!}
+                    {!! Form::text('tags', json_encode($post->tags->lists('name')), ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
                 </div>
             </div>
-            <div class="well">
-                <div class="form-group">
-                    {!! Form::label('category_id', 'Categories') !!}
-                    @foreach ($categories as $category)
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('category_id[]', $category->id, $post->categories->contains($category->id)) !!} {{ $category->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="form-group">
-                    {!! Form::label('status', 'Status') !!}
-                    {!! Form::select('status', Config::get('post_status'), null, ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('lang', 'Language') !!}
-                    {!! Form::text('lang', null, ['class' => 'form-control', 'placeholder' => 'en']) !!}
-                </div>
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('allow_comments') !!} Allow Comments
-                    </label>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('image', 'Select an Image') !!}
-                    <div class="fileUpload">
-                        {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
-                        <img src="{{$post->picture}}" alt="">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        {!! link_to_route('post.show', 'View Post', $post->slug, ['class'=>'btn btn-link']) !!}
                     </div>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('created_at', 'Date of Creation') !!}
-                    {!! Form::input('datetime', 'created_at', null, ['class'=>'form-control']) !!}
+                <div class="well">
+                    <div class="form-group">
+                        {!! Form::label('category_id', 'Categories') !!}
+                        @foreach ($categories as $category)
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('category_id[]', $category->id, $post->categories->contains($category->id)) !!} {{ $category->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('status', 'Status') !!}
+                        {!! Form::select('status', Config::get('post_status'), null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('lang', 'Language') !!}
+                        {!! Form::text('lang', null, ['class' => 'form-control', 'placeholder' => 'en']) !!}
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('allow_comments') !!} Allow Comments
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('image', 'Select an Image') !!}
+                        <div class="fileUpload">
+                            {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
+                            <img src="{{$post->picture}}" alt="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('created_at', 'Date of Creation') !!}
+                        {!! Form::input('datetime', 'created_at', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                    </div>
                 </div>
-                <div class="form-group">
-                    {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {!! link_to_route('admin.post.delete', 'Delete this post', $post->id, ['class'=>'btn btn-danger confirm-delete btn-sm pull-right']) !!}
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! link_to_route('admin.post.delete', 'Delete this post', $post->id, ['class' => 'btn btn-danger confirm-delete btn-sm pull-right']) !!}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @stop
 
 @section('scripts')

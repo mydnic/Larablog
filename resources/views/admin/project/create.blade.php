@@ -15,72 +15,69 @@
 @stop
 
 @section('content')
-
-@include('layout.errors')
-
-{!! Form::open(['route'=>'admin.project.store', 'files'=>true]) !!}
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                {!! Form::text('title', null, ['placeholder'=>'Project Name']) !!}
-            </h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-9">
-            <div class="form-group">
-                {!! Form::label('sub_title', 'Sub Title') !!}
-                {!! Form::text('sub_title', null, ['class'=>'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::textarea('description', null) !!}
+    {!! Form::open(['route'=>'admin.project.store', 'files'=>true]) !!}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {!! Form::text('title', null, ['placeholder'=>'Project Name']) !!}
+                </h1>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="well">
+        <div class="row">
+            <div class="col-lg-9">
                 <div class="form-group">
-                    {!! Form::label('category_id', 'Categories') !!}
-                    @foreach ($categories as $category)
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('category_id[]', $category->id) !!} {{ $category->name }}
-                            </label>
+                    {!! Form::label('sub_title', 'Sub Title') !!}
+                    {!! Form::text('sub_title', null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::textarea('description', null) !!}
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="well">
+                    <div class="form-group">
+                        {!! Form::label('category_id', 'Categories') !!}
+                        @foreach ($categories as $category)
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('category_id[]', $category->id) !!} {{ $category->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('client', 'Client') !!}
+                        {!! Form::text('client', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('link', 'URL') !!}
+                        {!! Form::input('url', 'link', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('date', 'Date') !!}
+                        {!! Form::input('date', 'date', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('image', 'Select a Featured Image') !!}
+                        <div class="fileUpload">
+                            {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
+                            <img src="" alt="">
                         </div>
-                    @endforeach
-                </div>
-                <div class="form-group">
-                    {!! Form::label('client', 'Client') !!}
-                    {!! Form::text('client', null, ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('link', 'URL') !!}
-                    {!! Form::input('url', 'link', null, ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('date', 'Date') !!}
-                    {!! Form::input('date', 'date', null, ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('image', 'Select a Featured Image') !!}
-                    <div class="fileUpload">
-                        {!! Form::file('image', ['class'=>'upload', 'id'=>'image_file_upload']) !!}
-                        <img src="" alt="">
                     </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('project_images', 'Select More Images') !!}
-                    <div class="fileUpload">
-                        {!! Form::file('project_images[]', ['class'=>'upload multiple', 'id'=>'multiple_image_file_upload', 'multiple']) !!}
-                        <div class="multiple-container"></div>
+                    <div class="form-group">
+                        {!! Form::label('project_images', 'Select More Images') !!}
+                        <div class="fileUpload">
+                            {!! Form::file('project_images[]', ['class'=>'upload multiple', 'id'=>'multiple_image_file_upload', 'multiple']) !!}
+                            <div class="multiple-container"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                    <div class="form-group">
+                        {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @stop
 
 @section('scripts')

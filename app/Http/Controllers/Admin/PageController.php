@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStorePageRequest;
+use App\Http\Requests\AdminUpdatePageRequest;
 use App\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
-use Request;
 
 class PageController extends Controller
 {
@@ -42,16 +42,15 @@ class PageController extends Controller
      */
     public function store(AdminStorePageRequest $request)
     {
-        $page = new Page();
-        $page->user_id = Auth::id();
-        $page->title = Request::input('title');
-        $page->content = Request::input('content');
-        $page->status = Request::input('status');
-        $page->allow_comments = Request::input('allow_comments');
+        $page                 = new Page();
+        $page->user_id        = Auth::id();
+        $page->title          = $request->input('title');
+        $page->content        = $request->input('content');
+        $page->status         = $request->input('status');
+        $page->allow_comments = $request->input('allow_comments', false);
         $page->save();
 
         Flash::success('The page has been added');
-
         return Redirect::route('admin.page.index');
     }
 
@@ -76,7 +75,9 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = Page::find($id);
+        return view('admin.page.edit')
+            ->with('page', $page);
     }
 
     /**
@@ -86,9 +87,17 @@ class PageController extends Controller
      *
      * @return Response
      */
-    public function update($id)
+    public function update(AdminUpdatePageRequest $request, $id)
     {
-        //
+        $page                 = Page::find($id);
+        $page->title          = $request->input('title');
+        $page->content        = $request->input('content');
+        $page->status         = $request->input('status');
+        $page->allow_comments = $request->input('allow_comments', false);
+        $page->save();
+
+        Flash::success('The page has been updated');
+        return Redirect::route('admin.page.index');
     }
 
     /**
