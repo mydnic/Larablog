@@ -141,6 +141,7 @@ return [
         'Intervention\Image\ImageServiceProvider',
         'Roumen\Feed\FeedServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Sofa\Eloquence\ServiceProvider',
 
         /*
          * Application Service Providers...

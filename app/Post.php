@@ -6,23 +6,18 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Nicolaslopezj\Searchable\SearchableTrait;
+use Sofa\Eloquence\Eloquence;
 
 class Post extends Model implements SluggableInterface
 {
-    use SoftDeletes, SluggableTrait, SearchableTrait;
+    use SoftDeletes, SluggableTrait, Eloquence;
 
     protected $sluggable = [
         'build_from' => 'title',
         'save_to'    => 'slug',
     ];
 
-    protected $searchable = [
-        'columns' => [
-            'title'   => 10,
-            'content' => 7,
-        ],
-    ];
+    protected $searchableColumns = ['title', 'content', 'tags.name'];
 
     protected $fillable = ['title', 'content', 'status', 'lang', 'image', 'allow_comments', 'created_at'];
 
@@ -44,9 +39,9 @@ class Post extends Model implements SluggableInterface
     public function getPictureAttribute()
     {
         if (empty($this->image)) {
-            return '/uploads/'.Setting::first()->banner;
+            return '/uploads/' . Setting::first()->banner;
         }
 
-        return '/uploads/'.$this->image;
+        return '/uploads/' . $this->image;
     }
 }
