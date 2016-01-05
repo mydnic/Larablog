@@ -39,9 +39,9 @@ class Post extends Model implements SluggableInterface
     public function getPictureAttribute()
     {
         if (empty($this->image)) {
-            return '/uploads/' . Setting::first()->banner;
+            return '/uploads/'.Setting::first()->banner;
         }
 
-        return '/uploads/' . $this->image;
+        return '/uploads/'.$this->image;
     }
 }
