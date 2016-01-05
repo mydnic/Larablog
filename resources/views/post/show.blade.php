@@ -9,7 +9,7 @@
 @section('meta-keywords', $keywords)
 
 @section('styles')
-    <link rel="stylesheet" href="https://highlightjs.org/static/styles/monokai_sublime.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
 @stop
 
 @section('content')
