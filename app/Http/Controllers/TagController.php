@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Post;
 
 class TagController extends Controller
