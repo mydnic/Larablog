@@ -29,6 +29,9 @@ DB_PASSWORD=
 
 # TODO
 
+* Upgrade Framework
+* Refactor Post Updated Feature
+* Add Main Image To Pages
 * Profile Page and Profile Edit
 * Add Widgets emplacements
 * Finish Tasks Management
