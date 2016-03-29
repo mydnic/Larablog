@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('tags', 'Tags') !!}
-                    {!! Form::text('tags', null, ['class' => 'form-control', 'placeholder'=>'Add tags']) !!}
+                    <input type="text" name="tags" id="tags" class="form-control" placeholder="Add tags">
                 </div>
             </div>
             <div class="col-lg-3">
@@ -117,6 +117,13 @@
             $('#tags').magicSuggest({
                 cls: 'form-control',
                 data: {!!$tags!!},
+                @if (count(old('tags')))
+                    value: [
+                    @foreach (old('tags') as $tag)
+                        '{{$tag}}',
+                    @endforeach
+                ]
+                @endif
             });
         });
     </script>
