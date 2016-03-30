@@ -25,13 +25,3 @@ DB_PASSWORD=
 5. Edit infos in .env file
 6. Create a database and run <code>php artisan migrate</code>
 7. run <code>php artisan db:seed</code>
-
-
-# TODO
-
-* Upgrade Framework
-* Refactor Post Updated Feature
-* Add Main Image To Pages
-* Profile Page and Profile Edit
-* Add Widgets emplacements
-* Finish Tasks Management
