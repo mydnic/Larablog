@@ -8,39 +8,39 @@
 					<div class="panel-heading">Register</div>
 					<div class="panel-body">
 
-						{!! Form::open(['url'=>'auth/register', 'class'=>'form-horizontal']) !!}
+						{!! Form::open(['url' => 'register', 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group">
-								{!! Form::label('username', 'Username', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('username', 'Username', ['class' => 'col-md-4 control-label']) !!}
 								<div class="col-md-6">
-									{!! Form::text('username', null, ['class'=>'form-control']) !!}
+									{!! Form::text('username', null, ['class' => 'form-control']) !!}
 								</div>
 							</div>
 
 							<div class="form-group">
-								{!! Form::label('email', 'Adresse Email', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('email', 'Adresse Email', ['class' => 'col-md-4 control-label']) !!}
 								<div class="col-md-6">
-									{!! Form::email('email', null, ['class'=>'form-control']) !!}
+									{!! Form::email('email', null, ['class' => 'form-control']) !!}
 								</div>
 							</div>
 
 							<div class="form-group">
-								{!! Form::label('password', 'Password', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
 								<div class="col-md-6">
-									{!! Form::password('password', ['class'=>'form-control']) !!}
+									{!! Form::password('password', ['class' => 'form-control']) !!}
 								</div>
 							</div>
 
 							<div class="form-group">
-								{!! Form::label('password_confirmation', 'Confirm Password', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('password_confirmation', 'Confirm Password', ['class' => 'col-md-4 control-label']) !!}
 								<div class="col-md-6">
-									{!! Form::password('password_confirmation', ['class'=>'form-control']) !!}
+									{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									{!! Form::submit('Register', ['class'=>'btn btn-primary']) !!}
+									{!! Form::submit('Register', ['class' => 'btn btn-primary']) !!}
 								</div>
 							</div>
 

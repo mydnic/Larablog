@@ -64,12 +64,12 @@ class MenuController extends Controller
                 break;
 
             case 'login':
-                $menu->url = url('auth/login');
+                $menu->url = url('login');
                 $menu->is_login_link = true;
                 break;
 
             case 'register':
-                $menu->url = url('auth/register');
+                $menu->url = url('register');
                 break;
 
             case 'searchform':

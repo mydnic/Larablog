@@ -32,7 +32,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    
+
     <body>
         @include('widgets.google_analytics')
         @include('layout.blog.menu')
@@ -83,7 +83,6 @@
                 </div>
             </div>
         </footer>
-
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

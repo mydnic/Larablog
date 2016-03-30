@@ -28,7 +28,7 @@
                                 @endforeach
                             </ul>
                         </li>
-                    
+
                     @elseif ($menu->is_search_form)
                         {!! Form::open(['route'=>'post.search', 'class'=>'navbar-form navbar-left', 'method'=>'get']) !!}
                             <div class="input-group">
@@ -47,7 +47,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/auth/logout">Logout</a>
+                                        <a href="{{ url('logout') }}">Logout</a>
                                     </li>
                                     @if (Auth::user()->superuser)
                                         <li class="divider"></li>
@@ -59,7 +59,9 @@
                             </li>
                         @else
                             <li>
-                                <a href="/auth/login">Connexion</a>
+                                <a href="{{ url('login') }}">
+                                    Login
+                                </a>
                             </li>
                         @endif
 
@@ -86,7 +88,7 @@
                                 @endforeach
                             </ul>
                         </li>
-                    
+
                     @elseif ($menu->is_search_form)
                         {!! Form::open(['route'=>'post.search', 'class'=>'navbar-form navbar-left', 'method'=>'get']) !!}
                             <div class="input-group">
@@ -105,7 +107,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/auth/logout">Logout</a>
+                                        <a href="{{ url('logout') }}">Logout</a>
                                     </li>
                                     @if (Auth::user()->superuser)
                                         <li class="divider"></li>
@@ -117,7 +119,9 @@
                             </li>
                         @else
                             <li>
-                                <a href="/auth/login">Connexion</a>
+                                <a href="{{ url('login') }}">
+                                    Login
+                                </a>
                             </li>
                         @endif
 
@@ -127,7 +131,7 @@
                         </li>
                     @endif
                 @endforeach
-                
+
             </ul>
         </div>
     </div>

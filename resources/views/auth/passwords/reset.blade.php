@@ -9,11 +9,11 @@
 					<div class="panel-body">
 
 						{!! Form::open(['url'=>'password/reset', 'class'=>'form-horizontal']) !!}
-						
+
 							<input type="hidden" name="token" value="{{ $token }}">
 
 							<div class="form-group">
-								{!! Form::label('email', 'Adresse Email', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('email', 'Email Address', ['class'=>'col-md-4 control-label']) !!}
 								<div class="col-md-6">
 									{!! Form::email('email', null, ['class'=>'form-control']) !!}
 								</div>

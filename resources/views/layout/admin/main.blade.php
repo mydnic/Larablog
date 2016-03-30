@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <title>@yield('meta-title', 'Admin Panel - ')</title>
 
         <!-- Bootstrap -->
@@ -24,7 +24,7 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    
+
     <body>
         <div id="wrapper">
             <!-- Navigation -->
@@ -38,7 +38,7 @@
                     </button>
                     <a class="navbar-brand" href="{{ url('admin/index') }}">Admin</a>
                 </div>
-                
+
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="{{ url('/') }}">
@@ -66,11 +66,11 @@
                                     Settings
                                 </a>
                             </li>
-                            
+
                             <li class="divider"></li>
 
                             <li>
-                                <a href="{{ url('auth/logout') }}">
+                                <a href="{{ url('logout') }}">
                                     <i class="fa fa-sign-out fa-fw"></i>
                                     Logout
                                 </a>
@@ -140,7 +140,7 @@
                 @include('layout.errors')
                 @yield('content')
             </div>
-        </div>        
+        </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>

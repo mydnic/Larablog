@@ -7,25 +7,25 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Login or
-						<a href="/auth/register">
+						<a href="{{ url('register') }}">
 							Register
 						</a>
 					</div>
 
 					<div class="panel-body">
-						{!! Form::open(['url'=>'auth/login', 'class'=>'form-horizontal']) !!}
-						
+						{!! Form::open(['url' => 'login', 'class' => 'form-horizontal']) !!}
+
 							<div class="form-group">
-								{!! Form::label('email', 'Adresse Email', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('email', 'Adresse Email', ['class' => 'col-md-4 control-label']) !!}
 								<div class="col-md-6">
-									{!! Form::email('email', null, ['class'=>'form-control']) !!}
+									{!! Form::email('email', null, ['class' => 'form-control']) !!}
 								</div>
 							</div>
 
 							<div class="form-group">
-								{!! Form::label('password', 'Password', ['class'=>'col-md-4 control-label']) !!}
+								{!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
 								<div class="col-md-6">
-									{!! Form::password('password', ['class'=>'form-control']) !!}
+									{!! Form::password('password', ['class' => 'form-control']) !!}
 								</div>
 							</div>
 
@@ -41,15 +41,15 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									{!! Form::submit('Login', ['class'=>'btn btn-primary']) !!}
+									{!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
 
-									{!! link_to('password/email', 'Mot de passe oublié ?', ['class'=>'btn btn-link']) !!}
+									<a class="btn btn-link" href="{{ url('password/reset') }}">Forgot Your Password?</a>
 								</div>
 							</div>
 
 						{!! Form::close() !!}
 					</div>
-					
+
 				</div>
 			</div>
 		</div>

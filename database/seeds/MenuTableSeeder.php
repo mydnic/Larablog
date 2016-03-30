@@ -25,7 +25,7 @@ class MenuTableSeeder extends Seeder
 
         Menu::create([
             'name'          => 'Login',
-            'url'           => url('auth/login'),
+            'url'           => url('login'),
             'is_login_link' => true,
             'weight'        => '0',
             'emplacement'   => 'right',
