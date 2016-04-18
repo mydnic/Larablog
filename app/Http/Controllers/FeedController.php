@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Setting;
-use Roumen\Feed\Facades\Feed;
+use Feed;
 
 class FeedController extends Controller
 {
