@@ -203,7 +203,7 @@ return [
         'Html'      => 'Collective\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
         'Image'     => 'Intervention\Image\Facades\Image',
-        'Feed'      => 'Roumen\Feed\Facades\Feed',
+        'Feed'      => 'Roumen\Feed\Feed',
 
     ],
 

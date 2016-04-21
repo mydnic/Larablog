@@ -1,21 +1,22 @@
 <?php
+
 Route::group(['middleware' => 'web'], function () {
-    # Pages
+    // Pages
     Route::get('/', ['as' => 'home', 'uses' => 'PageController@index']);
     Route::get('page/{slug}', ['as' => 'page.show', 'uses' => 'PageController@show']);
 
-    # Categories
+    // Categories
     Route::resource('category', 'CategoryController');
 
-    # Articles
+    // Articles
     Route::get('search', ['as' => 'post.search', 'uses' => 'PostController@search']);
     Route::get('post/category/{category}', ['as' => 'post.category', 'uses' => 'PostController@getPostsByCategory']);
     Route::resource('post', 'PostController');
 
-    # Tags
+    // Tags
     Route::get('tag/{slug}', ['as' => 'tag.show', 'uses' => 'TagController@show']);
 
-    # Users
+    // Users
     Route::resource('user', 'UserController');
 
     Route::group(['prefix' => 'portfolio'], function () {
@@ -23,10 +24,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('project', 'ProjectController');
     });
 
-    # RSS Feed
+    // RSS Feed
     Route::get('feed', ['as' => 'rss', 'uses' => 'FeedController@getRss']);
 
-    # Admin area
+    // Admin area
     Route::post('admin/useradmin/store', 'Admin\AdminController@storeAdminUser');
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
         Route::get('/', ['as' => 'admin.home', 'uses' => 'Admin\DashboardController@index']);
@@ -44,7 +45,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
 
-    #API routes
+    //API routes
     Route::group(['prefix'     => 'api/v1'], function () {
         Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
             Route::resource('category', 'API\CategoryController');

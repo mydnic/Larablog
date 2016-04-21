@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Post;
 use App\Setting;
-use Roumen\Feed\Facades\Feed;
 
 class FeedController extends Controller
 {
     public function getRss()
     {
         // create new feed
-        $feed = Feed::make();
+        $feed = App::make('feed');
         $setting = Setting::first();
 
         // cache the feed for 60 minutes (second parameter is optional)
