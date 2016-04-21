@@ -1,19 +1,5 @@
 @extends('layout.admin.main')
 
-@section('styles')
-<style>
-    .trash { color:rgb(209, 91, 71); }
-    .flag { color:rgb(248, 148, 6); }
-    .panel-body { padding:0px; }
-    .panel-footer .pagination { margin: 0; }
-    .panel .glyphicon,.list-group-item .glyphicon { margin-right:5px; }
-    .panel-body .radio, .checkbox { display:inline-block;margin:0px; }
-    .panel-body input[type=checkbox]:checked + label { text-decoration: line-through;color: rgb(128, 144, 160); }
-    .list-group-item:hover, a.list-group-item:focus {text-decoration: none;background-color: rgb(245, 245, 245);}
-    .list-group { margin-bottom:0px; }
-</style>
-@stop
-
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -22,9 +8,9 @@
             </h1>
         </div>
     </div>
-    <div class="row" ng-app="Tasks">
+    <div class="row">
         <div class="col-lg-12">
-            <div ng-controller="TasksController">
+            <div class="tasks">
                  <div class="panel panel-primary">
                     <div class="panel-heading">
                         <span class="glyphicon glyphicon-list"></span> Sortable Lists
@@ -133,32 +119,4 @@
             </div>
         </div>
     </div>
-@stop
-
-
-@section('scripts')
-    <script>
-        var app = angular.module("Tasks", [])
-
-        app.controller("TasksController", function($scope, $http) {
-            $http.get('/api/v1/admin/task').success(function(categories) {
-                $scope.categories = categories;
-            });
-
-            $scope.addCategory = function() {
-                var category = {
-                    name: $scope.newCategoryText,
-                };
-                $http.post('/category', category);
-                $scope.categories.push(category);
-                $scope.newCategoryText = null;
-            };
-
-            $scope.delete = function(category) {
-                var index = $scope.categories.indexOf(category);
-                $scope.categories.splice(index, 1);
-                $http.post('/category/delete', category);
-            }
-        });
-    </script>
 @stop

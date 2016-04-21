@@ -11,6 +11,14 @@ var elixir = require('laravel-elixir');
  |
  */
 
+elixir.config.sourcemaps = false;
+
 elixir(function(mix) {
-    mix.less('app.less');
+    mix
+        .sass('blog.scss')
+        .sass('admin.scss')
+        .version([
+            'public/css/blog.css',
+            'public/css/admin.css',
+        ]);
 });

@@ -29,7 +29,7 @@ Route::group(['middleware' => 'web'], function () {
     # Admin area
     Route::post('admin/useradmin/store', 'Admin\AdminController@storeAdminUser');
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
-        Route::get('index', ['as' => 'admin.home', 'uses' => 'Admin\AdminController@index']);
+        Route::get('/', ['as' => 'admin.home', 'uses' => 'Admin\DashboardController@index']);
         Route::resource('post', 'Admin\PostController');
         Route::get('post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'Admin\PostController@destroy']);
         Route::resource('page', 'Admin\PageController');
