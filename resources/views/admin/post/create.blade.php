@@ -1,16 +1,15 @@
 @extends('layout.admin.main')
 
 @section('styles')
-    <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">
-    <link rel="stylesheet" href="/admin/css/tags.css">
     <style>
         input[name=title]{
-            border: 0px;
-            outline: none;
             width: 100%;
         }
         .trumbowyg-box{
             width: 100%;
+        }
+        .trumbowyg-editor{
+            background-color: #fff;
         }
     </style>
 @stop
@@ -20,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    {!! Form::text('title', null, ['placeholder' => 'Title of the post']) !!}
+                    {!! Form::text('title', null, ['placeholder' => 'Title of the post', 'class' => 'form-control']) !!}
                 </h1>
             </div>
         </div>
@@ -76,13 +75,39 @@
 @stop
 
 @section('scripts')
-    <script src="/admin/wysiwyg/dist/trumbowyg.min.js"></script>
-    <script src="/admin/wysiwyg/dist/plugins/base64/trumbowyg.base64.js"></script>
-    <script src="/admin/js/jquery.tags.js"></script>
     <script>
         $('textarea').trumbowyg({
             autogrow: true,
-            btnsAdd: ['base64']
+            btnsDef: {
+                // Customizables dropdowns
+                image: {
+                    dropdown: ['insertImage', 'upload', 'base64', 'noEmbed'],
+                    ico: 'insertImage'
+                }
+            },
+            btns: [
+                ['viewHTML'],
+                ['undo', 'redo'],
+                ['formatting'],
+                'btnGrp-design',
+                ['link'],
+                ['image'],
+                'btnGrp-justify',
+                'btnGrp-lists',
+                ['foreColor', 'backColor'],
+                ['preformatted'],
+                ['horizontalRule'],
+                ['fullscreen']
+            ],
+            plugins: {
+                // Add imagur parameters to upload plugin
+                upload: {
+                    serverPath: 'https://api.imgur.com/3/image',
+                    fileFieldName: 'image',
+                    headers: {'Authorization': 'Client-ID 9e57cb1c4791cea'},
+                    urlPropertyName: 'data.link'
+                }
+            }
         });
         jQuery(document).ready(function($) {
             // Avatar Upload and preview

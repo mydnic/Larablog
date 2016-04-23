@@ -63,8 +63,8 @@
                         @foreach ($categories as $category)
                             <li class="list-group-item">
                                 {{ $category->name }}
-                                <span class="pull-right text-muted small">
-                                    <a href="{{ route('admin.category.delete') }}" class="confirm-delete">
+                                <span class="pull-right text-muted">
+                                    <a href="{{ route('admin.category.delete', $category->id) }}" class="confirm-delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </span>

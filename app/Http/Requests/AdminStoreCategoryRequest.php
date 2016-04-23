@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
 
-class AdminUpdatePostRequest extends Request
+class AdminStoreCategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,7 @@ class AdminUpdatePostRequest extends Request
     public function rules()
     {
         return [
-            'title'       => 'required|min:2|max:255',
-            'content'     => 'required',
-            'status'      => 'required',
-            'lang'        => 'max:10',
-            'image'       => 'image',
-            'category_id' => 'array',
-            'tags'        => 'array',
-            'created_at'  => 'date',
+            'name'   => 'required|min:2,max:255',
         ];
     }
 }

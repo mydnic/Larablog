@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
+use App\Http\Requests\AdminStoreCategoryRequest;
+use Request;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,7 @@ class CategoryController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AdminStoreCategoryRequest $request)
     {
         $category = new Category;
         $category->name = $request->input('name');
@@ -79,9 +80,9 @@ class CategoryController extends Controller
      *
      * @return Response
      */
-    public function destroy($id = null)
+    public function delete($id)
     {
-        $category = Category::find(Request::get('id'));
+        $category = Category::find($id);
         $category->delete();
         return redirect()->back();
     }

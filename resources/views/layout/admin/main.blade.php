@@ -137,7 +137,14 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <script src="/js/lib/wysiwyg/trumbowyg.min.js"></script>
+        <script src="/js/lib/wysiwyg/plugins/base64/trumbowyg.base64.min.js"></script>
+        <script src="/js/lib/wysiwyg/plugins/colors/trumbowyg.colors.min.js"></script>
+        <script src="/js/lib/wysiwyg/plugins/noembed/trumbowyg.noembed.min.js"></script>
+        <script src="/js/lib/wysiwyg/plugins/pasteimage/trumbowyg.pasteimage.min.js"></script>
+        <script src="/js/lib/wysiwyg/plugins/preformatted/trumbowyg.preformatted.min.js"></script>
         <script src="/js/lib/wysiwyg/plugins/upload/trumbowyg.upload.min.js"></script>
+        <script src="/js/lib/jquery.tags.js"></script>
+        <script src="/js/lib/jquery.sortable.js"></script>
         <script src="/js/admin.js"></script>
         @yield('scripts')
     </body>

@@ -37,11 +37,16 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('project', 'Admin\ProjectController');
         Route::get('project/{id}/publish', ['as' => 'admin.project.publish', 'uses' => 'Admin\ProjectController@setPublished']);
         Route::get('project/{id}/unpublish', ['as' => 'admin.project.unpublish', 'uses' => 'Admin\ProjectController@setUnpublished']);
+
+        Route::get('category/{id}/delete', ['as' => 'admin.category.delete', 'uses' => 'Admin\CategoryController@delete']);
         Route::resource('category', 'Admin\CategoryController');
-        Route::post('category/delete', ['as' => 'admin.category.delete', 'uses' => 'Admin\CategoryController@destroy']);
+
         Route::resource('task', 'Admin\TaskController');
+
         Route::resource('settings/social', 'Admin\SocialLinkController');
+
         Route::resource('settings', 'Admin\SettingController');
+
         Route::resource('menu', 'Admin\MenuController');
     });
 

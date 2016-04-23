@@ -5,10 +5,11 @@ namespace App;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model implements SluggableInterface
 {
-    use SluggableTrait;
+    use SoftDeletes, SluggableTrait;
 
     protected $sluggable = [
         'build_from' => 'name',
