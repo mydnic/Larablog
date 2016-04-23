@@ -10,9 +10,9 @@
         <!-- Bootstrap -->
         <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css" rel="stylesheet">
         <link href="//cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
         <link href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" rel="stylesheet">
-        <link href="/lib/wysiwyg/ui/trumbowyg.min.css" rel="stylesheet">
+        <link href="/js/lib/wysiwyg/ui/trumbowyg.min.css" rel="stylesheet">
         <link href="{{ elixir('css/admin.css') }}" rel="stylesheet">
         @yield('styles')
 
@@ -129,15 +129,15 @@
             @yield('content')
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
         <script src="//cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-        <script src="/lib/wysiwyg/trumbowyg.min.js"></script>
-        <script src="/lib/wysiwyg/plugins/upload/trumbowyg.upload.js"></script>
+        <script src="/js/lib/wysiwyg/trumbowyg.min.js"></script>
+        <script src="/js/lib/wysiwyg/plugins/upload/trumbowyg.upload.min.js"></script>
         <script src="/js/admin.js"></script>
         @yield('scripts')
     </body>

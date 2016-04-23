@@ -28,7 +28,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('feed', ['as' => 'rss', 'uses' => 'FeedController@getRss']);
 
     // Admin area
-    Route::post('admin/useradmin/store', 'Admin\AdminController@storeAdminUser');
+    Route::post('admin/useradmin/store', 'Admin\UserController@storeAdminUser');
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
         Route::get('/', ['as' => 'admin.home', 'uses' => 'Admin\DashboardController@index']);
         Route::resource('post', 'Admin\PostController');
@@ -37,6 +37,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('project', 'Admin\ProjectController');
         Route::get('project/{id}/publish', ['as' => 'admin.project.publish', 'uses' => 'Admin\ProjectController@setPublished']);
         Route::get('project/{id}/unpublish', ['as' => 'admin.project.unpublish', 'uses' => 'Admin\ProjectController@setUnpublished']);
+        Route::resource('category', 'Admin\CategoryController');
+        Route::post('category/delete', ['as' => 'admin.category.delete', 'uses' => 'Admin\CategoryController@destroy']);
         Route::resource('task', 'Admin\TaskController');
         Route::resource('settings/social', 'Admin\SocialLinkController');
         Route::resource('settings', 'Admin\SettingController');
@@ -48,9 +50,6 @@ Route::group(['middleware' => 'web'], function () {
     //API routes
     Route::group(['prefix'     => 'api/v1'], function () {
         Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
-            Route::resource('category', 'API\CategoryController');
-            Route::post('category/delete', ['as' => 'category.delete', 'uses' => 'API\CategoryController@destroy']);
-
             Route::resource('projectcategory', 'API\ProjectCategoryController');
             Route::post('projectcategory/delete', ['as' => 'category.delete', 'uses' => 'API\ProjectCategoryController@destroy']);
 
