@@ -23,7 +23,7 @@ class DashboardController extends Controller
     {
         $posts_without_image = Post::whereNull('image')->count();
         $pages_without_image = Page::whereNull('image')->count();
-        return view('admin.index')
+        return view('admin.dashboard')
             ->with('posts_without_image', $posts_without_image)
             ->with('pages_without_image', $pages_without_image);
     }

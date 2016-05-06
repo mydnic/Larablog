@@ -1,8 +1,6 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
 @section('styles')
-    <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">
-    <link rel="stylesheet" href="/admin/css/tags.css">
     <style>
         input[name=title]{
             border: 0px;
@@ -103,15 +101,15 @@
             function readURL(input, id) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-                    
+
                     reader.onload = function (e) {
                         $('#'+id).next('img').attr('src', e.target.result);
                     }
-                    
+
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            
+
             $(".fileUpload .upload").change(function() {
                 var val = $(this).val();
 
@@ -126,7 +124,7 @@
                         alert("not an image");
                         break;
                 }
-                
+
             });
 
             $('#tags').magicSuggest({

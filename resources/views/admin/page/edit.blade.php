@@ -1,4 +1,4 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
 @section('styles')
     <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">

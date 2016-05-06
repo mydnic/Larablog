@@ -1,4 +1,4 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
 @section('content')
     <div class="row">
@@ -18,7 +18,7 @@
                         {!! Form::text('app_name', null, ['class'=>'form-control', 'placeholder'=>'Email']) !!}
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     {!! Form::label('app_baseline', 'Website Baseline', ['class'=>'col-sm-2 control-label']) !!}
                     <div class="col-sm-10">
@@ -95,15 +95,15 @@
             function readURL(input, id) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-                    
+
                     reader.onload = function (e) {
                         $('#'+id).next('img').attr('src', e.target.result);
                     }
-                    
+
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            
+
             $(".fileUpload .upload").change(function() {
                 var val = $(this).val();
 
@@ -118,7 +118,7 @@
                         alert("not an image");
                         break;
                 }
-                
+
             });
         });
     </script>

@@ -1,5 +1,4 @@
-@extends('layout.admin.main')
-
+@extends('admin.layout')
 
 @section('styles')
     <style>
@@ -9,7 +8,6 @@
         }
     </style>
 @stop
-
 
 @section('content')
     {!! Form::model($link, ['route' => ['admin.settings.social.update', $link->id], 'method' => 'put']) !!}

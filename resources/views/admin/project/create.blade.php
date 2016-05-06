@@ -1,4 +1,4 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
 @section('styles')
     <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">
@@ -100,7 +100,7 @@
                             reader.onload = function (e) {
                                 $('#'+id).next('.multiple-container').append('<img src="'+e.target.result+'" alt="">');
                             }
-                            
+
                             reader.readAsDataURL(input.files[index]);
                         });
                     }
@@ -108,7 +108,7 @@
                 else {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
-                        
+
                         reader.onload = function (e) {
                             $('#'+id).next('img').attr('src', e.target.result);
                         }
@@ -117,7 +117,7 @@
                     }
                 }
             }
-            
+
             $(".fileUpload .upload").change(function() {
                 var val = $(this).val();
 

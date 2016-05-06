@@ -3,5 +3,5 @@
 return [
     'published'   => 'Published',
     'draft'       => 'Draft',
-    'cancel'      => 'Cancel',
+    'cancel'      => 'Canceled',
 ];

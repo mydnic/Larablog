@@ -1,23 +1,15 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
-@section('styles')
-    <style>
-    #TablePost span.coma:last-child {
-        display: none;
-    }
-    </style>
-@stop
+@section('meta-title', 'Posts')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
                 Posts
-                <small>
-                    <a href="{{ route('admin.post.create') }}">
-                        Add new
-                    </a>
-                </small>
+                <a href="{{ route('admin.post.create') }}" class="btn btn-primary">
+                    Add new
+                </a>
             </h1>
         </div>
     </div>
