@@ -2,17 +2,6 @@
 
 @section('meta-title', 'Add new post')
 
-@section('styles')
-    <style>
-        .trumbowyg-box{
-            width: 100%;
-        }
-        .trumbowyg-editor{
-            background-color: #fff;
-        }
-    </style>
-@stop
-
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -28,7 +17,7 @@
                     {!! Form::text('title', null, ['placeholder' => 'Title of the post', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::textarea('content', null) !!}
+                    {!! Form::textarea('content', null, ['class' => 'wysiwyg']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('tags', 'Tags') !!}
@@ -61,26 +50,33 @@
                         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('category_id', 'Categories') !!}
-                    @foreach ($categories as $category)
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('category_id[]', $category->id) !!} {{ $category->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="form-group">
-                </div>
-                <div class="form-group">
-                    {!! Form::label('image', 'Select an Image') !!}
-                    <div class="fileUpload">
-                        {!! Form::file('image', ['class' => 'upload', 'id' => 'image_file_upload']) !!}
-                        <img src="" alt="">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Categories
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        @foreach ($categories as $category)
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('category_id[]', $category->id) !!} {{ $category->name }}
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Main Image
+                    </div>
+                    <div class="panel-body">
+                        {!! Form::label('image', 'Select an Image') !!}
+                        <div class="fileUpload">
+                            {!! Form::file('image', ['class' => 'upload', 'id' => 'image_file_upload']) !!}
+                            <img src="" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,53 +85,7 @@
 
 @section('scripts')
     <script>
-        $('textarea').trumbowyg({
-            autogrow: true,
-            btnsDef: {
-                // Customizables dropdowns
-                image: {
-                    dropdown: ['insertImage', 'upload', 'base64', 'noEmbed'],
-                    ico: 'insertImage'
-                }
-            },
-            btns: [
-                ['viewHTML'],
-                ['undo', 'redo'],
-                ['formatting'],
-                'btnGrp-design',
-                ['link'],
-                ['image'],
-                'btnGrp-justify',
-                'btnGrp-lists',
-                ['foreColor', 'backColor'],
-                ['preformatted'],
-                ['horizontalRule'],
-                ['fullscreen']
-            ],
-            plugins: {
-                // Add imagur parameters to upload plugin
-                upload: {
-                    serverPath: 'https://api.imgur.com/3/image',
-                    fileFieldName: 'image',
-                    headers: {'Authorization': 'Client-ID 9e57cb1c4791cea'},
-                    urlPropertyName: 'data.link'
-                }
-            }
-        });
         jQuery(document).ready(function($) {
-            // Avatar Upload and preview
-            function readURL(input, id) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('#'+id).next('img').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
             $('#tags').magicSuggest({
                 cls: 'form-control',
                 data: {!!$tags!!},

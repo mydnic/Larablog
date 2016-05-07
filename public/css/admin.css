@@ -84,6 +84,9 @@ span.coma:last-child {
   width: 100% !important;
   margin: 0px auto !important; }
 
+.trumbowyg-editor {
+  background-color: #fff; }
+
 .alert-danger a {
   color: #000;
   font-weight: 500; }

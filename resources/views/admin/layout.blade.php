@@ -13,6 +13,7 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
         <link href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" rel="stylesheet">
         <link href="/js/lib/wysiwyg/ui/trumbowyg.min.css" rel="stylesheet">
+        <link href="/js/lib/magicsuggest/jquery.tags.css" rel="stylesheet">
         <link href="{{ elixir('css/admin.css') }}" rel="stylesheet">
         @yield('styles')
 
@@ -143,7 +144,7 @@
         <script src="/js/lib/wysiwyg/plugins/pasteimage/trumbowyg.pasteimage.min.js"></script>
         <script src="/js/lib/wysiwyg/plugins/preformatted/trumbowyg.preformatted.min.js"></script>
         <script src="/js/lib/wysiwyg/plugins/upload/trumbowyg.upload.min.js"></script>
-        <script src="/js/lib/jquery.tags.js"></script>
+        <script src="/js/lib/magicsuggest/jquery.tags.js"></script>
         <script src="/js/lib/jquery.sortable.js"></script>
         <script src="/js/admin.js"></script>
         @yield('scripts')
