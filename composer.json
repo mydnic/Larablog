@@ -10,7 +10,6 @@
         "laracasts/flash": "~1.3",
         "sofa/eloquence": "~5.1@dev",
         "cviebrock/eloquent-sluggable": "^3.0",
-        "mydnic/uploader": "0.1.*",
         "doctrine/dbal": "^2.5",
         "intervention/image": "~2.2",
         "roumen/feed": "~2.10"

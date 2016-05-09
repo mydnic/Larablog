@@ -46,6 +46,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('settings/social', 'Admin\SocialLinkController');
 
         Route::resource('settings', 'Admin\SettingController');
+        Route::post('image/upload', 'Admin\SettingController@upload');
 
         Route::resource('menu', 'Admin\MenuController');
     });

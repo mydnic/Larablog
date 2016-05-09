@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
     });
 
     // File Upload Previewer
-    $(".fileUpload .upload").change(function() {
+    $(".fileUpload input.upload").change(function() {
         var val = $(this).val();
 
         switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
@@ -25,6 +25,16 @@ jQuery(document).ready(function($) {
                 break;
         }
     });
+    // Image Input File Preview
+    readURL = function(input, id) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#' + id).next('img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
     // Init Wysiwyg
     $('textarea.wysiwyg').trumbowyg({
@@ -53,10 +63,8 @@ jQuery(document).ready(function($) {
         plugins: {
             // Add imagur parameters to upload plugin
             upload: {
-                serverPath: 'https://api.imgur.com/3/image',
+                serverPath: '/admin/image/upload',
                 fileFieldName: 'image',
-                headers: {'Authorization': 'Client-ID 9e57cb1c4791cea'},
-                urlPropertyName: 'data.link'
             }
         }
     });

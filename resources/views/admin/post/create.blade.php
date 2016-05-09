@@ -74,7 +74,7 @@
                         {!! Form::label('image', 'Select an Image') !!}
                         <div class="fileUpload">
                             {!! Form::file('image', ['class' => 'upload', 'id' => 'image_file_upload']) !!}
-                            <img src="" alt="">
+                            <img src="/img/image-placeholder.png" alt="">
                         </div>
                     </div>
                 </div>

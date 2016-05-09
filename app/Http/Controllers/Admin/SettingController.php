@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UploadImageRequest;
+use App\Services\Upload;
 use App\Setting;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -74,5 +76,16 @@ class SettingController extends Controller
         Flash::success('Settings updated');
 
         return Redirect::back();
+    }
+
+    public function upload(UploadImageRequest $request)
+    {
+        $file = new Upload($request->file('image'));
+        return [
+            'success' => true,
+            'data'    => [
+                'link' => $file->getFullPath()
+            ],
+        ];
     }
 }
