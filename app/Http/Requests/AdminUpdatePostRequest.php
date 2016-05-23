@@ -31,6 +31,7 @@ class AdminUpdatePostRequest extends Request
             'image'       => 'image',
             'category_id' => 'array',
             'tags'        => 'array',
+            'is_updated'  => 'boolean',
             'created_at'  => 'date',
         ];
     }

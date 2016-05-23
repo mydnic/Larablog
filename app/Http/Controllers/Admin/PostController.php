@@ -82,7 +82,7 @@ class PostController extends Controller
             }
         }
 
-        $post->categories()->sync($request->input('category_id'));
+        $post->categories()->sync($request->input('category_id', []));
 
         return redirect()->route('admin.post.index');
     }
@@ -124,6 +124,7 @@ class PostController extends Controller
         $post->lang = $request->input('lang');
         $post->allow_comments = $request->input('allow_comments');
         $post->created_at = $request->input('created_at');
+        $post->is_updated = $request->input('is_updated');
 
         // IMAGE BANNER
         if ($request->hasFile('image')) {
@@ -144,7 +145,7 @@ class PostController extends Controller
             }
         }
 
-        $post->categories()->sync($request->input('category_id'));
+        $post->categories()->sync($request->input('category_id', []));
 
         Flash::success('Post edited !');
 

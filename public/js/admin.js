@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
     });
 
     // File Upload Previewer
-    $(".fileUpload input.upload").change(function() {
+    $('.fileUpload input.upload').change(function() {
         var val = $(this).val();
 
         switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
@@ -61,10 +61,10 @@ jQuery(document).ready(function($) {
             ['fullscreen']
         ],
         plugins: {
-            // Add imagur parameters to upload plugin
             upload: {
                 serverPath: '/admin/image/upload',
                 fileFieldName: 'image',
+                urlPropertyName: 'path'
             }
         }
     });

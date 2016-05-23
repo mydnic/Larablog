@@ -26,8 +26,4 @@ class Project extends Model implements SluggableInterface
         return $this->hasMany('App\ProjectImage');
     }
 
-    public function getImagePathAttribute()
-    {
-        return '/uploads/'.$this->image;
-    }
 }

@@ -32,6 +32,11 @@
                         </h3>
                     </div>
                     <div class="panel-body">
+                        <div class="checkbox">
+                            <label>
+                                {!! Form::checkbox('allow_comments', true, true) !!} Allow Comments
+                            </label>
+                        </div>
                         <div class="form-group">
                             {!! Form::label('status', 'Status') !!}
                             {!! Form::select('status', config('post_status'), null, ['class' => 'form-control']) !!}
@@ -39,11 +44,6 @@
                         <div class="form-group">
                             {!! Form::label('lang', 'Language') !!}
                             {!! Form::select('lang', config('languages'), null, ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('allow_comments', true, true) !!} Allow Comments
-                            </label>
                         </div>
                     </div>
                     <div class="panel-footer text-right">
@@ -91,10 +91,10 @@
                 data: {!!$tags!!},
                 @if (count(old('tags')))
                     value: [
-                    @foreach (old('tags') as $tag)
-                        '{{$tag}}',
-                    @endforeach
-                ]
+                        @foreach (old('tags') as $tag)
+                            '{{$tag}}',
+                        @endforeach
+                    ]
                 @endif
             });
         });
