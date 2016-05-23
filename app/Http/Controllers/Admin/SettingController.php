@@ -81,10 +81,11 @@ class SettingController extends Controller
     public function upload(UploadImageRequest $request)
     {
         $file = new Upload($request->file('image'));
+
         return [
             'success' => true,
             'data'    => [
-                'link' => $file->getFullPath()
+                'link' => $file->getFullPath(),
             ],
         ];
     }

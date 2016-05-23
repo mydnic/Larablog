@@ -10,18 +10,20 @@ class Upload
     private $folder;
 
     /**
-     * Create a new Upload instance
-     * @param  file   $file   The file to upload, sent through a form request
-     * @param  string $folder The directory in which the file should be moved
+     * Create a new Upload instance.
+     *
+     * @param file   $file   The file to upload, sent through a form request
+     * @param string $folder The directory in which the file should be moved
+     *
      * @return void
      */
     public function __construct($file, $folder = 'uploads')
     {
         $this->folder = $folder;
 
-        $destinationPath = public_path() . '/' . $folder . '/';
+        $destinationPath = public_path().'/'.$folder.'/';
 
-        $this->filename = str_replace(' ', '_', str_random(5) . time() . $this->cleanAccents($file->getClientOriginalName()));
+        $this->filename = str_replace(' ', '_', str_random(5).time().$this->cleanAccents($file->getClientOriginalName()));
 
         $uploadSuccess = $file->move($destinationPath, $this->filename);
 
@@ -29,22 +31,26 @@ class Upload
     }
 
     /**
-     * Resize the uploaded file to specific dimensions
-     * @param  int    $width
-     * @param  int    $height
+     * Resize the uploaded file to specific dimensions.
+     *
+     * @param int $width
+     * @param int $height
+     *
      * @return object
      */
     public function thumbnail($width, $height)
     {
-        $img = Image::make(public_path() . '/' . $this->folder . '/' . $this->filename);
+        $img = Image::make(public_path().'/'.$this->folder.'/'.$this->filename);
         $img->resize($width, $height);
-        $this->filename = 'thumb_' . $this->filename;
-        $img->save(public_path() . '/' . $this->folder . '/' . $this->filename);
+        $this->filename = 'thumb_'.$this->filename;
+        $img->save(public_path().'/'.$this->folder.'/'.$this->filename);
+
         return $this;
     }
 
     /**
-     * return the Filename only
+     * return the Filename only.
+     *
      * @return string
      */
     public function getFileName()
@@ -53,18 +59,21 @@ class Upload
     }
 
     /**
-     * return the full path in which the file is located
+     * return the full path in which the file is located.
+     *
      * @return string
      */
     public function getFullPath()
     {
-        return '/' . $this->folder . '/' . $this->filename;
+        return '/'.$this->folder.'/'.$this->filename;
     }
 
     /**
      * Clean up a string of bad characters.
-     * @param  string $str The String to be cleaned up
-     * @return string      The cleaned string
+     *
+     * @param string $str The String to be cleaned up
+     *
+     * @return string The cleaned string
      */
     public function cleanAccents($str)
     {
@@ -75,7 +84,7 @@ class Upload
             'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î'  => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o',
             'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ'  => 'b', 'ÿ' => 'y',
         ];
+
         return strtr($str, $unwanted_array);
     }
-
 }
