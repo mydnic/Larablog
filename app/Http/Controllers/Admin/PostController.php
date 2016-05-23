@@ -7,12 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStorePostRequest;
 use App\Http\Requests\AdminUpdatePostRequest;
 use App\Post;
+use App\Services\Upload;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
 use Laracasts\Flash\Flash;
-use App\Services\Upload;
 
 class PostController extends Controller
 {
@@ -24,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts      = Post::all();
+        $posts = Post::all();
         $categories = Category::with('posts')->get();
 
         return view('admin.post.index')
@@ -41,7 +40,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $tags       = Tag::groupBy('name')->pluck('name');
+        $tags = Tag::groupBy('name')->pluck('name');
 
         return view('admin.post.create')
             ->with('tags', json_encode($tags))
@@ -56,12 +55,12 @@ class PostController extends Controller
      */
     public function store(AdminStorePostRequest $request)
     {
-        $post                 = new Post;
-        $post->user_id        = Auth::id();
-        $post->title          = $request->input('title');
-        $post->content        = $request->input('content');
-        $post->status         = $request->input('status');
-        $post->lang           = $request->input('lang');
+        $post = new Post();
+        $post->user_id = Auth::id();
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->status = $request->input('status');
+        $post->lang = $request->input('lang');
         $post->allow_comments = $request->input('allow_comments');
 
         // IMAGE BANNER
@@ -74,10 +73,10 @@ class PostController extends Controller
 
         // Clear previous tags
         $current_tags = $post->tags()->delete();
-        $tags         = $request->input('tags');
+        $tags = $request->input('tags');
         if (count($tags)) {
             foreach ($tags as $tag) {
-                $new_tag       = new Tag;
+                $new_tag = new Tag();
                 $new_tag->name = $tag;
                 $post->tags()->save($new_tag);
             }
@@ -98,9 +97,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post       = Post::find($id);
+        $post = Post::find($id);
         $categories = Category::all();
-        $tags       = Tag::groupBy('name')->lists('name');
+        $tags = Tag::groupBy('name')->lists('name');
 
         return view('admin.post.edit')
             ->with('post', $post)
@@ -118,13 +117,13 @@ class PostController extends Controller
      */
     public function update(AdminUpdatePostRequest $request, $id)
     {
-        $post                 = Post::find($id);
-        $post->title          = $request->input('title');
-        $post->content        = $request->input('content');
-        $post->status         = $request->input('status');
-        $post->lang           = $request->input('lang');
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->status = $request->input('status');
+        $post->lang = $request->input('lang');
         $post->allow_comments = $request->input('allow_comments');
-        $post->created_at     = $request->input('created_at');
+        $post->created_at = $request->input('created_at');
 
         // IMAGE BANNER
         if ($request->hasFile('image')) {
@@ -136,10 +135,10 @@ class PostController extends Controller
 
         // Clear previous tags
         $current_tags = $post->tags()->delete();
-        $tags         = $request->input('tags');
+        $tags = $request->input('tags');
         if (count($tags)) {
             foreach ($tags as $tag) {
-                $new_tag       = new Tag;
+                $new_tag = new Tag();
                 $new_tag->name = $tag;
                 $post->tags()->save($new_tag);
             }

@@ -17,6 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::with('posts')->get();
+
         return view('admin.category.index')
             ->with('categories', $categories);
     }
@@ -38,7 +39,7 @@ class CategoryController extends Controller
      */
     public function store(AdminStoreCategoryRequest $request)
     {
-        $category = new Category;
+        $category = new Category();
         $category->name = $request->input('name');
         $category->save();
 
@@ -84,6 +85,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
+
         return redirect()->back();
     }
 }
