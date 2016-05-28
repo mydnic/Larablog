@@ -28,7 +28,7 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>
-                                {!! link_to_route('admin.post.edit', str_limit($post->title,40), $post->id) !!}
+                                {!! link_to_route('admin.post.edit', str_limit($post->title, 40), $post->id) !!}
                             </td>
                             <td>
                                 {{ $post->status }}
@@ -38,7 +38,9 @@
                                     {{ $category->name }}<span class="coma">,</span>
                                 @endforeach
                             </td>
-                            <td>{{ $post->created_at->format('Y-m-d \a\t H:i:s') }}</td>
+                            <td>
+                                {{ $post->created_at->format('Y-m-d \a\t H:i:s') }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -59,6 +61,9 @@
                                     <a href="{{ route('admin.category.delete', $category->id) }}" class="confirm-delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
+                                    <a href="{{ route('admin.category.edit', $category->id) }}">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
                                 </span>
                             </li>
                         @endforeach
@@ -74,12 +79,10 @@
                         </div>
                     {!! Form::close() !!}
                 </div>
-                <!-- /.panel-body -->
             </div>
         </div>
     </div>
 @stop
-
 
 @section('scripts')
     <script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStorePageRequest;
 use App\Http\Requests\AdminUpdatePageRequest;
 use App\Page;
+use App\Services\Upload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
@@ -47,12 +48,19 @@ class PageController extends Controller
         $page->title = $request->input('title');
         $page->content = $request->input('content');
         $page->status = $request->input('status');
+        $page->lang = $request->input('lang');
         $page->allow_comments = $request->input('allow_comments', false);
+
+        if ($request->hasFile('image')) {
+            $image = new Upload($request->file('image'));
+            $page->image = $image->getFullPath();
+        }
+
         $page->save();
 
         Flash::success('The page has been added');
 
-        return Redirect::route('admin.page.index');
+        return redirect()->route('admin.page.index');
     }
 
     /**
@@ -95,12 +103,19 @@ class PageController extends Controller
         $page->title = $request->input('title');
         $page->content = $request->input('content');
         $page->status = $request->input('status');
+        $page->lang = $request->input('lang');
         $page->allow_comments = $request->input('allow_comments', false);
+
+        if ($request->hasFile('image')) {
+            $image = new Upload($request->file('image'));
+            $post->image = $image->getFullPath();
+        }
+
         $page->save();
 
         Flash::success('The page has been updated');
 
-        return Redirect::route('admin.page.index');
+        return redirect()->route('admin.page.index');
     }
 
     /**
@@ -116,6 +131,6 @@ class PageController extends Controller
 
         Flash::success('Page deleted.');
 
-        return Redirect::route('admin.page.index');
+        return redirect()->route('admin.page.index');
     }
 }

@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="form-group">
-                    {!! Form::text('title', null, ['placeholder' => 'Title of the post', 'class' => 'form-control']) !!}
+                    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title of the post']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::textarea('content', null, ['class' => 'wysiwyg']) !!}

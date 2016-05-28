@@ -55,7 +55,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.edit')
+            ->with('category', $category);
     }
 
     /**
@@ -84,6 +86,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $category = Category::find($id);
+        $category->posts()->detach();
         $category->delete();
 
         return redirect()->back();

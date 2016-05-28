@@ -32,15 +32,6 @@ class PostController extends Controller
             ->with('posts', $posts);
     }
 
-    public function search()
-    {
-        $query = Request::get('q');
-        $posts = Post::search($query)->whereStatus('published')->paginate(15);
-
-        return view('post.index')
-            ->with('posts', $posts);
-    }
-
     /**
      * Display the specified resource.
      *
@@ -54,7 +45,7 @@ class PostController extends Controller
 
         $keywords = '';
         foreach ($post->tags as $tag) {
-            $keywords .= $tag->name.', ';
+            $keywords .= $tag->name.',';
         }
 
         return view('post.show')

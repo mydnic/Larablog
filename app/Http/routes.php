@@ -9,7 +9,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('category', 'CategoryController');
 
     // Articles
-    Route::get('search', ['as' => 'post.search', 'uses' => 'PostController@search']);
+    Route::get('search', ['as' => 'post.search', 'uses' => 'SearchController@searchPosts']);
     Route::get('post/category/{category}', ['as' => 'post.category', 'uses' => 'PostController@getPostsByCategory']);
     Route::resource('post', 'PostController');
 
@@ -34,6 +34,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('post', 'Admin\PostController');
         Route::get('post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'Admin\PostController@destroy']);
         Route::resource('page', 'Admin\PageController');
+        Route::get('page/{id}/delete', ['as' => 'admin.page.delete', 'uses' => 'Admin\PageController@destroy']);
         Route::resource('project', 'Admin\ProjectController');
         Route::get('project/{id}/publish', ['as' => 'admin.project.publish', 'uses' => 'Admin\ProjectController@setPublished']);
         Route::get('project/{id}/unpublish', ['as' => 'admin.project.unpublish', 'uses' => 'Admin\ProjectController@setUnpublished']);
