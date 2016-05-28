@@ -1,16 +1,5 @@
 @extends('admin.layout')
 
-
-@section('styles')
-    <style>
-        input[name=title]{
-            border: 0px;
-            outline: none;
-        }
-    </style>
-@stop
-
-
 @section('content')
     {!! Form::open(['route'=>'admin.settings.social.store']) !!}
         <div class="row">

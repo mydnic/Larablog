@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <table class="table table-striped table-bordered table-hover" id="TablePost">
+            <table class="table table-striped table-bordered table-hover" id="TablePage">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -50,7 +50,7 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('#TablePost').dataTable({
+            $('#TablePage').dataTable({
                 "order": [[ 2, "desc" ]]
             });
         });

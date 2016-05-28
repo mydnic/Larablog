@@ -1,22 +1,7 @@
 @extends('admin.layout')
 
-@section('styles')
-    <link rel="stylesheet" href="/admin/wysiwyg/dist/ui/trumbowyg.min.css">
-    <style>
-        input[name=title]{
-            border: 0px;
-            outline: none;
-            width: 100%;
-        }
-        .trumbowyg-box{
-            width: 100%;
-            margin: 36px auto;
-        }
-    </style>
-@stop
-
 @section('content')
-    {!! Form::model($project, ['route'=>['admin.project.update', $project->id] ,'method' => 'put', 'files'=>true]) !!}
+    {!! Form::model($project, ['route' => ['admin.project.update', $project->id], 'method' => 'put', 'files' => true]) !!}
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">

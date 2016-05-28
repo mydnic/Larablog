@@ -23,9 +23,11 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        $categories = ProjectCategory::with('projects')->get();
 
         return view('admin.project.index')
-            ->with('projects', $projects);
+            ->with('projects', $projects)
+            ->with('categories', $categories);
     }
 
     /**
@@ -188,7 +190,7 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
     }

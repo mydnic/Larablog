@@ -56,13 +56,13 @@
                     <ul class="list-group">
                         @foreach ($categories as $category)
                             <li class="list-group-item">
+                                <a href="{{ route('admin.category.edit', $category->id) }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
                                 {{ $category->name }} ({{ $category->posts()->count() }})
                                 <span class="pull-right text-muted">
                                     <a href="{{ route('admin.category.delete', $category->id) }}" class="confirm-delete">
                                         <i class="fa fa-trash"></i>
-                                    </a>
-                                    <a href="{{ route('admin.category.edit', $category->id) }}">
-                                        <i class="fa fa-pencil"></i>
                                     </a>
                                 </span>
                             </li>

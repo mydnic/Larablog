@@ -38,54 +38,52 @@
                     <a class="navbar-brand" href="{{ route('admin.home') }}">
                         Dashboard
                     </a>
+                </div>
+                <div class="collapse navbar-collapse" id="admin_nav">
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="{{ route('home') }}">
                                 Back to Website
                             </a>
                         </li>
-                    </ul>
-                </div>
-                <div class="collapse navbar-collapse" id="admin_nav">
-                    <ul class="nav navbar-nav">
                         <li>
-                            <a class="{{ Request::is('admin/post*') ? 'active' : '' }}" href="{{ URL::route('admin.post.index') }}">
+                            <a class="{{ Request::is('admin/post*') ? 'active' : '' }}" href="{{ route('admin.post.index') }}">
                                 <i class="fa fa-comment fa-fw"></i>
                                 Posts
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::is('admin/page*') ? 'active' : '' }}" href="{{ URL::route('admin.page.index') }}">
+                            <a class="{{ Request::is('admin/page*') ? 'active' : '' }}" href="{{ route('admin.page.index') }}">
                                 <i class="fa fa-pencil fa-fw"></i>
                                 Pages
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::is('admin/project*') ? 'active' : '' }}" href="{{ URL::route('admin.project.index') }}">
+                            <a class="{{ Request::is('admin/project*') ? 'active' : '' }}" href="{{ route('admin.project.index') }}">
                                 <i class="fa fa-briefcase fa-fw"></i>
                                 Portfolio
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::is('admin/menu') ? 'active' : '' }}" href="{{ URL::route('admin.menu.index') }}">
+                            <a class="{{ Request::is('admin/menu') ? 'active' : '' }}" href="{{ route('admin.menu.index') }}">
                                 <i class="fa fa-th-list fa-fw"></i>
                                 Menu
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::is('admin/task') ? 'active' : '' }}" href="{{ URL::route('admin.task.index') }}">
+                            <a class="{{ Request::is('admin/task') ? 'active' : '' }}" href="{{ route('admin.task.index') }}">
                                 <i class="fa fa-tasks fa-fw"></i>
                                 Tasks
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::is('admin/settings') ? 'active' : '' }}" href="{{ URL::route('admin.settings.index') }}">
+                            <a class="{{ Request::is('admin/settings') ? 'active' : '' }}" href="{{ route('admin.settings.edit', 1) }}">
                                 <i class="fa fa-cogs fa-fw"></i>
                                 Settings
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::is('admin/settings/social') ? 'active' : '' }}" href="{{ URL::route('admin.settings.social.index') }}">
+                            <a class="{{ Request::is('admin/social') ? 'active' : '' }}" href="{{ route('admin.social.index') }}">
                                 <i class="fa fa-cogs fa-fw"></i>
                                 Social Links
                             </a>

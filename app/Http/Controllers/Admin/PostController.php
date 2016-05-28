@@ -160,7 +160,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $post = Post::find($id);
         $post->categories()->detach();

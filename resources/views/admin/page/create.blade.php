@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="panel panel-primary">
+                <div class="panel panel-success">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             Publish

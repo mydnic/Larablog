@@ -17,11 +17,11 @@ class SettingController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function edit($id)
     {
         $settings = Setting::first();
 
-        return view('admin.settings.index')
+        return view('admin.settings.edit')
             ->with('settings', $settings);
     }
 

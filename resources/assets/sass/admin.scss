@@ -82,6 +82,9 @@ span.coma:last-child {
     border: 2px dotted #dedede;
     padding: 15px;
     color: #7f7f7f;
+    &.multiple{
+        width: 50%;
+    }
     &:hover {
         background-color: #E7E7E7;
     }

@@ -125,7 +125,7 @@ class PageController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         Page::find($id)->delete();
 
