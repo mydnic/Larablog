@@ -51,24 +51,24 @@ class ProjectController extends Controller
     public function store(AdminStoreProjectRequest $request)
     {
         $project = new Project();
-        $project->title = Request::input('title');
-        $project->sub_title = Request::input('sub_title');
-        $project->description = Request::input('description');
-        $project->client = Request::input('client');
-        $project->link = Request::input('link');
-        $project->date = Request::input('date');
+        $project->title = $request->input('title');
+        $project->sub_title = $request->input('sub_title');
+        $project->description = $request->input('description');
+        $project->client = $request->input('client');
+        $project->link = $request->input('link');
+        $project->date = $request->input('date');
 
         // IMAGE BANNER
-        if (Request::hasFile('image')) {
-            $project->image = Uploader::upload(Request::file('image'));
+        if ($request->hasFile('image')) {
+            $project->image = Uploader::upload($request->file('image'));
             $img = Image::make(public_path().'/uploads/'.$project->image);
             $img->crop(360, 360);
             $img->save();
         }
         $project->save();
 
-        if (Request::hasFile('project_images')) {
-            $files = Request::file('project_images');
+        if ($request->hasFile('project_images')) {
+            $files = $request->file('project_images');
             foreach ($files as $file) {
                 $filename = Uploader::upload($file);
 
@@ -79,11 +79,11 @@ class ProjectController extends Controller
             }
         }
 
-        $project->categories()->sync(Request::get('category_id'));
+        $project->categories()->sync($request->input('category_id'));
 
         Flash::success('Project has been added to your portfolio');
 
-        return Redirect::route('admin.project.index');
+        return redirect()->route('admin.project.index');
     }
 
     /**
@@ -122,28 +122,28 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $project = Project::find($id);
-        $project->title = Request::get('title');
-        $project->sub_title = Request::get('sub_title');
-        $project->description = Request::get('description');
-        $project->client = Request::get('client');
-        $project->link = Request::get('link');
-        $project->date = Request::get('date');
+        $project->title = $request->input('title');
+        $project->sub_title = $request->input('sub_title');
+        $project->description = $request->input('description');
+        $project->client = $request->input('client');
+        $project->link = $request->input('link');
+        $project->date = $request->input('date');
 
         // IMAGE BANNER
-        if (Request::hasFile('image')) {
-            $project->image = Uploader::upload(Request::file('image'));
+        if ($request->hasFile('image')) {
+            $project->image = Uploader::upload($request->file('image'));
             $img = Image::make(public_path().'/uploads/'.$project->image);
             $img->crop(360, 360);
             $img->save();
         }
         $project->save();
 
-        if (Request::hasFile('project_images')) {
+        if ($request->hasFile('project_images')) {
             $project->images()->delete();
-            $files = Request::file('project_images');
+            $files = $request->file('project_images');
             foreach ($files as $file) {
                 $filename = Uploader::upload($file);
 
@@ -154,11 +154,11 @@ class ProjectController extends Controller
             }
         }
 
-        $project->categories()->sync(Request::get('category_id'));
+        $project->categories()->sync($request->input('category_id'));
 
         Flash::success('Project has been edited');
 
-        return Redirect::route('admin.project.edit', $project->id);
+        return redirect()->route('admin.project.edit', $project->id);
     }
 
     public function setPublished($id)
@@ -169,7 +169,7 @@ class ProjectController extends Controller
 
         Flash::success('Project has been published');
 
-        return Redirect::route('admin.project.index');
+        return redirect()->route('admin.project.index');
     }
 
     public function setUnpublished($id)
@@ -180,7 +180,7 @@ class ProjectController extends Controller
 
         Flash::success('Project has been unpublished');
 
-        return Redirect::route('admin.project.index');
+        return redirect()->route('admin.project.index');
     }
 
     /**

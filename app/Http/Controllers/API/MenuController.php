@@ -37,13 +37,13 @@ class MenuController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $menu = new Menu();
 
-        switch (Request::input('type')) {
+        switch ($request->input('type')) {
             case 'page':
-                $menu->url = route('page.show', Request::input('url'));
+                $menu->url = route('page.show', $request->input('url'));
                 break;
 
             case 'homepage':
@@ -78,20 +78,20 @@ class MenuController extends Controller
                 break;
 
             default:
-                $menu->url = Request::input('url');
+                $menu->url = $request->input('url');
                 break;
         }
 
-        $menu->name = Request::input('name');
+        $menu->name = $request->input('name');
         $menu->emplacement = 'left';
         $menu->save();
 
         return $menu;
     }
 
-    public function updateOrder()
+    public function updateOrder(Request $request)
     {
-        $leftmenus = Request::input('left');
+        $leftmenus = $request->input('left');
 
         foreach ($leftmenus as $key => $item) {
             $menu = Menu::find($item['id']);
@@ -100,7 +100,7 @@ class MenuController extends Controller
             $menu->save();
         }
 
-        $rightmenus = Request::input('right');
+        $rightmenus = $request->input('right');
 
         foreach ($rightmenus as $key => $item) {
             $menu = Menu::find($item['id']);
@@ -141,9 +141,9 @@ class MenuController extends Controller
      *
      * @return Response
      */
-    public function destroy($id = null)
+    public function destroy(Request $request, $id = null)
     {
-        $menu = Menu::find(Request::input('id'));
+        $menu = Menu::find($request->input('id'));
         $menu->delete();
     }
 }

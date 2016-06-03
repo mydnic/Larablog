@@ -38,17 +38,17 @@ class SocialLinkController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $link = new SocialLink();
-        $link->title = Request::get('title');
-        $link->url = Request::get('url');
-        $link->icon = Request::get('icon');
+        $link->title = $request->input('title');
+        $link->url = $request->input('url');
+        $link->icon = $request->input('icon');
         $link->save();
 
         Flash::success('Link successfully added');
 
-        return Redirect::route('admin.settings.social.index');
+        return redirect()->route('admin.settings.social.index');
     }
 
     /**
@@ -85,17 +85,17 @@ class SocialLinkController extends Controller
      *
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $link = SocialLink::find($id);
-        $link->title = Request::get('title');
-        $link->url = Request::get('url');
-        $link->icon = Request::get('icon');
+        $link->title = $request->input('title');
+        $link->url = $request->input('url');
+        $link->icon = $request->input('icon');
         $link->save();
 
         Flash::success('Link successfully updated');
 
-        return Redirect::back();
+        return redirect()->back();
     }
 
     /**

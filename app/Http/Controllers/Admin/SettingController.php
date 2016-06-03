@@ -30,19 +30,19 @@ class SettingController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $settings = Setting::first();
-        $settings->app_name = Request::input('app_name');
-        $settings->app_baseline = Request::input('app_baseline');
-        $settings->disqus_shortname = Request::input('disqus_shortname');
-        $settings->google_analytics_code = Request::input('google_analytics_code');
-        $settings->post_bottom_scripts = Request::input('post_bottom_scripts');
-        $settings->show_on_front = Request::input('show_on_front');
+        $settings->app_name = $request->input('app_name');
+        $settings->app_baseline = $request->input('app_baseline');
+        $settings->disqus_shortname = $request->input('disqus_shortname');
+        $settings->google_analytics_code = $request->input('google_analytics_code');
+        $settings->post_bottom_scripts = $request->input('post_bottom_scripts');
+        $settings->show_on_front = $request->input('show_on_front');
 
         // IMAGE BANNER
-        if (Request::hasFile('banner')) {
-            $file = Request::file('banner');
+        if ($request->hasFile('banner')) {
+            $file = $request->file('banner');
             $destinationPath = public_path().'/uploads/';
             $banner_filename = str_random(6).'_banner_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $banner_filename);
@@ -50,8 +50,8 @@ class SettingController extends Controller
             $banner_filename = $settings->banner;
         }
         // IMAGE LOGO
-        if (Request::hasFile('logo')) {
-            $file = Request::file('logo');
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
             $destinationPath = public_path().'/uploads/';
             $logo_filename = str_random(6).'_logo_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $logo_filename);
@@ -59,8 +59,8 @@ class SettingController extends Controller
             $logo_filename = $settings->logo;
         }
         // IMAGE LOGO
-        if (Request::hasFile('favicon')) {
-            $file = Request::file('favicon');
+        if ($request->hasFile('favicon')) {
+            $file = $request->file('favicon');
             $destinationPath = public_path().'/uploads/';
             $favicon_filename = str_random(6).'_favicon_'.$file->getClientOriginalName();
             $uploadSuccess = $file->move($destinationPath, $favicon_filename);
@@ -75,7 +75,7 @@ class SettingController extends Controller
 
         Flash::success('Settings updated');
 
-        return Redirect::back();
+        return redirect()->back();
     }
 
     public function upload(UploadImageRequest $request)
