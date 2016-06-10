@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mydnic/Larablog.png?label=ready&title=Ready)](https://waffle.io/mydnic/Larablog)
 # Larablog
 
 This project aims to achieve a full-featured personnal website / blog.
