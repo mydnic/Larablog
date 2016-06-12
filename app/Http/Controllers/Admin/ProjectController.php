@@ -7,10 +7,10 @@ use App\Http\Requests\AdminStoreProjectRequest;
 use App\Project;
 use App\ProjectCategory;
 use App\ProjectImage;
+use App\Services\Upload;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Laracasts\Flash\Flash;
-use Mydnic\Uploader\Uploader;
 use Request;
 
 class ProjectController extends Controller
@@ -57,45 +57,33 @@ class ProjectController extends Controller
         $project->client = $request->input('client');
         $project->link = $request->input('link');
         $project->date = $request->input('date');
+        $project->published = $request->input('published');
 
         // IMAGE BANNER
         if ($request->hasFile('image')) {
-            $project->image = Uploader::upload($request->file('image'));
-            $img = Image::make(public_path().'/uploads/'.$project->image);
-            $img->crop(360, 360);
-            $img->save();
+            $image = new Upload($request->file('image'));
+            $project->image = $image->getFullPath();
         }
+
         $project->save();
 
         if ($request->hasFile('project_images')) {
             $files = $request->file('project_images');
             foreach ($files as $file) {
-                $filename = Uploader::upload($file);
+                $image = new Upload($file);
 
                 $file = new ProjectImage();
                 $file->project_id = $project->id;
-                $file->image = $filename;
+                $file->image = $image->getFullPath();
                 $file->save();
             }
         }
 
-        $project->categories()->sync($request->input('category_id'));
+        $project->categories()->sync($request->input('category_id', []));
 
         Flash::success('Project has been added to your portfolio');
 
         return redirect()->route('admin.project.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -163,7 +151,7 @@ class ProjectController extends Controller
 
     public function setPublished($id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $project->published = true;
         $project->save();
 
@@ -174,7 +162,7 @@ class ProjectController extends Controller
 
     public function setUnpublished($id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $project->published = false;
         $project->save();
 
@@ -192,6 +180,12 @@ class ProjectController extends Controller
      */
     public function delete($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->categories()->detach();
+        $project->delete();
+
+        Flash::success('Project deleted !');
+
+        return redirect()->route('admin.project.index');
     }
 }

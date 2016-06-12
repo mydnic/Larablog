@@ -32,6 +32,11 @@
                         </h3>
                     </div>
                     <div class="panel-body">
+                        <div class="checkbox">
+                            <label>
+                                {!! Form::checkbox('published', true, true) !!} Mark As Published
+                            </label>
+                        </div>
                     </div>
                     <div class="panel-footer text-right">
                         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

@@ -65,8 +65,9 @@ span.coma:last-child {
   border: 2px dotted #dedede;
   padding: 15px;
   color: #7f7f7f; }
-  .fileUpload.multiple {
-    width: 50%; }
+  .fileUpload.multiple img {
+    width: 50%;
+    padding: 5px; }
   .fileUpload:hover {
     background-color: #E7E7E7; }
   .fileUpload img {

@@ -166,6 +166,8 @@ class PostController extends Controller
         $post->categories()->detach();
         $post->delete();
 
+        Flash::success('Post deleted !');
+
         return redirect()->route('admin.post.index');
     }
 }

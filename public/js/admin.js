@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
         var val = $(this).val();
 
         switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
-            case 'gif': case 'jpg': case 'png':
+            case 'gif': case 'jpg': case 'png': case 'jpeg':
                 readURL(this);
                 break;
             default:
@@ -27,7 +27,16 @@ jQuery(document).ready(function($) {
     // Image Input File Preview
     readURL = function(input) {
         var el = $(input);
-        if (input.files && input.files[0]) {
+        if (el.parents('.fileUpload').hasClass('multiple') && input.files) {
+            el.parents('.fileUpload').find('img').remove();
+            $.each(input.files, function(index, val) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    el.parents('.fileUpload').append('<img src="'+e.target.result+'">');
+                }
+                reader.readAsDataURL(input.files[index]);
+            });
+        } else if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 el.parents('.fileUpload').find('img').attr('src', e.target.result);

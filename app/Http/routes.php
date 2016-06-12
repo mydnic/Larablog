@@ -45,6 +45,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('project/{id}/publish', ['as' => 'admin.project.publish', 'uses' => 'Admin\ProjectController@setPublished']);
         Route::get('project/{id}/unpublish', ['as' => 'admin.project.unpublish', 'uses' => 'Admin\ProjectController@setUnpublished']);
+        Route::get('project/{id}/delete', ['as' => 'admin.project.delete', 'uses' => 'Admin\ProjectController@delete']);
         Route::resource('project', 'Admin\ProjectController');
 
         Route::get('project_category/{id}/delete', ['as' => 'admin.project_category.delete', 'uses' => 'Admin\ProjectCategoryController@delete']);
