@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreProjectRequest;
+use App\Http\Requests\AdminUpdateProjectRequest;
 use App\Project;
 use App\ProjectCategory;
 use App\ProjectImage;
@@ -11,7 +12,6 @@ use App\Services\Upload;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Laracasts\Flash\Flash;
-use Request;
 
 class ProjectController extends Controller
 {
@@ -110,7 +110,7 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateProjectRequest $request, $id)
     {
         $project = Project::find($id);
         $project->title = $request->input('title');
@@ -119,30 +119,30 @@ class ProjectController extends Controller
         $project->client = $request->input('client');
         $project->link = $request->input('link');
         $project->date = $request->input('date');
+        $project->published = $request->input('published');
 
         // IMAGE BANNER
         if ($request->hasFile('image')) {
-            $project->image = Uploader::upload($request->file('image'));
-            $img = Image::make(public_path().'/uploads/'.$project->image);
-            $img->crop(360, 360);
-            $img->save();
+            $image = new Upload($request->file('image'));
+            $project->image = $image->getFullPath();
         }
+
         $project->save();
 
         if ($request->hasFile('project_images')) {
             $project->images()->delete();
             $files = $request->file('project_images');
             foreach ($files as $file) {
-                $filename = Uploader::upload($file);
+                $image = new Upload($file);
 
                 $file = new ProjectImage();
                 $file->project_id = $project->id;
-                $file->image = $filename;
+                $file->image = $image->getFullPath();
                 $file->save();
             }
         }
 
-        $project->categories()->sync($request->input('category_id'));
+        $project->categories()->sync($request->input('category_id', []));
 
         Flash::success('Project has been edited');
 

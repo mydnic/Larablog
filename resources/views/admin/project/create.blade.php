@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="form-group">
-                    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Project Name']) !!}
+                    {!! Form::text('title', null, ['placeholder' => 'Project Name', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('sub_title', 'Sub Title') !!}
