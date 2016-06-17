@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-md-9">
             <table class="table table-striped table-bordered table-hover" id="TablePost">
                 <thead>
                     <tr>
@@ -28,7 +28,9 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>
-                                {!! link_to_route('admin.post.edit', str_limit($post->title, 40), $post->id) !!}
+                                <a href="{{ route('admin.post.edit', $post->id) }}">
+                                    {{ str_limit($post->title, 40) }}
+                                </a>
                             </td>
                             <td>
                                 {{ $post->status }}

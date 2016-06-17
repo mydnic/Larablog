@@ -53,6 +53,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('task', 'Admin\TaskController');
 
+        Route::get('social/{id}/delete', ['as' => 'admin.social.delete', 'uses' => 'Admin\SocialLinkController@delete']);
         Route::resource('social', 'Admin\SocialLinkController');
 
         Route::resource('settings', 'Admin\SettingController');
