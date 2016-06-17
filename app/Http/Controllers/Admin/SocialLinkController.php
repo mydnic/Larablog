@@ -8,7 +8,6 @@ use App\Http\Requests\AdminUpdateSocialLinkRequest;
 use App\SocialLink;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
-use Request;
 
 class SocialLinkController extends Controller
 {

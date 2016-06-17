@@ -25,5 +25,4 @@ class Project extends Model implements SluggableInterface
     {
         return $this->hasMany('App\ProjectImage');
     }
-
 }
