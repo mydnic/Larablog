@@ -10,5 +10,4 @@ class ProjectImage extends Model
     {
         return $this->belongsTo('App\Project');
     }
-
 }

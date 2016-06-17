@@ -84,7 +84,7 @@ class SettingController extends Controller
 
         return [
             'success' => true,
-            'path' => $file->getFullPath()
+            'path'    => $file->getFullPath(),
         ];
     }
 }

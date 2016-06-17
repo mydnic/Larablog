@@ -25,8 +25,8 @@ class AdminUpdateSocialLinkRequest extends Request
     {
         return [
             'title' => 'required|min:2,max:255',
-            'url' => 'required|url',
-            'icon' => 'required|min:4,max:255',
+            'url'   => 'required|url',
+            'icon'  => 'required|min:4,max:255',
         ];
     }
 }
