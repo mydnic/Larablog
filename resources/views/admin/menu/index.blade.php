@@ -1,7 +1,6 @@
 @extends('admin.layout')
 
 @section('styles')
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <style>
         .connectedSortable{
             min-height: 50px;
@@ -99,11 +98,11 @@
                     <div class="col-md-5">
                         <h4>Left Menu</h4>
 
-                        <ul class="connectedSortable list-unstyled" ui-sortable="sortableOptions" ng-model="menus.left">
-                            <li ng-repeat="menu in menus.left" class="ui-state-default">
-                                <strong>@{{ menu.name }}</strong>
-                                <small>@{{ menu.url }}</small>
-                                <span class="btn btn-xs btn-danger pull-right" ng-click="removeMenuItem(menu)">
+                        <ul class="connectedSortable list-group" ui-sortable="sortableOptions" ng-model="menus.left">
+                            <li ng-repeat="menu in menus.left" class="ui-state-default list-group-item">
+                                <i class="fa fa-arrows" aria-hidden="true"></i>
+                                <strong>@{{ menu.name }}</strong> - @{{ menu.url }}
+                                <span class="pull-right" ng-click="removeMenuItem(menu)">
                                     <i class="fa fa-trash-o"></i>
                                 </span>
                             </li>
@@ -113,11 +112,11 @@
                     <div class="col-md-5">
                         <h4>Right Menu</h4>
 
-                        <ul class="connectedSortable list-unstyled" ui-sortable="sortableOptions" ng-model="menus.right">
-                            <li ng-repeat="menu in menus.right" class="ui-state-default" ng-click="removeMenuItem(menu)">
-                                <strong>@{{ menu.name }}</strong>
-                                <small>@{{ menu.url }}</small>
-                                <span class="btn btn-xs btn-danger pull-right" ng-click="removeMenuItem(menu)">
+                        <ul class="connectedSortable list-group" ui-sortable="sortableOptions" ng-model="menus.right">
+                            <li ng-repeat="menu in menus.right" class="ui-state-default list-group-item">
+                                <i class="fa fa-arrows" aria-hidden="true"></i>
+                                <strong>@{{ menu.name }}</strong> - @{{ menu.url }}
+                                <span class="pull-right" ng-click="removeMenuItem(menu)">
                                     <i class="fa fa-trash-o"></i>
                                 </span>
                             </li>
@@ -132,7 +131,7 @@
 
 @section('scripts')
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="/admin/js/sortable.js"></script>
+    <script src="/js/lib/jquery.sortable.js"></script>
     <script>
         var app = angular.module("Menus", ['ui.sortable'])
 

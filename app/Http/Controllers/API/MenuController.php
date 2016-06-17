@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Menu;
-use Request;
+use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -20,16 +20,6 @@ class MenuController extends Controller
         $menus['left'] = Menu::whereEmplacement('left')->orderBy('weight')->get();
 
         return $menus;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
