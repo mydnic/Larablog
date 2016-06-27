@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminUpdateSettingsRequest;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\Upload;
 use App\Setting;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
 use Laracasts\Flash\Flash;
 
 class SettingController extends Controller
@@ -30,7 +30,7 @@ class SettingController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AdminUpdateSettingsRequest $request)
     {
         $settings = Setting::first();
         $settings->app_name = $request->input('app_name');
@@ -42,35 +42,21 @@ class SettingController extends Controller
 
         // IMAGE BANNER
         if ($request->hasFile('banner')) {
-            $file = $request->file('banner');
-            $destinationPath = public_path().'/uploads/';
-            $banner_filename = str_random(6).'_banner_'.$file->getClientOriginalName();
-            $uploadSuccess = $file->move($destinationPath, $banner_filename);
-        } else {
-            $banner_filename = $settings->banner;
+            $image = new Upload($request->file('banner'));
+            $settings->banner = $image->getFullPath();
         }
+
         // IMAGE LOGO
         if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $destinationPath = public_path().'/uploads/';
-            $logo_filename = str_random(6).'_logo_'.$file->getClientOriginalName();
-            $uploadSuccess = $file->move($destinationPath, $logo_filename);
-        } else {
-            $logo_filename = $settings->logo;
+            $image = new Upload($request->file('logo'));
+            $settings->logo = $image->getFullPath();
         }
         // IMAGE LOGO
         if ($request->hasFile('favicon')) {
-            $file = $request->file('favicon');
-            $destinationPath = public_path().'/uploads/';
-            $favicon_filename = str_random(6).'_favicon_'.$file->getClientOriginalName();
-            $uploadSuccess = $file->move($destinationPath, $favicon_filename);
-        } else {
-            $favicon_filename = $settings->favicon;
+            $image = new Upload($request->file('favicon'));
+            $settings->favicon = $image->getFullPath();
         }
 
-        $settings->banner = $banner_filename;
-        $settings->logo = $logo_filename;
-        $settings->favicon = $favicon_filename;
         $settings->save();
 
         Flash::success('Settings updated');

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" href="/uploads/{{ $setting->favicon }}" type="image/png"/>
+        <link rel="icon" href="{{ $setting->favicon }}" type="image/png"/>
 
         <title>@yield('meta-title', $setting->app_name)</title>
 
@@ -14,7 +14,7 @@
         <meta name="author" content="{{ $setting->app_name }}">
         <meta property="og:title" content="@yield('meta-title', $setting->app_name)"/>
         <meta property="og:url" content="@yield('meta-url', URL::route('home'))"/>
-        <meta property="og:image" content="@yield('meta-image', url('/uploads/'.$setting->banner))"/>
+        <meta property="og:image" content="@yield('meta-image', url($setting->banner))"/>
         <meta property="og:site_name" content="{{ $setting->app_name }}"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content="@yield('meta-description', $setting->description_baseline)">
@@ -39,7 +39,7 @@
         @include('widgets.google_analytics')
         @include('layout.blog.menu')
 
-        <header class="intro-header" style="background-image: url(@yield('meta-image', '/uploads/'.$setting->banner))">
+        <header class="intro-header" style="background-image: url(@yield('meta-image', $setting->banner))">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
