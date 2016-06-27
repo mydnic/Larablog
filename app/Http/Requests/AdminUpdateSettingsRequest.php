@@ -24,15 +24,15 @@ class AdminUpdateSettingsRequest extends Request
     public function rules()
     {
         return [
-            'app_name' => 'required|max:255',
-            'app_baseline' => 'max:255',
-            'disqus_shortname' => 'max:255',
+            'app_name'              => 'required|max:255',
+            'app_baseline'          => 'max:255',
+            'disqus_shortname'      => 'max:255',
             'google_analytics_code' => 'max:255',
-            'post_bottom_scripts' => 'max:255',
-            'show_on_front' => 'required|max:255',
-            'banner' => 'image',
-            'logo' => 'image',
-            'favicon' => 'image',
+            'post_bottom_scripts'   => 'max:255',
+            'show_on_front'         => 'required|max:255',
+            'banner'                => 'image',
+            'logo'                  => 'image',
+            'favicon'               => 'image',
         ];
     }
 }

@@ -51,7 +51,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('project_category/{id}/delete', ['as' => 'admin.project_category.delete', 'uses' => 'Admin\ProjectCategoryController@delete']);
         Route::resource('project_category', 'Admin\ProjectCategoryController');
 
-        Route::get('task/{id}/toggleComplete', ['as' => 'admin.task.toggle', 'uses'=> 'Admin\TaskController@toggleComplete']);
+        Route::get('task/{id}/toggleComplete', ['as' => 'admin.task.toggle', 'uses' => 'Admin\TaskController@toggleComplete']);
         Route::get('task/{id}/delete', ['as' => 'admin.task.delete', 'uses' => 'Admin\TaskController@delete']);
         Route::resource('task', 'Admin\TaskController');
 
