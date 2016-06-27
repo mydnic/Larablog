@@ -29,8 +29,9 @@ class AdminUpdatePostRequest extends Request
             'status'      => 'required',
             'lang'        => 'max:10',
             'image'       => 'image',
-            'category_id' => 'required|array',
+            'category_id' => 'array',
             'tags'        => 'array',
+            'is_updated'  => 'boolean',
             'created_at'  => 'date',
         ];
     }

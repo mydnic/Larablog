@@ -1,28 +1,20 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
-
-@section('styles')
-    <style>
-    #TablePost span.coma:last-child {
-        display: none;
-    }
-    </style>
-@stop
-
+@section('meta-title', 'Posts')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
                 Posts
-                <small>
-                    <a href="{{ route('admin.post.create') }}">Add new</a>
-                </small>
+                <a href="{{ route('admin.post.create') }}" class="btn btn-primary">
+                    Add new
+                </a>
             </h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-md-9">
             <table class="table table-striped table-bordered table-hover" id="TablePost">
                 <thead>
                     <tr>
@@ -36,7 +28,9 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>
-                                {!! link_to_route('admin.post.edit', str_limit($post->title,40), $post->id) !!}
+                                <a href="{{ route('admin.post.edit', $post->id) }}">
+                                    {{ str_limit($post->title, 40) }}
+                                </a>
                             </td>
                             <td>
                                 {{ $post->status }}
@@ -46,78 +40,58 @@
                                     {{ $category->name }}<span class="coma">,</span>
                                 @endforeach
                             </td>
-                            <td>{{ $post->created_at->format('Y-m-d \a\t H:i:s') }}</td>
+                            <td>
+                                {{ $post->created_at->format('Y-m-d \a\t H:i:s') }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-3" ng-app="Categories">
-            <div class="panel panel-default" ng-controller="CategoriesController" >
+        <div class="col-lg-3">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-list fa-fw"></i> Categories
+                    <i class="fa fa-list fa-fw"></i>
+                    Categories
                 </div>
-                <!-- /.panel-heading -->
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="category in categories">
-                            @{{ category.name }}
-                            <span class="pull-right text-muted small">
-                                <span ng-click="delete(category)"><i class="fa fa-trash"></i></span>
-                            </span>
-                        </li>
+                        @foreach ($categories as $category)
+                            <li class="list-group-item">
+                                <a href="{{ route('admin.category.edit', $category->id) }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                {{ $category->name }} ({{ $category->posts()->count() }})
+                                <span class="pull-right text-muted">
+                                    <a href="{{ route('admin.category.delete', $category->id) }}" class="confirm-delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </span>
+                            </li>
+                        @endforeach
                     </ul>
-                    <!-- /.list-group -->
-                    <form ng-submit="addCategory()">
+                    {!! Form::open(['route' => 'admin.category.store']) !!}
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </span>
-                            <input type="text" class="form-control" ng-model="newCategoryText" placeholder="Add new category">
+                            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Add new category']) !!}
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
-                <!-- /.panel-body -->
             </div>
         </div>
     </div>
 @stop
 
-
 @section('scripts')
-    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#TablePost').dataTable({
                 "order": [[ 3, "desc" ]]
             });
         });
-
-        var app = angular.module("Categories", [])
-
-        app.controller("CategoriesController", function($scope, $http) {
-            $http.get('/api/v1/admin/category').success(function(categories) {
-                $scope.categories = categories;
-            });
-
-            $scope.addCategory = function() {
-                var category = {
-                    name: $scope.newCategoryText,
-                };
-                $http.post('/api/v1/admin/category', category);
-                $scope.categories.push(category);
-                $scope.newCategoryText = null;
-            };
-
-            $scope.delete = function(category) {
-                var index = $scope.categories.indexOf(category);
-                $scope.categories.splice(index, 1);
-                $http.post('/api/v1/admin/category/delete', category);
-            }
-        });
-
     </script>
 @stop

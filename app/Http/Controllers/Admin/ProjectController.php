@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreProjectRequest;
+use App\Http\Requests\AdminUpdateProjectRequest;
 use App\Project;
 use App\ProjectCategory;
 use App\ProjectImage;
+use App\Services\Upload;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Laracasts\Flash\Flash;
-use Mydnic\Uploader\Uploader;
-use Request;
 
 class ProjectController extends Controller
 {
@@ -23,9 +23,11 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        $categories = ProjectCategory::with('projects')->get();
 
         return view('admin.project.index')
-            ->with('projects', $projects);
+            ->with('projects', $projects)
+            ->with('categories', $categories);
     }
 
     /**
@@ -49,51 +51,39 @@ class ProjectController extends Controller
     public function store(AdminStoreProjectRequest $request)
     {
         $project = new Project();
-        $project->title = Request::input('title');
-        $project->sub_title = Request::input('sub_title');
-        $project->description = Request::input('description');
-        $project->client = Request::input('client');
-        $project->link = Request::input('link');
-        $project->date = Request::input('date');
+        $project->title = $request->input('title');
+        $project->sub_title = $request->input('sub_title');
+        $project->description = $request->input('description');
+        $project->client = $request->input('client');
+        $project->link = $request->input('link');
+        $project->date = $request->input('date');
+        $project->published = $request->input('published');
 
         // IMAGE BANNER
-        if (Request::hasFile('image')) {
-            $project->image = Uploader::upload(Request::file('image'));
-            $img = Image::make(public_path().'/uploads/'.$project->image);
-            $img->crop(360, 360);
-            $img->save();
+        if ($request->hasFile('image')) {
+            $image = new Upload($request->file('image'));
+            $project->image = $image->getFullPath();
         }
+
         $project->save();
 
-        if (Request::hasFile('project_images')) {
-            $files = Request::file('project_images');
+        if ($request->hasFile('project_images')) {
+            $files = $request->file('project_images');
             foreach ($files as $file) {
-                $filename = Uploader::upload($file);
+                $image = new Upload($file);
 
                 $file = new ProjectImage();
                 $file->project_id = $project->id;
-                $file->image = $filename;
+                $file->image = $image->getFullPath();
                 $file->save();
             }
         }
 
-        $project->categories()->sync(Request::get('category_id'));
+        $project->categories()->sync($request->input('category_id', []));
 
         Flash::success('Project has been added to your portfolio');
 
-        return Redirect::route('admin.project.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.project.index');
     }
 
     /**
@@ -120,65 +110,65 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function update($id)
+    public function update(AdminUpdateProjectRequest $request, $id)
     {
         $project = Project::find($id);
-        $project->title = Request::get('title');
-        $project->sub_title = Request::get('sub_title');
-        $project->description = Request::get('description');
-        $project->client = Request::get('client');
-        $project->link = Request::get('link');
-        $project->date = Request::get('date');
+        $project->title = $request->input('title');
+        $project->sub_title = $request->input('sub_title');
+        $project->description = $request->input('description');
+        $project->client = $request->input('client');
+        $project->link = $request->input('link');
+        $project->date = $request->input('date');
+        $project->published = $request->input('published');
 
         // IMAGE BANNER
-        if (Request::hasFile('image')) {
-            $project->image = Uploader::upload(Request::file('image'));
-            $img = Image::make(public_path().'/uploads/'.$project->image);
-            $img->crop(360, 360);
-            $img->save();
+        if ($request->hasFile('image')) {
+            $image = new Upload($request->file('image'));
+            $project->image = $image->getFullPath();
         }
+
         $project->save();
 
-        if (Request::hasFile('project_images')) {
+        if ($request->hasFile('project_images')) {
             $project->images()->delete();
-            $files = Request::file('project_images');
+            $files = $request->file('project_images');
             foreach ($files as $file) {
-                $filename = Uploader::upload($file);
+                $image = new Upload($file);
 
                 $file = new ProjectImage();
                 $file->project_id = $project->id;
-                $file->image = $filename;
+                $file->image = $image->getFullPath();
                 $file->save();
             }
         }
 
-        $project->categories()->sync(Request::get('category_id'));
+        $project->categories()->sync($request->input('category_id', []));
 
         Flash::success('Project has been edited');
 
-        return Redirect::route('admin.project.edit', $project->id);
+        return redirect()->route('admin.project.edit', $project->id);
     }
 
     public function setPublished($id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $project->published = true;
         $project->save();
 
         Flash::success('Project has been published');
 
-        return Redirect::route('admin.project.index');
+        return redirect()->route('admin.project.index');
     }
 
     public function setUnpublished($id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $project->published = false;
         $project->save();
 
         Flash::success('Project has been unpublished');
 
-        return Redirect::route('admin.project.index');
+        return redirect()->route('admin.project.index');
     }
 
     /**
@@ -188,8 +178,14 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->categories()->detach();
+        $project->delete();
+
+        Flash::success('Project deleted !');
+
+        return redirect()->route('admin.project.index');
     }
 }

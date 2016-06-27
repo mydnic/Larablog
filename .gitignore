@@ -1,6 +1,5 @@
 .vagrant/
 /vendor
 /node_modules
-/public/uploads/
 composer.lock
 .env

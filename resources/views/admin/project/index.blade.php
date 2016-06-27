@@ -1,21 +1,15 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
 
-@section('styles')
-    <style>
-    #TableProject span.coma:last-child {
-        display: none;
-    }
-    </style>
-@stop
+@section('meta-title', 'Projects')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
                 Projects
-                <small>
-                    {!! link_to_route('admin.project.create', 'Add New') !!}
-                </small>
+                <a href="{{ route('admin.project.create') }}" class="btn btn-primary">
+                    Add new
+                </a>
             </h1>
         </div>
     </div>
@@ -41,7 +35,7 @@
                                     {{ $category->name }}<span class="coma">,</span>
                                 @endforeach
                             </td>
-                            <td>{{ date('Y-m-d \a\t H:i:s' , strtotime($project->created_at)) }}</td>
+                            <td>{{ $project->created_at->format('Y-m-d \a\t H:i:s') }}</td>
                             <td>
                                 @if ($project->published)
                                     {!! link_to_route('admin.project.unpublish', 'Yes', $project->id, ['class'=>'btn btn-success btn-xs']) !!}
@@ -54,68 +48,50 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-3" ng-app="Categories">
-            <div class="panel panel-default" ng-controller="CategoriesController" >
+        <div class="col-lg-3">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-list fa-fw"></i> Categories
+                    <i class="fa fa-list fa-fw"></i>
+                    Categories
                 </div>
-                <!-- /.panel-heading -->
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="category in categories">
-                            @{{ category.name }}
-                            <span class="pull-right text-muted small">
-                                <span ng-click="delete(category)"><i class="fa fa-trash"></i></span>
-                            </span>
-                        </li>
+                        @foreach ($categories as $category)
+                            <li class="list-group-item">
+                                <a href="{{ route('admin.project_category.edit', $category->id) }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                {{ $category->name }} ({{ $category->projects()->count() }})
+                                <span class="pull-right text-muted">
+                                    <a href="{{ route('admin.project_category.delete', $category->id) }}" class="confirm-delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </span>
+                            </li>
+                        @endforeach
                     </ul>
-                    <!-- /.list-group -->
-                    <form ng-submit="addCategory()">
+                    {!! Form::open(['route' => 'admin.project_category.store']) !!}
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </span>
-                            <input type="text" class="form-control" ng-model="newCategoryText" placeholder="Add new category">
+                            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Add new category']) !!}
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
-                <!-- /.panel-body -->
             </div>
         </div>
     </div>
 @stop
 
-
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('#TableProject').dataTable();
-        });
-
-        var app = angular.module("Categories", [])
-
-        app.controller("CategoriesController", function($scope, $http) {
-            $http.get('/api/v1/admin/projectcategory').success(function(categories) {
-                $scope.categories = categories;
+            $('#TableProject').dataTable({
+                "order": [[ 2, "desc" ]]
             });
-
-            $scope.addCategory = function() {
-                var category = {
-                    name: $scope.newCategoryText,
-                };
-                $http.post('/api/v1/admin/projectcategory', category);
-                $scope.categories.push(category);
-                $scope.newCategoryText = null;
-            };
-
-            $scope.delete = function(category) {
-                var index = $scope.categories.indexOf(category);
-                $scope.categories.splice(index, 1);
-                $http.post('/api/v1/admin/projectcategory/delete', category);
-            }
         });
-
     </script>
 @stop

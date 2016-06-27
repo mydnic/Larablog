@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="icon" href="/uploads/{{ $setting->favicon }}" type="image/png"/>
+
+        <link rel="icon" href="{{ $setting->favicon }}" type="image/png"/>
 
         <title>@yield('meta-title', $setting->app_name)</title>
 
@@ -14,15 +14,15 @@
         <meta name="author" content="{{ $setting->app_name }}">
         <meta property="og:title" content="@yield('meta-title', $setting->app_name)"/>
         <meta property="og:url" content="@yield('meta-url', URL::route('home'))"/>
-        <meta property="og:image" content="@yield('meta-image', url('/uploads/'.$setting->banner))"/>
+        <meta property="og:image" content="@yield('meta-image', url($setting->banner))"/>
         <meta property="og:site_name" content="{{ $setting->app_name }}"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content="@yield('meta-description', $setting->description_baseline)">
 
         <!-- Bootstrap -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/clean-blog.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{{ elixir('css/blog.css') }}" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         @yield('styles')
@@ -39,7 +39,7 @@
         @include('widgets.google_analytics')
         @include('layout.blog.menu')
 
-        <header class="intro-header" style="background-image: url(@yield('meta-image', '/uploads/'.$setting->banner))">
+        <header class="intro-header" style="background-image: url(@yield('meta-image', $setting->banner))">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -86,9 +86,9 @@
             </div>
         </footer>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="/js/clean-blog.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="/js/blog.js"></script>
         @yield('scripts')
     </body>
 </html>

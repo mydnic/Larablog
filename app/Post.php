@@ -35,13 +35,4 @@ class Post extends Model implements SluggableInterface
     {
         return $this->belongsToMany('App\Category');
     }
-
-    public function getPictureAttribute()
-    {
-        if (empty($this->image)) {
-            return '/uploads/'.Setting::first()->banner;
-        }
-
-        return '/uploads/'.$this->image;
-    }
 }

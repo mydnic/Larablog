@@ -30,7 +30,7 @@ class AdminStoreProjectRequest extends Request
             'client'      => 'max:255',
             'url'         => 'url',
             'image'       => 'required|image',
-            'category_id' => 'required|array',
+            'category_id' => 'array',
             'date'        => 'date',
         ];
     }

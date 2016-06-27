@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStoreSocialLinkRequest;
+use App\Http\Requests\AdminUpdateSocialLinkRequest;
 use App\SocialLink;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
-use Request;
 
 class SocialLinkController extends Controller
 {
@@ -19,7 +20,7 @@ class SocialLinkController extends Controller
     {
         $links = SocialLink::all();
 
-        return view('admin.settings.social.index')
+        return view('admin.social.index')
             ->with('links', $links);
     }
 
@@ -30,7 +31,7 @@ class SocialLinkController extends Controller
      */
     public function create()
     {
-        return view('admin.settings.social.create');
+        return view('admin.social.create');
     }
 
     /**
@@ -38,17 +39,17 @@ class SocialLinkController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(AdminStoreSocialLinkRequest $request)
     {
         $link = new SocialLink();
-        $link->title = Request::get('title');
-        $link->url = Request::get('url');
-        $link->icon = Request::get('icon');
+        $link->title = $request->input('title');
+        $link->url = $request->input('url');
+        $link->icon = $request->input('icon');
         $link->save();
 
         Flash::success('Link successfully added');
 
-        return Redirect::route('admin.settings.social.index');
+        return redirect()->route('admin.social.index');
     }
 
     /**
@@ -74,7 +75,7 @@ class SocialLinkController extends Controller
     {
         $link = SocialLink::find($id);
 
-        return view('admin.settings.social.edit')
+        return view('admin.social.edit')
             ->with('link', $link);
     }
 
@@ -85,17 +86,17 @@ class SocialLinkController extends Controller
      *
      * @return Response
      */
-    public function update($id)
+    public function update(AdminUpdateSocialLinkRequest $request, $id)
     {
         $link = SocialLink::find($id);
-        $link->title = Request::get('title');
-        $link->url = Request::get('url');
-        $link->icon = Request::get('icon');
+        $link->title = $request->input('title');
+        $link->url = $request->input('url');
+        $link->icon = $request->input('icon');
         $link->save();
 
         Flash::success('Link successfully updated');
 
-        return Redirect::back();
+        return redirect()->back();
     }
 
     /**
@@ -105,8 +106,12 @@ class SocialLinkController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        SocialLink::find($id)->delete();
+
+        Flash::success('Link deleted.');
+
+        return redirect()->route('admin.social.index');
     }
 }

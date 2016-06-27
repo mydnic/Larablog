@@ -10,9 +10,4 @@ class ProjectImage extends Model
     {
         return $this->belongsTo('App\Project');
     }
-
-    public function getPathAttribute()
-    {
-        return '/uploads/'.$this->image;
-    }
 }

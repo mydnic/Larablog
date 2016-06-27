@@ -1,19 +1,21 @@
-@extends('layout.admin.main')
+@extends('admin.layout')
+
+@section('meta-title', 'Pages')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
                 Pages
-                <small>
-                    {!! link_to_route('admin.page.create', 'Add new') !!}
-                </small>
+                <a href="{{ route('admin.page.create') }}" class="btn btn-primary">
+                    Add new
+                </a>
             </h1>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <table class="table table-striped table-bordered table-hover" id="TablePost">
+            <table class="table table-striped table-bordered table-hover" id="TablePage">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -34,7 +36,9 @@
                                     Draft
                                 @endif
                             </td>
-                            <td>{{ $page->created_at->format('d/m/Y \a\t H:i:s') }}</td>
+                            <td>
+                                {{ $page->created_at->format('Y-m-d \a\t H:i:s') }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -43,13 +47,12 @@
     </div>
 @stop
 
-
 @section('scripts')
-    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#TablePost').dataTable();
+            $('#TablePage').dataTable({
+                "order": [[ 2, "desc" ]]
+            });
         });
     </script>
 @stop
