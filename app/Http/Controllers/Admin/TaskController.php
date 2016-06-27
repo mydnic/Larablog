@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Task;
+use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class TaskController extends Controller
 {
@@ -14,7 +17,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('admin.task.index');
+        $tasks = Task::orderBy('completed')->orderBy('priority')->get();
+        return view('admin.task.index')
+            ->with('tasks', $tasks);
     }
 
     /**
@@ -25,7 +30,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.task.create');
     }
 
     /**
@@ -34,35 +39,15 @@ class TaskController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
-    }
+        $task        = new Task();
+        $task->title = $request->input('title');
+        $task->save();
 
-    /**
-     * Display the specified resource.
-     * GET /admintasks/{id}.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        Flash::success('The task has been created.');
 
-    /**
-     * Show the form for editing the specified resource.
-     * GET /admintasks/{id}/edit.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -73,9 +58,28 @@ class TaskController extends Controller
      *
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+        $task             = Task::findOrFail($id);
+        $task->title      = $request->input('title');
+        $task->priority   = $request->input('priority');
+        $task->completion = $request->input('completion');
+        $task->save();
+
+        Flash::success('The task has been updated.');
+
+        return redirect()->back();
+    }
+
+    public function toggleComplete($id)
+    {
+        $task            = Task::findOrFail($id);
+        $task->completed = !$task->completed;
+        $task->save();
+
+        Flash::success('The task has been updated.');
+
+        return redirect()->back();
     }
 
     /**
@@ -88,6 +92,11 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todo::findOrFail($id);
+        $todo->delete();
+
+        Flash::success('The task has been deleted.');
+
+        return redirect()->back();
     }
 }
