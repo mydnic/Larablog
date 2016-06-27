@@ -2,9 +2,11 @@
 
 @section('meta-title', $post->title)
 @section('meta-subtitle', 'Posted by ' . link_to_route('user.show', $post->user->username, $post->user->username) . ' on ' . date('M d Y', strtotime($post->created_at)))
-@section('meta-image', url($post->picture))
+@if ($post->image)
+    @section('meta-image', url($post->image))
+@endif
 @section('meta-description', str_limit(strip_tags($post->content), 140))
-@section('meta-url', route("post.show", $post->slug))
+@section('meta-url', route('post.show', $post->slug))
 @section('meta-lang', $post->lang)
 @section('meta-keywords', $keywords)
 
