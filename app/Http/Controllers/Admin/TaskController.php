@@ -17,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('completed')->orderBy('priority')->get();
+        $tasks = Task::orderBy('completed')->orderBy('priority', 'desc')->get();
         return view('admin.task.index')
             ->with('tasks', $tasks);
     }
@@ -61,7 +61,6 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $task             = Task::findOrFail($id);
-        $task->title      = $request->input('title');
         $task->priority   = $request->input('priority');
         $task->completion = $request->input('completion');
         $task->save();
@@ -90,9 +89,9 @@ class TaskController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $todo = Todo::findOrFail($id);
+        $todo = Task::findOrFail($id);
         $todo->delete();
 
         Flash::success('The task has been deleted.');

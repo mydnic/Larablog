@@ -15,27 +15,34 @@
                     <tr>
                         <th>Title</th>
                         <th>Completion</th>
+                        <th>Priority</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($tasks as $task)
                         <tr>
-                            <td>
-                                {{ $task->title }}
-                            </td>
-                            <td>
-                                {{ $task->completion }}%
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.task.toggle', $task->id) }}" class="btn btn-info btn-xs">
-                                    {{ $task->completed ? 'Reopen' : 'Close' }}
-                                </a>
-
-                                <a href="{{ route('admin.task.delete', $task->id) }}" class="btn btn-danger btn-xs">
-                                    Delete
-                                </a>
-                            </td>
+                            {!! Form::model($task, ['route' => ['admin.task.update', $task->id], 'method' => 'put']) !!}
+                                <td>
+                                    {{ $task->title }}
+                                </td>
+                                <td class="text-center">
+                                    {!! Form::input('range', 'completion', null, ['class' => 'form-control', 'min' => '0', 'max' => '100']) !!}
+                                    <strong>{{ $task->completion }}%</strong>
+                                </td>
+                                <td class="text-center">
+                                    {!! Form::input('number', 'priority', null, ['class' => 'form-control']) !!}
+                                </td>
+                                <td>
+                                    {!! Form::submit('Save', ['class' => 'btn btn-primary btn-xs']) !!}
+                                    <a href="{{ route('admin.task.toggle', $task->id) }}" class="btn btn-info btn-xs">
+                                        {{ $task->completed ? 'Reopen' : 'Close' }}
+                                    </a>
+                                    <a href="{{ route('admin.task.delete', $task->id) }}" class="btn btn-danger btn-xs">
+                                        Delete
+                                    </a>
+                                </td>
+                            {!! Form::close() !!}
                         </tr>
                     @endforeach
                 </tbody>
