@@ -18,6 +18,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::orderBy('completed')->orderBy('priority', 'desc')->get();
+
         return view('admin.task.index')
             ->with('tasks', $tasks);
     }
@@ -41,7 +42,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $task        = new Task();
+        $task = new Task();
         $task->title = $request->input('title');
         $task->save();
 
@@ -60,8 +61,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task             = Task::findOrFail($id);
-        $task->priority   = $request->input('priority');
+        $task = Task::findOrFail($id);
+        $task->priority = $request->input('priority');
         $task->completion = $request->input('completion');
         $task->save();
 
@@ -72,7 +73,7 @@ class TaskController extends Controller
 
     public function toggleComplete($id)
     {
-        $task            = Task::findOrFail($id);
+        $task = Task::findOrFail($id);
         $task->completed = !$task->completed;
         $task->save();
 
