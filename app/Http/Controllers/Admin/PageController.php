@@ -108,7 +108,7 @@ class PageController extends Controller
 
         if ($request->hasFile('image')) {
             $image = new Upload($request->file('image'));
-            $post->image = $image->getFullPath();
+            $page->image = $image->getFullPath();
         }
 
         $page->save();
