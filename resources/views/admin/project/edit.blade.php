@@ -96,7 +96,7 @@
                         {!! Form::label('image', 'Select an Image') !!}
                         <div class="fileUpload">
                             {!! Form::file('image', ['class' => 'upload']) !!}
-                            <img src="{{ $project->image_path }}">
+                            <img src="{{ $project->image }}">
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                         <div class="fileUpload multiple">
                             {!! Form::file('project_images[]', ['class'=>'upload', 'id'=>'image_file_upload', 'multiple']) !!}
                             @foreach ($project->images as $image)
-                                <img src="{{ $image->path }}">
+                                <img src="{{ $image->image }}">
                             @endforeach
                         </div>
                     </div>

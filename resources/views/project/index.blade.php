@@ -29,7 +29,7 @@
                                     <i class="fa fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="{{ $project->image_path }}" class="img-responsive" alt="">
+                            <img src="{{ $project->image }}" class="img-responsive" alt="">
                         </a>
                         <div class="portfolio-caption">
                             <h4>
@@ -84,7 +84,7 @@
                                                     @foreach ($project->images as $key => $image)
                                                         <div class="item @if ($i==0) active @endif">
                                                             <?php $i++ ?>
-                                                            <img src="{{$image->path}}" alt="{{$project->title}}">
+                                                            <img src="{{$image->image}}" alt="{{$project->title}}">
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -101,7 +101,7 @@
                                             </div>
 
                                             {!! $project->description !!}
-                                            
+
                                             <ul class="list-inline">
                                                 <li>Date: {{ date('M Y', strtotime($project->date)) }}</li>
                                                 <li>Client: {{ $project->client }}</li>
