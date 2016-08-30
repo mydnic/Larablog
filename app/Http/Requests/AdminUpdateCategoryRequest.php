@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
 
-class AdminStoreCategoryRequest extends Request
+class AdminUpdateCategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

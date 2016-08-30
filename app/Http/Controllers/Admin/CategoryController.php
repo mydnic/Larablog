@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreCategoryRequest;
+use App\Http\Requests\AdminUpdateCategoryRequest;
 use Request;
+use Laracasts\Flash\Flash;
 
 class CategoryController extends Controller
 {
@@ -43,6 +45,8 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         $category->save();
 
+        Flash::success('The category has been added.');
+
         return redirect()->back();
     }
 
@@ -68,11 +72,13 @@ class CategoryController extends Controller
      *
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateCategoryRequest $request, $id)
     {
         $category = Category::find($id);
         $category->name = $request->input('name');
         $category->save();
+
+        Flash::success('The category has been updated.');
 
         return redirect()->back();
     }
