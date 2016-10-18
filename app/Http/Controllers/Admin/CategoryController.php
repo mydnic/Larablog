@@ -6,7 +6,6 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreCategoryRequest;
 use App\Http\Requests\AdminUpdateCategoryRequest;
-use Request;
 use Laracasts\Flash\Flash;
 
 class CategoryController extends Controller
