@@ -104,7 +104,10 @@
                     @elseif ($menu->is_login_link)
                         @if (Auth::check())
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    {{ Auth::user()->username }}
+                                    <b class="caret"></b>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ url('logout') }}">Logout</a>
