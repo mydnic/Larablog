@@ -13,8 +13,8 @@
         <meta name="keywords" content="@yield('meta-keywords', 'blog, portfolio')">
         <meta name="author" content="{{ $setting->app_name }}">
         <meta property="og:title" content="@yield('meta-title', $setting->app_name)"/>
-        <meta property="og:url" content="@yield('meta-url', URL::route('home'))"/>
-        <meta property="og:image" content="@yield('meta-image', url($setting->banner))"/>
+        <meta property="og:url" content="@yield('meta-url', route('home'))"/>
+        <meta property="og:image" content="@yield('meta-image', asset($setting->banner))"/>
         <meta property="og:site_name" content="{{ $setting->app_name }}"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content="@yield('meta-description', $setting->description_baseline)">

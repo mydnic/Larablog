@@ -1,3 +1,9 @@
+# Project Discontinued
+
+I will no longer actively work on Larablog as there are many Laravel based CMS that are far most advanced that this repo.
+
+I wanted to work on a theming feature but it required too much change in the laravel default structure. I'll leave this repo open and you are most welcome to open issues, I will still work on them if needed.
+
 # Larablog
 
 This project aims to achieve a full-featured personnal website / blog.
