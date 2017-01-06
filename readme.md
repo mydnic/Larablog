@@ -1,8 +1,8 @@
 # Project Discontinued
 
-I will no longer actively work on Larablog as there are many Laravel based CMS that are far most advanced that this repo.
+I will no longer actively work on Larablog as there are many Laravel based CMS that are far most advanced than this repo.
 
-I wanted to work on a theming feature but it required too much change in the laravel default structure. I'll leave this repo open and you are most welcome to open issues, I will still work on them if needed.
+I wanted to work on a theming feature but it required too much change in the laravel default structure. I'll leave this repo open and you are most welcomed to open issues, I will still work on them if needed.
 
 # Larablog
 
@@ -13,19 +13,7 @@ This is an open source project, if you'd like to participate and/or use it, enjo
 Demo : http://mydnic.be
 
 # Installation
-## Vagrant
-If you are used to vagrant, just clone this repository and run <code>vagrant up</code>.
-Once the script is finished, you should be up and running!
 
-Visit http://localhost:4567 to see the website
-
-A phpMyAdmin is available at http://localhost:4568
-
-Username = user (or root)
-
-Password = pass
-
-## Classic
 1. Git clone this repo
 2. run <code>composer install</code>
 3. at the root, create <code>.env</code> file and insert the following lines
@@ -48,4 +36,4 @@ DB_PASSWORD=
 7. run <code>php artisan db:seed</code>
 7. run <code>php artisan serve</code> and visit http://localhost:8000/
 
-If any problem with the classical installation, please refer to the official Laravel documentation.
+If any problem with the installation, please refer to the official Laravel documentation.
